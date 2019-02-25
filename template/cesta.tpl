@@ -4,8 +4,8 @@
     {$contenidoCesta}
     <div id="botonesCesta">
         <form action="sitio.php" method="post">
-            <input class="cestaAccion" type="submit" name="cestaAccion" value="Pagar">
-            <input class="cestaAccion" type="submit" name="cestaAccion" value="Vaciar">
+            <input class="cestaAccion" type="submit" name="cestaAccion" value="Pagar" {$disabled}>
+            <input class="cestaAccion" type="submit" name="cestaAccion" value="Vaciar" {$disabled}>
         </form>
     </div>
 </div>

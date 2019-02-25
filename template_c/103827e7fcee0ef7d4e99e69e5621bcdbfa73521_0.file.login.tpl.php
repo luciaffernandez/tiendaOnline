@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-02-26 18:17:33
-  from 'C:\xampp\htdocs\tiendaOnline\template\login.tpl' */
+/* Smarty version 3.1.33, created on 2019-02-25 12:16:35
+  from '/var/www/tiendaOnline7/template/login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5c7574adf07d09_81587864',
+  'unifunc' => 'content_5c73ce937786c4_52172843',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'd5c8073e61983189d6fe583278d47d8fa63197c2' => 
+    '103827e7fcee0ef7d4e99e69e5621bcdbfa73521' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\login.tpl',
-      1 => 1551201403,
+      0 => '/var/www/tiendaOnline7/template/login.tpl',
+      1 => 1551093030,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5c7574adf07d09_81587864 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5c73ce937786c4_52172843 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <head>

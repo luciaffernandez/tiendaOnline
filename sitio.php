@@ -31,6 +31,13 @@ if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
 
+if(empty($cesta->getProductos()) || is_null($cesta->getProductos())){
+    $disabled ="disabled";
+}else{
+    $disabled="";
+}
+$smarty->assign('disabled', $disabled);
+
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
 $contenidoCesta = $cesta->mostrarCesta();
 $smarty->assign('contenidoCesta', $contenidoCesta);
@@ -61,6 +68,15 @@ if ($_POST['cestaAccion']) {
 
 
 $cesta->guardaCesta();
+
+
+$cesta->guardaCesta();
+if(empty($cesta->getProductos())|| is_null($cesta->getProductos())){
+    $disabled ="disabled";
+}else{
+    $disabled="";
+}
+$smarty->assign('disabled', $disabled);
 
 //recojo el resultado de la funcion que crea el html de la cesta y la muestra
 $contenidoCesta = $cesta->mostrarCesta();

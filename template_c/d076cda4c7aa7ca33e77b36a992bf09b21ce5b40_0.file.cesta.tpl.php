@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-02-26 18:18:20
-  from 'C:\xampp\htdocs\tiendaOnline\template\cesta.tpl' */
+/* Smarty version 3.1.33, created on 2019-02-25 13:01:15
+  from '/var/www/tiendaOnline7/template/cesta.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5c7574dc2a28a3_11535192',
+  'unifunc' => 'content_5c73d90ba29a97_29908199',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '489429e453fd9db0cac9c738b76b4e9ebb1af798' => 
+    'd076cda4c7aa7ca33e77b36a992bf09b21ce5b40' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\cesta.tpl',
-      1 => 1551201403,
+      0 => '/var/www/tiendaOnline7/template/cesta.tpl',
+      1 => 1551095960,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5c7574dc2a28a3_11535192 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5c73d90ba29a97_29908199 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="cesta">
     <h3><img src="img/cesta.png" alt="Cesta" width="26" height="24">Cesta</h3>
     <hr>

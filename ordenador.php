@@ -28,7 +28,7 @@ if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     header("Location:login.php?error");
 }
 
-//hacemos un select con todos los ordenadores
+//seleccionamos todos los ordenadores
 $ordenadores = $conexion->seleccion("SELECT * FROM ordenador");
 //recorremos el array que ha devuelto y vamos recogiendo los datos que queremos
 foreach ($ordenadores as $datos) {

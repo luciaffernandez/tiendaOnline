@@ -46,21 +46,22 @@ class Cesta {
     public function mostrarCesta() {
         if ($this->productos == null || $this->productos == 0) {
             $contenidoCesta .= "<p class='cestaVacia'>0 PRODUCTOS</p>";
+        } else {
+            $contenidoCesta = "";
+            foreach ($this->productos as $codigo => $valores) {
+                $contenidoCesta .= "<p>"
+                        . "<span class='cantidad'>$valores[0]</span> "
+                        . "<span class='codigo'>$codigo</span> "
+                        . "<span class='precio'>$valores[1]</span>"
+                        . "<form action='sitio.php' method='POST'>"
+                        . "<input type='hidden' name='codigo' value='$codigo'>"
+                        . "<input type='submit' name='cestaAccion' value='Eliminar'><br/>"
+                        . "</form>"
+                        . "</p>";
+            }
+            $contenidoCesta .= "<hr>"
+                    . "<p><span class='total1'>Total:</span><span class='total2'>" . $this->calculoTotal() . "€</span><br/></p>";
         }
-        $contenidoCesta = "";
-        foreach ($this->productos as $codigo => $valores) {
-            $contenidoCesta .= "<p>"
-                    . "<span class='cantidad'>$valores[0]</span> "
-                    . "<span class='codigo'>$codigo</span> "
-                    . "<span class='precio'>$valores[1]</span>"
-                    . "<form action='sitio.php' method='POST'>"
-                    . "<input type='hidden' name='codigo' value='$codigo'>"
-                    . "<input type='submit' name='cestaAccion' value='Eliminar'><br/>"
-                    . "</form>"
-                    . "</p>";
-        }
-        $contenidoCesta .= "<hr>"
-                . "<p><span class='total1'>Total:</span><span class='total2'>" . $this->calculoTotal() . "</span><br/></p>";
         return $contenidoCesta;
     }
 
@@ -85,6 +86,7 @@ class Cesta {
     public function eliminoProd($codigo) {
         if ($this->productos[$codigo][0] > 1) {
             $this->productos[$codigo][0] --;
+            $this->total -= $this->productos[$codigo][1];
         } else {
             unset($this->productos[$codigo]);
         }
@@ -94,6 +96,7 @@ class Cesta {
      * @return type
      */
     public function calculoTotal() {
+        $this->total = 0;
         foreach ($this->productos as $producto => $valores) {
             $cantidad = $valores[0];
             $precio = $valores[1];
@@ -110,6 +113,7 @@ class Cesta {
     //vaciamos cesta
     public function vacia() {
         unset($this->productos);
+        unset($this->total);
     }
 
 }

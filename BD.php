@@ -8,7 +8,7 @@ class BD {
     private $pass;
     private $dns;
 
-    /** Función que recoge los valores necerasios para la creación de un objeto de tipo base de datos
+    /** Función que recoge los valores necesarios para la creación de un objeto de tipo base de datos
      *  @param type $host
      *  @param type $user
      *  @param type $pass

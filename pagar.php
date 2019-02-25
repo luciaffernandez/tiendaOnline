@@ -39,7 +39,7 @@ $smarty->assign('fecha', $fecha);
 
 //recorremos el array productos de cesta para ir construyendo las filas de 
 //la tabla de la plantilla y los hiddens necesarios para paypal
-$contador = 0;
+$contador = 1;
 foreach ($productos as $producto => $valores) {
     $resumenPago .= "<tr class = 'pago'>"
             . "<td class = 'pago'>" . $producto . "</td>"
