@@ -31,6 +31,7 @@ if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
 
+//controlo los botones de la cesta según lo que contenga
 if(empty($cesta->getProductos()) || is_null($cesta->getProductos())){
     $disabled ="disabled";
 }else{
