@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Tienda Online - Lucía</title>
-  <link href="tienda.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <div id='login'>
-        <fieldset>
-            <legend>Login</legend>
-            <form action='login.php' method='post'>
-                <div><span class='error'>{$error}</span></div>
-                <div class='campo'>
-                    <label>Usuario:</label><br/>
-                    <input type='text' name='name' value='admin' maxlength="50" /><br/>
+    {include file = "head_header.tpl"}
+    <section>
+        <div class="login seccionMargenes">
+            <section class="separacion"></section>
+            <fieldset class="cajaLogin">
+                <div class="iniciarSesion col-lg-6 col-md-12 col-sm-12">
+                    <form class="formLogin" action='login.php' method='post'>
+                        <h2>Iniciar sesión</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div><span class='error'>{$error}Mensaje</span></div>
+                        <div class='campo'>
+                            <label>Correo:</label><br/>
+                            <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>Contraseña:</label><br/>
+                            <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
+                        </div>
+                        <div class='divSubmit'>
+                            <input class="submit" type='submit' name='iniciarSesion' value='Iniciar sesión' />
+                        </div>
+                    </form>
                 </div>
-                <div class='campo'>
-                    <label>Contraseña:</label><br/>
-                    <input type='password' name='pass' value='admin' maxlength="50" /><br/>
+                <div class="registrarse col-lg-6 col-md-12 col-sm-12">
+                    <form class="formLogin" action='login.php' method='post'>
+                        <h2>Registrarse</h2>
+                        <div><span class='error'>{$error}Mensaje</span></div>
+                        <div class='campo'>
+                            <label>Nombre:</label><br/>
+                            <input class="inputData" type='text' name='name' value='Lucía' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>Apellidos:</label><br/>
+                            <input class="inputData" type='text' name='apellidos' value='Fernández Ulibarrena' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>Correo:</label><br/>
+                            <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>Fecha de Nacimiento:</label><br/>
+                            <input class="inputData" type='text' name='fechaNac' value='1997-06-19' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>Contraseña:</label><br/>
+                            <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
+                        </div>
+                        <div class='divSubmit'>
+                            <input class="submit" type='submit' name='crearUsuario' value='Crear usuario' />
+                        </div>
+                    </form>
                 </div>
-                <hr/>
-                <div class='campo'>
-                    <input type='submit' name='enviar' value='Enviar' />
-                </div>
-            </form>
-        </fieldset>  
-    </div>
-</body>
+            </fieldset>
+            <section class="separacion"></section>
+        </div>
+    </section>
+    {include file = "footer.tpl"}
 </html>

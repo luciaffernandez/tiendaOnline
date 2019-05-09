@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 //Añadimos las clases
 require_once "Smarty.class.php";
@@ -17,18 +17,18 @@ $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
 
 //cuando se pulse el boton enviar en el login
-if (isset($_POST['enviar'])) {
+if (isset($_POST['iniciarSesion'])) {
     //recogemos los datos
-    $nombre = $_POST['name'];
+    $correo = $_POST['correo'];
     $pass = $_POST['pass'];
     //establecemos conexion
     $conexion = new BD();
     //comprobamos los datos
-    if ($conexion->comprueboUsuario($nombre, $pass)) {
+    if ($conexion->comprueboUsuario($correo, $pass)) {
         //si es true los guardamos en sesiones y pasamos al sitio.php
-        $_SESSION['user'] = $nombre;
+        $_SESSION['correo'] = $correo;
         $_SESSION['pass'] = $pass;
-        header("Location:sitio.php");
+        header("Location:tienda.php");
         exit();
     } else {
         //si es false mostramos el mensaje de error y mostramos el login.tpl
@@ -36,7 +36,13 @@ if (isset($_POST['enviar'])) {
         $smarty->assign('error', $error);
         $smarty->display('login.tpl');
     }
-} else {
+} else if(isset($_POST['crearUsuario'])){
+    $name = $_POST['name'];
+    $apellidos = $_POST['apellidos'];
+    $correo = $_POST['correo'];
+    $fechaNac = $_POST['fechaNac'];
+    $pass = $_POST['pass']; 
+}else {
     //cuando no se haya pulsado ningún boton
     $error = "";
     $smarty->assign('error', $error);
@@ -54,4 +60,5 @@ if (isset($_POST['enviar'])) {
     //Mostramos plantilla
     $smarty->display('login.tpl');
 }
+
 ?>

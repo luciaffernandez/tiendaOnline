@@ -14,7 +14,7 @@ class BD {
      *  @param type $pass
      *  @param type $bd
      */
-    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "dwes") {
+    public function __construct($host = "localhost", $user = "tienda", $pass = "root", $bd = "tienda") {
         $this->user = $user;
         $this->pass = $pass;
         if ($bd === null) {
@@ -112,11 +112,11 @@ class BD {
      * @param string $pass
      * @return bool. Si esta ese usuario sera true si no false
      */
-    public function comprueboUsuario(string $nombre, string $pass): bool {
+    public function comprueboUsuario(string $correo, string $pass): bool {
         if ($this->conexion == null) {
             $this->conexion = $this->conectar();
         }
-        $sentencia = "SELECT * FROM usuarios WHERE name='" . $nombre . "' and pass='" . $pass . "'";
+        $sentencia = "SELECT * FROM USUARIOS WHERE correo='" . $correo . "' and password='" . $pass . "'";
         $campos = $this->seleccion($sentencia);
         $prueba = (is_null($campos) || empty($campos)) ? false : true;
         return $prueba;

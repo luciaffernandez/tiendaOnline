@@ -44,22 +44,32 @@ class Cesta {
      * @return string con el HTML
      */
     public function mostrarCesta() {
+        $contenidoCesta = "";
         if ($this->productos == null || $this->productos == 0) {
-            $contenidoCesta .= "<p class='cestaVacia'>0 PRODUCTOS</p>";
+            $contenidoCesta .= "<p class='cestaVacia'>No hay productos</p>";
         } else {
             $contenidoCesta = "";
-            foreach ($this->productos as $codigo => $valores) {
-                $contenidoCesta .= "<p>"
-                        . "<span class='cantidad'>$valores[0]</span> "
-                        . "<span class='codigo'>$codigo</span> "
-                        . "<span class='precio'>$valores[1]</span>"
-                        . "<form action='sitio.php' method='POST'>"
-                        . "<input type='hidden' name='codigo' value='$codigo'>"
-                        . "<input type='submit' name='cestaAccion' value='Eliminar'><br/>"
+            foreach ($this->productos as $numRef => $valores) {
+                $contenidoCesta .= "<li>"
+                        . "<span class='item'>"
+                        . "<span class='item-left'>"
+                        . "<span class='item-info cantidad'>$valores[0]</span>"
+                        . "<img src='./img/$valores[3]' alt='' class='imagenCesta'/>"
+                        . "<span class='item-info'>"
+                        . "<span>$valores[2]</span>"
+                        . "<span>$valores[1]€</span>"
+                        . "</span>"
+                        . "</span>"
+                        . "<span class='item-right'>"
+                        . "<form action='tienda.php' method='POST'>"
+                        . "<input type='hidden' name='numRef' value='$numRef'>"
+                        . "<input class='eliminarProdCest' type='submit' name='cestaAccion' value='Eliminar'><br/>"
                         . "</form>"
-                        . "</p>";
+                        . "</span>"
+                        . "</span>"
+                        . "</li>";
             }
-            $contenidoCesta .= "<hr>"
+            $contenidoCesta .= "<li class='divider'></li>"
                     . "<p><span class='total1'>Total:</span><span class='total2'>" . $this->calculoTotal() . "€</span><br/></p>";
         }
         return $contenidoCesta;
@@ -68,27 +78,29 @@ class Cesta {
     /** Funcion que comprueba si el producto ya existe en el array productos, 
      * si no existe lo añade con sus datos y si sí solo le suma uno a su cantidad
      * @param type $precio
-     * @param type $codigo
+     * @param type $numRef
      */
-    public function nuevoProd($precio, $codigo) {
-        if ($this->productos[$codigo][0] > 0) {
-            $this->productos[$codigo][0] ++;
+    public function nuevoProd($precio, $numRef, $nomProd, $imagen1) {
+        if ($this->productos[$numRef][0] > 0) {
+            $this->productos[$numRef][0] ++;
         } else {
-            $this->productos[$codigo][0] = 1;
-            $this->productos[$codigo][1] = $precio;
+            $this->productos[$numRef][0] = 1;
+            $this->productos[$numRef][1] = $precio;
+            $this->productos[$numRef][2] = $nomProd;
+            $this->productos[$numRef][3] = $imagen1;
         }
     }
 
     /** Función que comprueba la cantidad de un producto que hay en el array productos 
      * de la cesta y si es mayor que 1 le resta 1, si no el valor mínimo es 1 asique lo elimina
-     * @param type $codigo
+     * @param type $numRef
      */
-    public function eliminoProd($codigo) {
-        if ($this->productos[$codigo][0] > 1) {
-            $this->productos[$codigo][0] --;
-            $this->total -= $this->productos[$codigo][1];
+    public function eliminoProd($numRef) {
+        if ($this->productos[$numRef][0] > 1) {
+            $this->productos[$numRef][0] --;
+            $this->total -= $this->productos[$numRef][1];
         } else {
-            unset($this->productos[$codigo]);
+            unset($this->productos[$numRef]);
         }
     }
 

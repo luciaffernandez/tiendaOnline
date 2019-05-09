@@ -1,0 +1,331 @@
+@charset "UTF-8";
+/*Theme Name: Tema QTZ
+  Author: Luc├¡a Fern├índez Ulibarrena
+  Description: Esta plantilla nos servir├í como web inicial para cada uno de nuestros proyectos. Est├í desarrollada modularmente pensando en que sea todo lo versatil posible para facilitar los diferentes usos que se van a hacer de ella. Para su utilizaci├│n se requieren conocimientos de html, css, javascript y php. Suerte y divi├®rtete.
+  Versi├│n: 1.0
+*/
+@import url("https://fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800");
+.espacio {
+  height: 100px; }
+
+.seccionMargenes {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0; }
+
+.iconosHome {
+  margin-bottom: 40px; }
+
+* {
+  box-sizing: border-box; }
+  *::before, *::after {
+    box-sizing: border-box; }
+
+body {
+  font-family: 'Mukta Regular', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  background: #f3f8fa; }
+
+/****************************************/
+/*****************HEADER*****************/
+.redesSociales img {
+  width: 20px;
+  margin: 0 5px 0 5px; }
+
+.redesSociales {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+
+.menuPrincipal {
+  justify-content: space-between; }
+
+.logo {
+  margin: 10px;
+  width: 170px; }
+
+/****************************************/
+/****************CAROUSEL****************/
+.carousel {
+  filter: drop-shadow(0px 0px 8px gray); }
+
+.carousel-caption {
+  background-color: white;
+  color: black;
+  padding: 30px;
+  margin: 20px 0 120px 0;
+  max-width: 350px;
+  min-height: 400px;
+  text-align: left; }
+
+.carousel-item {
+  height: 600px;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  background-size: cover; }
+
+.slide-1 {
+  background-image: url("../img/imagen4.jpg"); }
+
+.slide-2 {
+  background-image: url("../img/imagen18.jpg"); }
+
+.slide-3 {
+  background-image: url("../img/imagen7.jpg"); }
+
+/****************************************/
+/************BOTON LEER M├üS************/
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit; }
+  button.learn-more {
+    width: 12rem;
+    height: auto; }
+    button.learn-more .circle {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: relative;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: #282936;
+      border-radius: 1.625rem; }
+      button.learn-more .circle .icon {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #fff; }
+        button.learn-more .circle .icon.arrow {
+          transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+          left: 0.625rem;
+          width: 1.125rem;
+          height: 0.125rem;
+          background: none; }
+          button.learn-more .circle .icon.arrow::before {
+            position: absolute;
+            content: '';
+            top: -0.25rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg); }
+    button.learn-more .button-text {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      color: #282936;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase; }
+  button:hover .circle {
+    width: 100%; }
+    button:hover .circle .icon.arrow {
+      background: #fff;
+      transform: translate(1rem, 0); }
+  button:hover .button-text {
+    color: #fff; }
+
+/****************************************/
+/************MENU HAMBURGUESA************/
+a.hamburger {
+  width: 25px;
+  height: 25px;
+  display: block;
+  margin: 0 auto;
+  position: relative; }
+
+.line {
+  width: 32px;
+  height: 4px;
+  display: block;
+  position: absolute;
+  background: #fff;
+  border-radius: 2px; }
+
+.line-1 {
+  top: 0; }
+
+.line-2 {
+  margin-top: -3px;
+  top: 50%; }
+
+.line-3 {
+  bottom: 0; }
+
+.navbar-toggler, .navbar-toggler:active {
+  border: none; }
+
+#navbarNav {
+  margin-left: 30px;
+  margin-right: 40px; }
+
+.iconosNav {
+  margin: 10px; }
+
+/****************************************/
+/*****************FOOTER*****************/
+.page-footer {
+  background-color: #343a40;
+  filter: drop-shadow(0px -1px 8px gray);
+  color: white; }
+
+.mapaFooter {
+  width: 100%; }
+
+.page-footer {
+  background-color: #343a40;
+  filter: drop-shadow(0px -1px 8px gray);
+  color: white; }
+
+.login {
+  background-image: url("../img/imagen14.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: auto; }
+
+.cajaLogin {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 3% 5% 5% 5%;
+  height: auto; }
+
+.seccionMargenes {
+  padding-left: 8%;
+  padding-right: 8%; }
+
+.separacion {
+  height: 50px; }
+
+.iniciarSesion {
+  float: left; }
+
+.registrarse {
+  float: left; }
+
+h2 {
+  margin: 20px 0 20px 0; }
+
+.inputData {
+  padding: 5px;
+  width: 100%;
+  margin: 10px 0 10px 0; }
+
+label {
+  margin: 0; }
+
+.submit {
+  padding: 5px;
+  margin-top: 20px;
+  width: 160px; }
+
+.divSubmit {
+  display: flex;
+  justify-content: center; }
+
+.formLogin {
+  width: 90%; }
+
+/****************************************/
+/*****************CESTA******************/
+ul.dropdown-cart {
+  min-width: 250px;
+  height: auto; }
+
+ul.dropdown-cart li .item {
+  display: block;
+  padding: 3px 10px;
+  margin: 3px 0; }
+
+ul.dropdown-cart li .item:hover {
+  background-color: #f3f3f3; }
+
+ul.dropdown-cart li .item:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: "";
+  clear: both;
+  height: 0; }
+
+ul.dropdown-cart li .item-left {
+  float: left; }
+
+ul.dropdown-cart li .item-left img, ul.dropdown-cart li .item-left span.item-info {
+  float: left; }
+
+ul.dropdown-cart li .item-left span.item-info {
+  margin-left: 10px; }
+
+ul.dropdown-cart li .item-left span.item-info span {
+  display: block; }
+
+ul.dropdown-cart li .item-right {
+  float: right; }
+
+ul.dropdown-cart li .item-right button {
+  margin-top: 14px; }
+
+span .cantidad {
+  margin-top: 10px;
+  width: 30px; }
+
+.card-footer {
+  background-color: none !important; }
+
+.botonesCesta {
+  text-align: center; }
+
+.dropdown-menu {
+  padding: 1.5rem !important; }
+
+.btn-anadir {
+  font-size: 0.9em; }
+
+input .btn-anadir:hover {
+  text-transform: underline !important; }
+
+h4, h4 > strong > a {
+  font-size: 1.2em;
+  color: #333333; }
+
+h4 > strong > a:hover {
+  color: #666666; }
+
+span {
+  font-size: 0.9em; }
+
+h5 {
+  text-transform: uppercase;
+  font-size: .8em;
+  letter-spacing: 2px;
+  color: graytext; }
+
+.imagenCesta {
+  width: 50px;
+  height: 50px; }
+
+/*# sourceMappingURL=style.css.map */
