@@ -63,7 +63,7 @@ class Cesta {
                         . "<span class='item-right'>"
                         . "<form action='tienda.php' method='POST'>"
                         . "<input type='hidden' name='numRef' value='$numRef'>"
-                        . "<input class='eliminarProdCest' type='submit' name='cestaAccion' value='Eliminar'><br/>"
+                        . "<input class='eliminarProdCest btn btn-red waves-effect cestaAccion' type='submit' name='cestaAccion' value='Eliminar'><br/>"
                         . "</form>"
                         . "</span>"
                         . "</span>"

@@ -4,9 +4,15 @@
   Description: Esta plantilla nos servir├í como web inicial para cada uno de nuestros proyectos. Est├í desarrollada modularmente pensando en que sea todo lo versatil posible para facilitar los diferentes usos que se van a hacer de ella. Para su utilizaci├│n se requieren conocimientos de html, css, javascript y php. Suerte y divi├®rtete.
   Versi├│n: 1.0
 */
-@import url("https://fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
 .espacio {
   height: 100px; }
+
+.espacioPequeno {
+  height: 50px; }
+
+* {
+  font-family: 'Open Sans', sans-serif; }
 
 .seccionMargenes {
   margin-left: auto;
@@ -14,7 +20,9 @@
   padding: 0; }
 
 .iconosHome {
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  margin-top: 40px;
+  width: 100px; }
 
 * {
   box-sizing: border-box; }
@@ -22,7 +30,7 @@
     box-sizing: border-box; }
 
 body {
-  font-family: 'Mukta Regular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5;
@@ -31,6 +39,35 @@ body {
   margin: 0;
   min-height: 100vh;
   background: #f3f8fa; }
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(30px + (35 - 30) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 30px;
+  font-weight: 800; }
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; }
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; }
+
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 400; }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))) !important; }
 
 /****************************************/
 /*****************HEADER*****************/
@@ -53,9 +90,10 @@ body {
 /****************************************/
 /****************CAROUSEL****************/
 .carousel {
-  filter: drop-shadow(0px 0px 8px gray); }
+  box-shadow: -2px -1px 19px 10px rgba(0, 0, 0, 0.26); }
 
 .carousel-caption {
+  box-shadow: -2px -1px 19px 10px rgba(0, 0, 0, 0.26);
   background-color: white;
   color: black;
   padding: 30px;
@@ -93,10 +131,9 @@ button {
   padding: 0;
   font-size: inherit;
   font-family: inherit; }
-  button.learn-more {
-    width: 12rem;
+  button.btn-complejo {
     height: auto; }
-    button.learn-more .circle {
+    button.btn-complejo .circle {
       transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
       position: relative;
       margin: 0;
@@ -104,20 +141,20 @@ button {
       height: 3rem;
       background: #282936;
       border-radius: 1.625rem; }
-      button.learn-more .circle .icon {
+      button.btn-complejo .circle .icon {
         transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
         position: absolute;
         top: 0;
         bottom: 0;
         margin: auto;
         background: #fff; }
-        button.learn-more .circle .icon.arrow {
+        button.btn-complejo .circle .icon.arrow {
           transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
           left: 0.625rem;
           width: 1.125rem;
           height: 0.125rem;
           background: none; }
-          button.learn-more .circle .icon.arrow::before {
+          button.btn-complejo .circle .icon.arrow::before {
             position: absolute;
             content: '';
             top: -0.25rem;
@@ -127,7 +164,7 @@ button {
             border-top: 0.125rem solid #fff;
             border-right: 0.125rem solid #fff;
             transform: rotate(45deg); }
-    button.learn-more .button-text {
+    button.btn-complejo .button-text {
       transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
       position: absolute;
       top: 0;
@@ -184,7 +221,8 @@ a.hamburger {
   margin-right: 40px; }
 
 .iconosNav {
-  margin: 10px; }
+  margin: 10px;
+  margin-bottom: 10px; }
 
 /****************************************/
 /*****************FOOTER*****************/
@@ -214,8 +252,8 @@ a.hamburger {
   height: auto; }
 
 .seccionMargenes {
-  padding-left: 8%;
-  padding-right: 8%; }
+  padding-left: 7%;
+  padding-right: 7%; }
 
 .separacion {
   height: 50px; }
@@ -251,17 +289,17 @@ label {
 
 /****************************************/
 /*****************CESTA******************/
-ul.dropdown-cart {
-  min-width: 250px;
+#navbarNav > ul.nav.navbar-nav.navbar-right > li > ul {
+  right: 0;
+  left: auto; }
+
+ul .dropdown-cart {
   height: auto; }
 
 ul.dropdown-cart li .item {
   display: block;
   padding: 3px 10px;
   margin: 3px 0; }
-
-ul.dropdown-cart li .item:hover {
-  background-color: #f3f3f3; }
 
 ul.dropdown-cart li .item:after {
   visibility: hidden;
@@ -303,13 +341,14 @@ span .cantidad {
   padding: 1.5rem !important; }
 
 .btn-anadir {
-  font-size: 0.9em; }
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9em;
+  font-weight: 700; }
 
 input .btn-anadir:hover {
   text-transform: underline !important; }
 
 h4, h4 > strong > a {
-  font-size: 1.2em;
   color: #333333; }
 
 h4 > strong > a:hover {
@@ -327,5 +366,30 @@ h5 {
 .imagenCesta {
   width: 50px;
   height: 50px; }
+
+.fondoBlanco {
+  background-color: white; }
+
+input[type=submit]:hover {
+  border-color: #212121 !important;
+  background-color: transparent !important;
+  color: #212121 !important; }
+
+.areaClientes {
+  margin-bottom: 20px !important; }
+
+.item-info {
+  margin: 0 20px 0 20px !important; }
+
+.seccionEnlaceContacto {
+  background-image: url("../img/imagen13.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.textoEnlaceContacto {
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 0 6%; }
 
 /*# sourceMappingURL=style.css.map */

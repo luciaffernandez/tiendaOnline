@@ -2,7 +2,7 @@
 <html>
     {include file = "head_header.tpl"}
     <section class="seccionMargenes text-center my-5">
-        <div class="row">
+        <div class="row contenedorProductos">
             {$listado}
         </div>
     </section>

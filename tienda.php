@@ -107,9 +107,9 @@ function obtenerListado($conexion) {
         $imagen1 = $dato['imagen1'];
         $nomCat = $dato['nom_categoria'];
 
-        $listado .= "<div class='col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-4'>"
+        $listado .= "<div class='col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-4 my-4'>"
                 . "<form action='tienda.php' method='post'>"
-                . "<div class='card card-cascade card-ecommerce'>"
+                . "<div class='productos card card-cascade card-ecommerce'>"
                 . "<div class='view view-cascade overlay imagenProducto'>"
                 . "<input type='hidden' value='$numRef' name='numRef'>"
                 . "<input type='hidden' value='$nomProd' name='nomProd'>"
@@ -125,7 +125,7 @@ function obtenerListado($conexion) {
                 . "<div class='card-footer'>"
                 . "<span class='float-left'>$precio €</span>"
                 . "<span class='float-right'>"
-                . " <input class='btn btn-outline-dark btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion'>"
+                . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion'>"
                 . "</div>"
                 . "</div>"
                 . "</div>"

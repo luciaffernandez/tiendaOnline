@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-09 09:41:19
+/* Smarty version 3.1.33, created on 2019-05-09 18:33:21
   from 'C:\xampp\htdocs\tiendaOnline\template\head_header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cd3d99f9bfd51_30082246',
+  'unifunc' => 'content_5cd456513fd7f6_34764722',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de7d57581ebb9f4ab2a379c2415ec6ba522be108' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\head_header.tpl',
-      1 => 1557387673,
+      1 => 1557419554,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cd3d99f9bfd51_30082246 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cd456513fd7f6_34764722 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Tienda Online - Lucía</title>
@@ -35,7 +35,7 @@ function content_5cd3d99f9bfd51_30082246 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 <body>
     <header class="site-header">
-        <nav class="redesSociales">
+        <nav class="redesSociales fondoBlanco">
             <a href="www.facebook.com" target="_blank"><img src="img/facebook.png"/></a>
             <a href="www.instagram.com" target="_blank"><img src="img/instagram.png"/></a>
             <a href="www.twitter.com" target="_blank"><img src="img/twitter.png"/></a
@@ -55,33 +55,30 @@ function content_5cd3d99f9bfd51_30082246 (Smarty_Internal_Template $_smarty_tpl)
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="http://localhost/tiendaOnline/home.php">Inicio</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Sobre nosotros</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/tienda.php"><span>Productos</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Sección</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Contacto</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Blog</span></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="http://localhost/tiendaOnline/home.php">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sobre nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/tienda.php">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle iconosNav" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fas fa-shopping-cart white-text"></i></span></a>
-                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                    <li class="dropdown iconosNav cestadebajomenu">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"><i class="fas fa-shopping-cart white-text"></i></span></a>
+                        <ul class="row dropdown-menu dropdown-cart" role="menu">
                             <?php echo $_smarty_tpl->tpl_vars['contenidoCesta']->value;?>
 
                             <li class="divider"></li>
                             <li class="botonesCesta">
                                 <form action="tienda.php" method="post">
-                                    <input class="btn btn-outline-dark  waves-effect cestaAccion" type="submit" name="cestaAccion" value="Pagar" <?php echo $_smarty_tpl->tpl_vars['disabled']->value;?>
+                                    <input class="btn btn-red  waves-effect cestaAccion" type="submit" name="cestaAccion" value="Pagar" <?php echo $_smarty_tpl->tpl_vars['disabled']->value;?>
 >
-                                    <input class="btn btn-outline-dark waves-effect cestaAccion" type="submit" name="cestaAccion" value="Vaciar" <?php echo $_smarty_tpl->tpl_vars['disabled']->value;?>
+                                    <input class="btn btn-red waves-effect cestaAccion" type="submit" name="cestaAccion" value="Vaciar" <?php echo $_smarty_tpl->tpl_vars['disabled']->value;?>
 >
                                 </form>
                             </li>
                         </ul>
-
                     </li>
                     <form action="head_header.php" method="post">
-                        <button formmethod="post" name="areaClientes" role="button" aria-expanded="false"><i class="fas fa-user white-text iconosNav"></i></span></button>
+                        <button formmethod="post" name="areaClientes" role="button" aria-expanded="false"><i class="fas fa-user white-text iconosNav areaClientes"></i></span></button>
                     </form>
                 </ul>
             </div>

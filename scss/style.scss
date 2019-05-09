@@ -6,7 +6,12 @@
 .espacio{
     height: 100px;
 }
-
+.espacioPequeno{
+    height: 50px;
+}
+*{
+    font-family: 'Open Sans', sans-serif;
+}
 .seccionMargenes{
     margin-left: auto;
     margin-right: auto;
@@ -15,9 +20,12 @@
 
 .iconosHome{
     margin-bottom: 40px;
+    margin-top: 40px;
+    width: 100px;
+    
 }
 
-@import url('https://fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
 $bg: #f3f8fa;
 $white: #fff;
@@ -35,7 +43,7 @@ $black: #282936;
 }
 
 body {
-  font-family: 'Mukta Regular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5;
@@ -44,6 +52,40 @@ body {
   margin: 0;
   min-height: 100vh;
   background: $bg;
+}
+
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(30px + (35 - 30) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 30px;
+  font-weight: 800; }
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; 
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 700; 
+}
+
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
+  margin-bottom: 15px;
+  font-weight: 400; 
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))) !important;
 }
 
 /****************************************/
@@ -70,9 +112,10 @@ body {
 
 /****************************************/
 /****************CAROUSEL****************/
-.carousel{filter: drop-shadow(0px 0px 8px gray);}
+.carousel{box-shadow: -2px -1px 19px 10px rgba(0,0,0,0.26);}
 
 .carousel-caption{
+    box-shadow: -2px -1px 19px 10px rgba(0,0,0,0.26);
     background-color: white;
     color:black;
     padding:30px;
@@ -105,8 +148,7 @@ button {
   padding: 0;
   font-size: inherit;
   font-family: inherit;
-  &.learn-more {
-    width: 12rem;
+  &.btn-complejo {
     height: auto;
     .circle {
       @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
@@ -207,6 +249,7 @@ a.hamburger{
 
 .iconosNav{
     margin:10px;
+    margin-bottom:10px;
 }
 
 /****************************************/
@@ -240,8 +283,8 @@ a.hamburger{
 }
 
 .seccionMargenes{
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 7%;
+    padding-right: 7%;
 }
 .separacion{
     height: 50px;
@@ -280,8 +323,12 @@ label{
 
 /****************************************/
 /*****************CESTA******************/
-ul.dropdown-cart{
-    min-width:250px;
+
+#navbarNav > ul.nav.navbar-nav.navbar-right > li > ul{    
+    right: 0;
+    left: auto;
+}   
+ul .dropdown-cart{
     height: auto;
 }
 
@@ -289,10 +336,6 @@ ul.dropdown-cart li .item{
     display:block;
     padding:3px 10px;
     margin: 3px 0;
-}
-
-ul.dropdown-cart li .item:hover{
-    background-color:#f3f3f3;
 }
 
 ul.dropdown-cart li .item:after{
@@ -344,13 +387,14 @@ span .cantidad{
     padding:1.5rem !important;
 }
 .btn-anadir{
+    font-family: 'Open Sans', sans-serif;
     font-size:0.9em;
+    font-weight: 700;
 }
 input .btn-anadir:hover{
     text-transform: underline !important;
 }
 h4, h4 > strong > a{
-    font-size: 1.2em;
     color: #333333;
 }
 h4 > strong > a:hover{
@@ -368,4 +412,32 @@ h5{
 .imagenCesta{
     width: 50px;
     height: 50px;
+}
+
+.fondoBlanco{
+    background-color: white;
+}
+
+input[type=submit]:hover {
+    border-color:#212121 !important;
+     background-color:transparent !important;
+     color:#212121 !important;
+}
+.areaClientes{
+    margin-bottom: 20px !important; 
+}
+.item-info{
+        margin: 0 20px 0 20px !important;
+}
+.seccionEnlaceContacto{
+    background-image: url('../img/imagen13.jpg') ;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.textoEnlaceContacto{
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 0 6%;
+    
 }
