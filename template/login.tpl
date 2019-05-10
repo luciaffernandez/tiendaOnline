@@ -19,7 +19,7 @@
                             <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
                         </div>
                         <div class='divSubmit'>
-                            <input class="submit" type='submit' name='iniciarSesion' value='Iniciar sesión' />
+                            <input class="submit btn btn-red" type='submit' name='iniciarSesion' value='Iniciar sesión' />
                         </div>
                     </form>
                 </div>
@@ -29,15 +29,15 @@
                         <div><span class='error'>{$error}Mensaje</span></div>
                         <div class='campo'>
                             <label>Nombre:</label><br/>
-                            <input class="inputData" type='text' name='name' value='Lucía' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='name' value='Lucia' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Apellidos:</label><br/>
-                            <input class="inputData" type='text' name='apellidos' value='Fernández Ulibarrena' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='apellidos' value='Fernandez Ulibarrena' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Correo:</label><br/>
-                            <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='correo' value='nookdesarrollo@gmail.com' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Fecha de Nacimiento:</label><br/>
@@ -48,7 +48,7 @@
                             <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
                         </div>
                         <div class='divSubmit'>
-                            <input class="submit" type='submit' name='crearUsuario' value='Crear usuario' />
+                            <input class="submit btn btn-red" type='submit' name='crearUsuario' value='Crear usuario'/>
                         </div>
                     </form>
                 </div>

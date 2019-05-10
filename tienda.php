@@ -24,7 +24,12 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
 }
-
+if(isset($_GET['error'])){
+    $error = $_GET['error'];
+}else{
+    $error ="No hay ningun error";
+}
+$smarty->assign('error', $error);
 
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();

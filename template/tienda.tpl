@@ -6,6 +6,7 @@
             {$listado}
         </div>
     </section>
+    {$debug}
     <form action="login.php" method="POST">
         <input type="submit" name="desconectar" value="Desconectar">
     </form>

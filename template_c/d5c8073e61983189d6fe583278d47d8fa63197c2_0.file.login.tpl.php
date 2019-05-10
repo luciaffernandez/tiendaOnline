@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-06 13:03:33
+/* Smarty version 3.1.33, created on 2019-05-10 10:01:09
   from 'C:\xampp\htdocs\tiendaOnline\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cd014853eb416_22452934',
+  'unifunc' => 'content_5cd52fc563b6b2_82329117',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd5c8073e61983189d6fe583278d47d8fa63197c2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\login.tpl',
-      1 => 1557140611,
+      1 => 1557475186,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cd014853eb416_22452934 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cd52fc563b6b2_82329117 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -46,7 +46,7 @@ Mensaje</span></div>
                             <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
                         </div>
                         <div class='divSubmit'>
-                            <input class="submit" type='submit' name='iniciarSesion' value='Iniciar sesión' />
+                            <input class="submit btn btn-red" type='submit' name='iniciarSesion' value='Iniciar sesión' />
                         </div>
                     </form>
                 </div>
@@ -57,15 +57,15 @@ Mensaje</span></div>
 Mensaje</span></div>
                         <div class='campo'>
                             <label>Nombre:</label><br/>
-                            <input class="inputData" type='text' name='name' value='Lucía' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='name' value='Lucia' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Apellidos:</label><br/>
-                            <input class="inputData" type='text' name='apellidos' value='Fernández Ulibarrena' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='apellidos' value='Fernandez Ulibarrena' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Correo:</label><br/>
-                            <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com' maxlength="50" /><br/>
+                            <input class="inputData" type='text' name='correo' value='nookdesarrollo@gmail.com' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Fecha de Nacimiento:</label><br/>
@@ -76,7 +76,7 @@ Mensaje</span></div>
                             <input class="inputData" type='password' name='pass' value='user1' maxlength="50" /><br/>
                         </div>
                         <div class='divSubmit'>
-                            <input class="submit" type='submit' name='crearUsuario' value='Crear usuario' />
+                            <input class="submit btn btn-red" type='submit' name='crearUsuario' value='Crear usuario'/>
                         </div>
                     </form>
                 </div>
