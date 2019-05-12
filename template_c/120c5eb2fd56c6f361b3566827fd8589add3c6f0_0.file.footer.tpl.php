@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-09 17:55:33
+/* Smarty version 3.1.33, created on 2019-05-12 16:15:12
   from 'C:\xampp\htdocs\tiendaOnline\template\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cd44d75bcb134_90119273',
+  'unifunc' => 'content_5cd82a70e05708_64767708',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '120c5eb2fd56c6f361b3566827fd8589add3c6f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\footer.tpl',
-      1 => 1557417332,
+      1 => 1557670503,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cd44d75bcb134_90119273 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cd82a70e05708_64767708 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 <footer class="page-footer font-small pt-4">
 

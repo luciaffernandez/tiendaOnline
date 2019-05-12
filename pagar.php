@@ -16,9 +16,9 @@ $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
 
 //si tenemos guardados las variables de sesion usuario y contraseña 
-if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
+if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
     //las guardamos en variables
-    $nombre = $_SESSION['user'];
+    $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
 } else {
     //las guardamos en variables
@@ -29,7 +29,9 @@ $cesta = $_SESSION['cesta'];
 //recogemos el array productos de la cesta
 $productos = $cesta->getProductos();
 
-
+//establecemos conexion
+$conexion = new BD();
+$nombre = nombreusuario($conexion, $correo);
 
 //mostramos en la plantilla la variable usuario o nombre
 $smarty->assign('usuario', $nombre);
@@ -42,11 +44,13 @@ $smarty->assign('fecha', $fecha);
 $contador = 1;
 foreach ($productos as $producto => $valores) {
     $resumenPago .= "<tr class = 'pago'>"
-            . "<td class = 'pago'>" . $producto . "</td>"
-            . "<td class = 'pago'>$valores[0]</td>"
+            . "<td class = 'pago'>" . $valores[0] . "</td>"
+            . "<td class = 'pago'><img src='./img/". $valores[3]."' class='imagenCesta'/></td>"
+            . "<td class = 'pago'>$valores[2]</td>"
+            . "<td class = 'pago'>$producto</td>"
             . "<td class = 'pago'>$valores[1]</td>"
             . "</tr>"
-            . "<input name='item_name_$contador' type = 'hidden' value = '$producto' />"
+            . "<input name='item_name_$contador' type = 'hidden' value = '$valores[2]]' />"
             . "<input name='item_number_$contador' type = 'hidden' value = '$producto' />"
             . "<input name='amount_$contador' type='hidden' value='$valores[1]' />"
             . "<input name='quantity_$contador' type='hidden' value='$valores[0]' />";
@@ -74,5 +78,15 @@ $smarty->assign('resumenPago', $resumenPago);
 
 //mostramos plantilla
 $smarty->display("pagar.tpl");
+
+function nombreusuario($conexion, $correo){
+    $datos = $conexion->seleccion("SELECT * FROM USUARIOS WHERE correo = '".$correo."'");
+    foreach ($datos as $dato) {
+        $nombre = $dato['nombre'];
+        $apellidos = $dato['apellidos'];
+        $nombreUser =  $nombre . ' ' . $apellidos;
+    }
+    return $nombreUser;
+}
 ?>
 

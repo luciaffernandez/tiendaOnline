@@ -441,3 +441,22 @@ input[type=submit]:hover {
     margin: 0 6%;
     
 }
+table.pago {
+    width: 100%;
+    align-content: center
+}
+
+th.pago , td.pago {
+    text-align: left;
+    padding: 8px;
+}
+td.precio{
+    text-align: right;
+}
+
+tr.pago:nth-child(even){background-color: #ccc}
+
+th.pago {
+    background-color: #a80f0f;
+    color: white;
+}
