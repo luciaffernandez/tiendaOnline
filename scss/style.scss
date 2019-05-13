@@ -22,7 +22,7 @@
     margin-bottom: 40px;
     margin-top: 40px;
     width: 100px;
-    
+
 }
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
@@ -32,60 +32,60 @@ $white: #fff;
 $black: #282936;
 
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
-  transition: $property $duration $ease;
+    transition: $property $duration $ease;
 }
 
 * {
-  box-sizing: border-box;
-  &::before, &::after {
     box-sizing: border-box;
-  }
+    &::before, &::after {
+        box-sizing: border-box;
+    }
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  min-height: 100vh;
-  background: $bg;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    background: $bg;
 }
 
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: calc(30px + (35 - 30) * ((100vw - 320px) / (1920 - 320))) !important;
-  margin-bottom: 30px;
-  font-weight: 800; }
+    font-family: 'Open Sans', sans-serif;
+    font-size: calc(30px + (35 - 30) * ((100vw - 320px) / (1920 - 320))) !important;
+    margin-bottom: 30px;
+    font-weight: 800; }
 
 h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320))) !important;
-  margin-bottom: 15px;
-  font-weight: 700; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320))) !important;
+    margin-bottom: 15px;
+    font-weight: 700; 
 }
 
 h3 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
-  margin-bottom: 15px;
-  font-weight: 700; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
+    margin-bottom: 15px;
+    font-weight: 700; 
 }
 
 h4 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
-  margin-bottom: 15px;
-  font-weight: 400; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
+    margin-bottom: 15px;
+    font-weight: 400; 
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))) !important;
 }
 
 /****************************************/
@@ -125,10 +125,10 @@ p {
     text-align: left;
 }
 .carousel-item {
-  height: 600px;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  background-size: cover;
+    height: 600px;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    background-size: cover;
 }
 .slide-1{background-image: url('../img/imagen4.jpg');}
 .slide-2{background-image: url('../img/imagen18.jpg');}
@@ -137,103 +137,103 @@ p {
 /****************************************/
 /************BOTON LEER MÁS************/
 button {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
-  &.btn-complejo {
-    height: auto;
-    .circle {
-      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
-      position: relative;
-      margin: 0;
-      width: 3rem;
-      height: 3rem;
-      background: $black;
-      border-radius: 1.625rem;
-      .icon {
-        @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: $white;
-        &.arrow {
-          @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
-          left: 0.625rem;
-          width: 1.125rem;
-          height: 0.125rem;
-          background: none;
-          &::before {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    &.btn-complejo {
+        height: auto;
+        .circle {
+            @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+            position: relative;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: $black;
+            border-radius: 1.625rem;
+            .icon {
+                @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                background: $white;
+                &.arrow {
+                    @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+                    left: 0.625rem;
+                    width: 1.125rem;
+                    height: 0.125rem;
+                    background: none;
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        top: -0.25rem;
+                        right: 0.0625rem;
+                        width: 0.625rem;
+                        height: 0.625rem;
+                        border-top: 0.125rem solid #fff;
+                        border-right: 0.125rem solid #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+        .button-text {
+            @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
             position: absolute;
-            content: '';
-            top: -0.25rem;
-            right: 0.0625rem;
-            width: 0.625rem;
-            height: 0.625rem;
-            border-top: 0.125rem solid #fff;
-            border-right: 0.125rem solid #fff;
-            transform: rotate(45deg);
-          }
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: $black;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
         }
-      }
     }
-    .button-text {
-      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0.75rem 0;
-      margin: 0 0 0 1.85rem;
-      color: $black;
-      font-weight: 700;
-      line-height: 1.6;
-      text-align: center;
-      text-transform: uppercase;
-    }
-  }
-  &:hover {
-    .circle {
-      width: 100%;
-      .icon {
-        &.arrow {
-        background: $white;
-        transform: translate(1rem, 0);
+    &:hover {
+        .circle {
+            width: 100%;
+            .icon {
+                &.arrow {
+                    background: $white;
+                    transform: translate(1rem, 0);
+                }
+            }
         }
-      }
+        .button-text {
+            color: $white;
+        }
     }
-    .button-text {
-      color: $white;
-    }
-  }
 }
 
 /****************************************/
 /************MENU HAMBURGUESA************/
 a.hamburger{
-  width:25px;
-  height:25px;
-  display:block;
-  margin:0 auto;
-  position:relative;
+    width:25px;
+    height:25px;
+    display:block;
+    margin:0 auto;
+    position:relative;
 }
 
 .line{
-  width:32px;
-  height:4px;
-  display:block;
-  position:absolute;
-  background:#fff;
-  border-radius:2px;
+    width:32px;
+    height:4px;
+    display:block;
+    position:absolute;
+    background:#fff;
+    border-radius:2px;
 }
 
 .line-1{top:0;}
@@ -269,11 +269,11 @@ a.hamburger{
 }
 
 .login {
-  background-image: url("../img/imagen14.jpg");
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-  height: auto;
+    background-image: url("../img/imagen14.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: auto;
 }
 
 .cajaLogin{
@@ -296,7 +296,7 @@ a.hamburger{
     float:left;
 }
 h2{
-   margin: 20px 0 20px 0; 
+    margin: 20px 0 20px 0; 
 }
 .inputData{
     padding: 5px;
@@ -372,12 +372,12 @@ ul.dropdown-cart li .item-right button{
 }
 
 span .cantidad{
-  margin-top:10px;
-  width:30px;
+    margin-top:10px;
+    width:30px;
 }
 
 .card-footer{
-   background-color: none !important;
+    background-color: none !important;
 }
 
 .botonesCesta{
@@ -420,14 +420,14 @@ h5{
 
 input[type=submit]:hover {
     border-color:#212121 !important;
-     background-color:transparent !important;
-     color:#212121 !important;
+    background-color:transparent !important;
+    color:#212121 !important;
 }
 .areaClientes{
     margin-bottom: 20px !important; 
 }
 .item-info{
-        margin: 0 20px 0 20px !important;
+    margin: 0 20px 0 20px !important;
 }
 .seccionEnlaceContacto{
     background-image: url('../img/imagen13.jpg') ;
@@ -439,7 +439,7 @@ input[type=submit]:hover {
 .textoEnlaceContacto{
     background-color: rgba(255, 255, 255, 0.9);
     margin: 0 6%;
-    
+
 }
 table.pago {
     width: 100%;
@@ -459,4 +459,17 @@ tr.pago:nth-child(even){background-color: #ccc}
 th.pago {
     background-color: #a80f0f;
     color: white;
+}
+.imagenFondoCarrito{
+    background-image: url('../img/imagen2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300;
+    width: 100%;
+    float: left;
+    margin-right: 20px;
+}
+.botonFinalizaCompra{
+    padding-top: 20px;
 }

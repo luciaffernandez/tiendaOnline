@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-13 00:25:30
+/* Smarty version 3.1.33, created on 2019-05-13 17:15:34
   from 'C:\xampp\htdocs\tiendaOnline\template\pagar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cd89d5a748f48_51170325',
+  'unifunc' => 'content_5cd98a1671ba29_83498279',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8c924068ae8263ae237a173ad0926cb7b93c0a3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\pagar.tpl',
-      1 => 1557699921,
+      1 => 1557760532,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:head_header.tpl' => 1,
   ),
 ),false)) {
-function content_5cd89d5a748f48_51170325 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cd98a1671ba29_83498279 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -38,8 +38,8 @@ function content_5cd89d5a748f48_51170325 (Smarty_Internal_Template $_smarty_tpl)
             <input name="business" type="hidden" value="luciafffernandez-facilitator@gmail.com" />
             <input name="shopping_url" type="hidden" value="http://tienda/ejemploPaypal/index.php" />
             <input name="currency_code" type="hidden" value="EUR" />
-            <input name="return" type="hidden" value="http://tienda/ejemploPaypal/index.php" />
-            <input name="notify_url" type="hidden" value="http://tienda/ejemploPaypal/index.php" />
+            <input name="return" type="hidden" value="http://localhost/tiendaOnline/tienda.php" />
+            <input name="notify_url" type="hidden" value="http://localhost/tiendaOnline/tienda.php" />
             <input name="rm" type="hidden" value="2" />
 
             <table id="tablaPagar" class="pago">
@@ -55,39 +55,52 @@ function content_5cd89d5a748f48_51170325 (Smarty_Internal_Template $_smarty_tpl)
                 <?php echo $_smarty_tpl->tpl_vars['resumenPago']->value;?>
 
             </table>
-            <hr />    
-
-            <table class="col-4 float-right">
-                <thead>
+            <hr />
+            <section class="flex">
+                <div class="imagenFondoCarrito col-6"></div>
+                <table class="col-5 float-right">
+                    <thead>
+                        <tr class="pago">
+                            <th class = "pago" colspan = 2><strong>RESUMEN DE LA FACTURA</strong></th>
+                    </thead>
                     <tr class="pago">
-                        <th class = "pago" colspan = 2><strong>RESUMEN DE LA FACTURA</strong></th>
-                </thead>
-                <tr class="pago">
-                    <td class="pago">Total articulos</td>
-                    <td class="pago"><?php echo $_smarty_tpl->tpl_vars['cantidadProductos']->value;?>
+                        <td class="pago">Total articulos</td>
+                        <td class="pago"><?php echo $_smarty_tpl->tpl_vars['cantidadProductos']->value;?>
 </td>
-                </tr>
-                <tr>
-                    <td class="pago">Precio total Sin iva</td>
-                    <td class="pago"><?php echo $_smarty_tpl->tpl_vars['total']->value;?>
+                    </tr>
+                    <tr>
+                        <td class="pago">Precio total Sin iva</td>
+                        <td class="pago"><?php echo $_smarty_tpl->tpl_vars['total']->value;?>
 </td>
-                </tr>
-                <tr>
-                    <td class="pago">IVA</td>
-                    <td class="pago"><?php echo $_smarty_tpl->tpl_vars['IVA']->value;?>
+                    </tr>
+                    <tr>
+                        <td class="pago">IVA</td>
+                        <td class="pago"><?php echo $_smarty_tpl->tpl_vars['IVA']->value;?>
 </td></td>
-                </tr>
-                <tr>
-                    <td class="pago">TOTAL pagar</td>
-                    <td class="pago"><?php echo $_smarty_tpl->tpl_vars['totalIVA']->value;?>
+                    </tr>
+                    <tr>
+                        <td class="pago">TOTAL pagar</td>
+                        <td class="pago"><?php echo $_smarty_tpl->tpl_vars['totalIVA']->value;?>
 </td>
-                </tr>
-            </table>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center y-5">
+                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto" value="Finalizar pedido"> 
+                        </td>
+                    </tr>
+                </table>
 
-            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="Finalizar pedido" target="_blank">
+            </section>
         </form>
         <form >
+            <h3>Datos del usuario</h3>
+            <?php echo $_smarty_tpl->tpl_vars['usuario']->value;?>
 
+            </br>
+            <?php echo $_smarty_tpl->tpl_vars['correo']->value;?>
+
+            </br>
+            <?php echo $_smarty_tpl->tpl_vars['datosUsuario']->value;?>
 
         </form>
     </div>

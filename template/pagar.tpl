@@ -27,36 +27,46 @@
                 </thead>
                 {$resumenPago}
             </table>
-            <hr />    
-
-            <table class="col-4 float-right">
-                <thead>
+            <hr />
+            <section class="flex">
+                <div class="imagenFondoCarrito col-6"></div>
+                <table class="col-5 float-right">
+                    <thead>
+                        <tr class="pago">
+                            <th class = "pago" colspan = 2><strong>RESUMEN DE LA FACTURA</strong></th>
+                    </thead>
                     <tr class="pago">
-                        <th class = "pago" colspan = 2><strong>RESUMEN DE LA FACTURA</strong></th>
-                </thead>
-                <tr class="pago">
-                    <td class="pago">Total articulos</td>
-                    <td class="pago">{$cantidadProductos}</td>
-                </tr>
-                <tr>
-                    <td class="pago">Precio total Sin iva</td>
-                    <td class="pago">{$total}</td>
-                </tr>
-                <tr>
-                    <td class="pago">IVA</td>
-                    <td class="pago">{$IVA}</td></td>
-                </tr>
-                <tr>
-                    <td class="pago">TOTAL pagar</td>
-                    <td class="pago">{$totalIVA}</td>
-                </tr>
-            </table>
+                        <td class="pago">Total articulos</td>
+                        <td class="pago">{$cantidadProductos}</td>
+                    </tr>
+                    <tr>
+                        <td class="pago">Precio total Sin iva</td>
+                        <td class="pago">{$total}</td>
+                    </tr>
+                    <tr>
+                        <td class="pago">IVA</td>
+                        <td class="pago">{$IVA}</td></td>
+                    </tr>
+                    <tr>
+                        <td class="pago">TOTAL pagar</td>
+                        <td class="pago">{$totalIVA}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center botonFinalizaCompra">
+                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto" value="Finalizar pedido"> 
+                        </td>
+                    </tr>
+                </table>
 
-            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" value="Finalizar pedido" target="_blank">
+            </section>
         </form>
         <form >
-
-
+            <h3>Datos del usuario</h3>
+            {$usuario}
+            </br>
+            {$correo}
+            </br>
+            {$datosUsuario}
         </form>
     </div>
 </section>

@@ -410,4 +410,17 @@ th.pago {
   background-color: #a80f0f;
   color: white; }
 
+.imagenFondoCarrito {
+  background-image: url("../img/imagen2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300;
+  width: 100%;
+  float: left;
+  margin-right: 20px; }
+
+.botonFinalizaCompra {
+  padding-top: 20px; }
+
 /*# sourceMappingURL=style.css.map */
