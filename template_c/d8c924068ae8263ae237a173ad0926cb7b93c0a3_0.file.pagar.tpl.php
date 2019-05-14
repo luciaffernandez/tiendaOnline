@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-13 17:15:34
+/* Smarty version 3.1.33, created on 2019-05-14 12:28:18
   from 'C:\xampp\htdocs\tiendaOnline\template\pagar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cd98a1671ba29_83498279',
+  'unifunc' => 'content_5cda984226f3a2_63721575',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8c924068ae8263ae237a173ad0926cb7b93c0a3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\pagar.tpl',
-      1 => 1557760532,
+      1 => 1557829695,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:head_header.tpl' => 1,
+    'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cd98a1671ba29_83498279 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cda984226f3a2_63721575 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -84,27 +85,34 @@ function content_5cd98a1671ba29_83498279 (Smarty_Internal_Template $_smarty_tpl)
 </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="text-center y-5">
-                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto" value="Finalizar pedido"> 
+                        <td colspan="2" class="text-center botonFinalizaCompra">
+                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto botonesPago" value="Finalizar pedido"> 
                         </td>
                     </tr>
                 </table>
 
             </section>
         </form>
-        <form >
-            <h3>Datos del usuario</h3>
-            <?php echo $_smarty_tpl->tpl_vars['usuario']->value;?>
+        <section class="espacioPequeno"></section>
+        <form method="post" action="pagar.php" class="col-12">
+            <div class="col-12">
+                <h3>Datos del usuario</h3>
+                <div class="error"><?php echo $_smarty_tpl->tpl_vars['mensaje']->value;?>
+</div>
+                <?php echo $_smarty_tpl->tpl_vars['datosUsuario']->value;?>
 
+            </div>
             </br>
-            <?php echo $_smarty_tpl->tpl_vars['correo']->value;?>
+            <?php echo $_smarty_tpl->tpl_vars['formularioEditorUsuario']->value;?>
 
-            </br>
-            <?php echo $_smarty_tpl->tpl_vars['datosUsuario']->value;?>
-
+            <input type="submit" name="botonDatos" class="btn btn-red botonesPago" value="<?php echo $_smarty_tpl->tpl_vars['textoBoton']->value;?>
+">
         </form>
+
     </div>
 </section>
-</body>
+<section class="separacion"></section>
+    <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 </html><?php }
 }

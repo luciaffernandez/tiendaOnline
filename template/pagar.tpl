@@ -53,22 +53,27 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center botonFinalizaCompra">
-                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto" value="Finalizar pedido"> 
+                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto botonesPago" value="Finalizar pedido"> 
                         </td>
                     </tr>
                 </table>
 
             </section>
         </form>
-        <form >
-            <h3>Datos del usuario</h3>
-            {$usuario}
+        <section class="espacioPequeno"></section>
+        <form method="post" action="pagar.php" class="col-12">
+            <div class="col-12">
+                <h3>Datos del usuario</h3>
+                <div class="error">{$mensaje}</div>
+                {$datosUsuario}
+            </div>
             </br>
-            {$correo}
-            </br>
-            {$datosUsuario}
+            {$formularioEditorUsuario}
+            <input type="submit" name="botonDatos" class="btn btn-red botonesPago" value="{$textoBoton}">
         </form>
+
     </div>
 </section>
-</body>
+<section class="separacion"></section>
+    {include file = "footer.tpl"}
 </html>

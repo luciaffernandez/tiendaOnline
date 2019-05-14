@@ -5,11 +5,12 @@
         <div class="login seccionMargenes">
             <section class="separacion"></section>
             <fieldset class="cajaLogin">
+                <div><span class='error'>{$error}</span></div>
                 <div class="iniciarSesion col-lg-6 col-md-12 col-sm-12">
                     <form class="formLogin" action='login.php' method='post'>
                         <h2>Iniciar sesión</h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        <div><span class='error'>{$error}Mensaje</span></div>
+
                         <div class='campo'>
                             <label>Correo:</label><br/>
                             <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com' maxlength="50" /><br/>
@@ -26,7 +27,6 @@
                 <div class="registrarse col-lg-6 col-md-12 col-sm-12">
                     <form class="formLogin" action='login.php' method='post'>
                         <h2>Registrarse</h2>
-                        <div><span class='error'>{$error}Mensaje</span></div>
                         <div class='campo'>
                             <label>Nombre:</label><br/>
                             <input class="inputData" type='text' name='name' value='Lucia' maxlength="50" /><br/>
@@ -38,6 +38,10 @@
                         <div class='campo'>
                             <label>Correo:</label><br/>
                             <input class="inputData" type='text' name='correo' value='nookdesarrollo@gmail.com' maxlength="50" /><br/>
+                        </div>
+                        <div class='campo'>
+                            <label>DNI:</label><br/>
+                            <input class="inputData" type='text' name='dni' value='73447375A' maxlength="50" /><br/>
                         </div>
                         <div class='campo'>
                             <label>Fecha de Nacimiento:</label><br/>

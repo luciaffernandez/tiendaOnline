@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -13,6 +13,7 @@ $smarty = new Smarty();
 //Configuramos los directorios
 $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
+$conexion = new BD();
 
 //si tenemos guardados las variables de sesion usuario y contraseña 
 if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
@@ -26,21 +27,22 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
+
 //recogemos el array productos de la cesta
 $productos = $cesta->getProductos();
 
+$mensaje = "";
+$smarty->assign('mensaje', $mensaje);
 
 //establecemos conexion
 $conexion = new BD();
-//creamos o recogemos cesta
 
+//DATOS USUARIO/////////////////////////////////////////////
 $usuario = Usuario::generaUsuario();
 
 $nombre = $usuario->getNombreCompleto($conexion, $correo);
 $DNI = $usuario->getDNI($conexion, $correo);
 //mostramos en la plantilla la variable usuario o nombre
-$smarty->assign('usuario', $nombre);
-$smarty->assign('correo', $correo);
 
 $direccionCompleta = $usuario->getDireccion($conexion, $correo);
 
@@ -57,14 +59,14 @@ if ($direccionCompleta === false) {
         $direccionUsuario = "$calle $numero, $piso, $ciudad, $provincia, $cod_postal";
     }
 }
-$datosUsuario = "$DNI </br> $direccionUsuario";
 
-
-
+$datosUsuario = "<label>Nombre y apellidos: </label> $nombre</br> <label>Correo electrónico: </label> $correo </br><label>DNI: </label> $DNI</br><label>Dirección: </label> $direccionUsuario";
 $smarty->assign('datosUsuario', $datosUsuario);
+//DATOS USUARIO//////////////////////////////////////////////
 //creamos la variable fecha actual con el siguiente formato para mostrarla en la plantilla
 $fecha = date("d-m-y");
 $smarty->assign('fecha', $fecha);
+
 //recorremos el array productos de cesta para ir construyendo las filas de 
 //la tabla de la plantilla y los hiddens necesarios para paypal
 $contador = 1;
@@ -102,6 +104,51 @@ $resumenPago .= "<input name='item_name_$contador' type = 'hidden' value ='IVA' 
 //se muestra en la plantilla el contenido de la primera tabla guardado en la variable resumenPago
 $smarty->assign('resumenPago', $resumenPago);
 
+
+if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Guardar datos')) {
+    $textoBoton = "Editar datos";
+    $smarty->assign('textoBoton', $textoBoton);
+
+    $formularioEditorUsuario = "";
+    $smarty->assign('formularioEditorUsuario', $formularioEditorUsuario);
+
+    $nombreNuevo = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $correoNuevo = $_POST['correo'];
+    $DNINuevo = $_POST['dni'];
+    $calleNuevo = $_POST['calle'];
+    $numeroNuevo = $_POST['numero'];
+    $pisoNuevo = $_POST['piso'];
+    $cod_postalNuevo = $_POST['cod_postal'];
+    $provinciaNuevo = $_POST['provincia'];
+    $ciudadNuevo = $_POST['ciudad'];
+
+    $mensaje = $usuario->actualizarDatos($conexion, $nombreNuevo, $apellidos, $correoNuevo, $DNINuevo, $correo);
+    //$mensaje .= $usuario->cambiarDireccion($conexion, $calleNuevo, $numeroNuevo, $pisoNuevo, $cod_postalNuevo, $provinciaNuevo, $ciudadNuevo);
+
+    $smarty->assign('mensaje', $mensaje);
+} else if (isset($_POST['botonDatos'])) {
+    $textoBoton = "Guardar datos";
+    $formularioEditorUsuario = "<div class='col-lg-6 float-left'>"
+            . "<label>Nombre: </label> <input class='inputData' type='text' name='nombre' value=''> </br>"
+            . "<label>Apellidos: </label> <input class='inputData' type='text' name='apellidos' value=''></br>"
+            . "<label>Correo: </label> <input class='inputData' type='text' name='correo' value='' > </br>"
+            . "<label>DNI: </label> <input class='inputData' type='text' name='dni' value=''> </br>"
+            . "<label>Calle: </label> <input class='inputData' type='text' name='calle' value=''></br>"
+            . "</div>"
+            . "<div class='col-lg-6 float-left'>"
+            . "<label>Número: </label> <input class='inputData' type='text' name='num' value=''> </br>"
+            . "<label>Piso: </label> <input class='inputData' type='text' name='piso' value=''></br>"
+            . "<label>Código postal: </label> <input class='inputData' type='text' name='cod_postal' value=''></br>"
+            . "<label>Provincia: </label> <input class='inputData' type='text' name='provincia' value=''></br>"
+            . "<label>Ciudad: </label> <input class='inputData' type='text' name='ciudad' value=''></br>"
+            . "</div>";
+    $smarty->assign('textoBoton', $textoBoton);
+    $smarty->assign('formularioEditorUsuario', $formularioEditorUsuario);
+} else if (!isset($_POST['botonDatos'])) {
+    $textoBoton = "Editar datos";
+    $smarty->assign('textoBoton', $textoBoton);
+}
 
 //mostramos plantilla
 $smarty->display("pagar.tpl");

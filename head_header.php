@@ -23,6 +23,12 @@ if (isset($_POST['areaClientes'])) {
 //sino, esque no nos hemos legueado y nos devuelve al login con un error
         header("Location:login.php?error");
     }
-    
 }
- $smarty->display('head_header.tpl');
+if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
+    $hidden = " ocultar";
+    $smarty->asign("hidden", $hidden);
+} else {
+    $hidden = "";
+    $smarty->asign("hidden", $hidden);
+}
+$smarty->display('head_header.tpl');

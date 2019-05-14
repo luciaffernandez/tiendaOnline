@@ -465,11 +465,33 @@ th.pago {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 300;
+    height: 200;
     width: 100%;
     float: left;
     margin-right: 20px;
 }
-.botonFinalizaCompra{
-    padding-top: 20px;
+.botonesPago{
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+.btn-red{
+    background-color: #a80f0f !important;
+    border: solid white 2px;
+}
+.btn-red:hover{
+    border: solid black 2px;
+}
+.btn-red:not([disabled]), .btn-red:not(.disabled):active{
+    border: solid white 2px;
+    color:white !important;
+}
+.formularioUser{
+    margin-top: 30px;
+}
+.error{
+    color: #a80f0f;
+}
+.ocultar{
+    display: none;
 }
