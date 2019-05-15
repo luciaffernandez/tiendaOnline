@@ -33,18 +33,10 @@ $smarty->assign('error', $error);
 
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
-
-//controlo los botones de la cesta según lo que contenga
-if (empty($cesta->getProductos()) || is_null($cesta->getProductos())) {
-    $disabled = "disabled";
-} else {
-    $disabled = "";
-}
-$smarty->assign('disabled', $disabled);
-
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
-$contenidoCesta = $cesta->mostrarCesta();
-$smarty->assign('contenidoCesta', $contenidoCesta);
+$carrito = $cesta->mostrarIcono();
+
+$smarty->assign('carrito', $carrito);
 
 //guardamos el estado de la cesta
 $cesta->guardaCesta();
@@ -75,19 +67,9 @@ if ($_POST['cestaAccion']) {
 
 $cesta->guardaCesta();
 
-//Codigo para deshabilitar botones de la cesta cuando esta esté vacía. 
-//Lo controlamos con una variable que rellena los inputs con atributos según el estado que nos interesa qeu tenga
-if (empty($cesta->getProductos()) || is_null($cesta->getProductos())) {
-    $disabled = "disabled";
-} else {
-    $disabled = "";
-}
-$smarty->assign('disabled', $disabled);
-
-//recojo el resultado de la funcion que crea el html de la cesta y la muestra
-$contenidoCesta = $cesta->mostrarCesta();
-
-$smarty->assign('contenidoCesta', $contenidoCesta);
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+$carrito = $cesta->mostrarIcono();
+$smarty->assign('carrito', $carrito);
 
 
 //recojo el resultado de la funcion que creara la lista de Productos y lo muestra

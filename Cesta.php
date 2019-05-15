@@ -128,4 +128,33 @@ class Cesta {
         unset($this->total);
     }
 
+    public function mostrarIcono() {
+        $mostrarCesta = $this->mostrarCesta();
+//Codigo para deshabilitar botones de la cesta cuando esta esté vacía. 
+        //Lo controlamos con una variable que rellena los inputs con atributos según el estado que nos interesa qeu tenga
+        if (empty($this->getProductos()) || is_null($this->getProductos())) {
+            $disabled = "disabled";
+        } else {
+            $disabled = "";
+        }
+        if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
+            $carrito = "<li class='dropdown iconosNav cestadebajomenu'>"
+                    . "<a href='#' class='dropdown-toggle'  data-toggle='dropdown' role='button' aria-expanded='false'><i class='fas fa-shopping-cart white-text'></i></span></a>"
+                    . "<ul class='row dropdown-menu dropdown-cart' role='menu'>"
+                    . $mostrarCesta
+                    . "<li class='divider'></li>"
+                    . "<li class='botonesCesta'>"
+                    . "<form action='tienda.php' method='post'>"
+                    . "<input class='btn btn-red waves-effect cestaAccion' type='submit' name='cestaAccion' value='Pagar' $disabled>"
+                    . "<input class='btn btn-red waves-effect cestaAccion' type='submit' name='cestaAccion' value='Vaciar' $disabled>"
+                    . "</form>"
+                    . "</li>"
+                    . "</ul>"
+                    . "</li>";
+        } else {
+            $carrito = "";
+        }
+        return $carrito;
+    }
+
 }

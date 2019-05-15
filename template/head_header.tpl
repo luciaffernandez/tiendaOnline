@@ -38,19 +38,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
-                    <li class="dropdown iconosNav cestadebajomenu {$hidden}" >
-                        <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false"><i class="fas fa-shopping-cart white-text"></i></span></a>
-                        <ul class="row dropdown-menu dropdown-cart" role="menu">
-                            {$contenidoCesta}
-                            <li class="divider"></li>
-                            <li class="botonesCesta">
-                                <form action="tienda.php" method="post">
-                                    <input class="btn btn-red waves-effect cestaAccion" type="submit" name="cestaAccion" value="Pagar" {$disabled}>
-                                    <input class="btn btn-red waves-effect cestaAccion" type="submit" name="cestaAccion" value="Vaciar" {$disabled}>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                    {$carrito}
                     <form action="head_header.php" method="post">
                         <button formmethod="post" name="areaClientes" role="button" aria-expanded="false"><i class="fas fa-user white-text iconosNav areaClientes"></i></span></button>
                     </form>

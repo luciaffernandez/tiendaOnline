@@ -20,22 +20,13 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 //las guardamos en variables
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
-} else {
-//las guardamos en variables
-    header("Location:login.php?error");
 }
 
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
-
-//recogemos el array productos de la cesta
-$productos = $cesta->getProductos();
-
-$mensaje = "";
-$smarty->assign('mensaje', $mensaje);
-
-//establecemos conexion
-$conexion = new BD();
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+$carrito = $cesta->mostrarIcono();
+$smarty->assign('carrito', $carrito);
 
 //DATOS USUARIO/////////////////////////////////////////////
 $usuario = Usuario::generaUsuario();

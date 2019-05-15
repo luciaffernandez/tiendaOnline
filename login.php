@@ -64,6 +64,11 @@ if (isset($_POST['iniciarSesion'])) {
         }
     }
 } else {
+    //creamos o recogemos cesta
+    $cesta = Cesta::generaCesta();
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+    $carrito = $cesta->mostrarIcono();
+    $smarty->assign('carrito', $carrito);
     //cuando no se haya pulsado ningún boton
     $error = "";
     $smarty->assign('error', $error);

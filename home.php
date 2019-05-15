@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -16,35 +16,19 @@ $smarty = new Smarty();
 //Configuramos los directorios
 $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
-//creamos o recogemos cesta
-$cesta = Cesta::generaCesta();
-
-//controlo los botones de la cesta según lo que contenga
-if (empty($cesta->getProductos()) || is_null($cesta->getProductos())) {
-    $disabled = "disabled";
-} else {
-    $disabled = "";
-}
-$smarty->assign('disabled', $disabled);
-
-//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
-$contenidoCesta = $cesta->mostrarCesta();
-$smarty->assign('contenidoCesta', $contenidoCesta);
-
-//Codigo para deshabilitar botones de la cesta cuando esta esté vacía. 
-//Lo controlamos con una variable que rellena los inputs con atributos según el estado que nos interesa qeu tenga
-if (empty($cesta->getProductos()) || is_null($cesta->getProductos())) {
-    $disabled = "disabled";
-} else {
-    $disabled = "";
-}
-$smarty->assign('disabled', $disabled);
 
 $productosDestacados = obtenerListado($conexion);
 $smarty->assign('productosDestacados', $productosDestacados);
 
-$smarty->display('home.tpl');
 
+//creamos o recogemos cesta
+$cesta = Cesta::generaCesta();
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+$carrito = $cesta->mostrarIcono();
+
+$smarty->assign('carrito', $carrito);
+print_r($_SESSION);
+$smarty->display('home.tpl');
 function obtenerListado($conexion) {
     $i=0;
     $listado = "";
