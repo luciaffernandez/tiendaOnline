@@ -72,7 +72,7 @@ class Usuario {
     }
 
     function actualizarDatos($conexion, $nombre, $apellidos, $correoNuevo, $correoViejo, $DNI) {
-        $sentenciaUpdate = "UPDATE USUARIOS SET correo = '$correoNuevo', nombre = '$nombre', apellidos = '$apellidos', dni = '$DNI' WHERE correo = '$correoViejo'";
+        $sentenciaUpdate = "UPDATE USUARIOS SET correo = '" . $correoNuevo . "', nombre = '" . $nombre . "', apellidos = '" . $apellidos . "', dni = '" . $DNI . "' WHERE correo = '" . $correoViejo . "'";
         $conexion->ejecutar($sentenciaUpdate);
         $mensaje = $conexion->getInfo();
         return $mensaje;

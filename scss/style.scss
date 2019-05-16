@@ -495,3 +495,6 @@ th.pago {
 .ocultar{
     display: none;
 }
+input[type="submit"]:disabled{
+    display: none;
+}

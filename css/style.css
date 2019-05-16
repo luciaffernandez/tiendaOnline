@@ -445,4 +445,7 @@ th.pago {
 .ocultar {
   display: none; }
 
+input[type="submit"]:disabled {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

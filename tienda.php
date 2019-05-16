@@ -24,10 +24,10 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
 }
-if(isset($_GET['error'])){
+if (isset($_GET['error'])) {
     $error = $_GET['error'];
-}else{
-    $error ="No hay ningun error";
+} else {
+    $error = "No hay ningun error";
 }
 $smarty->assign('error', $error);
 
@@ -84,6 +84,11 @@ $smarty->display("tienda.tpl");
  * @return string. Devuelve un string con el html del listado de productos
  */
 function obtenerListado($conexion) {
+    if (isset($_SESSION['correo']) && isset($_SESSION['pass']))
+        $disabled = "";
+    else
+        $disabled = "disabled";
+
     $listado = "";
     $datos = $conexion->seleccion("SELECT * FROM PRODUCTOS");
     foreach ($datos as $dato) {
@@ -112,7 +117,7 @@ function obtenerListado($conexion) {
                 . "<div class='card-footer'>"
                 . "<span class='float-left'>$precio €</span>"
                 . "<span class='float-right'>"
-                . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion'>"
+                . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>"
                 . "</div>"
                 . "</div>"
                 . "</div>"

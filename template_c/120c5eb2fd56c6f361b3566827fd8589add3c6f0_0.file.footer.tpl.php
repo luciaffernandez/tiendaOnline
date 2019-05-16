@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-15 22:58:01
+/* Smarty version 3.1.33, created on 2019-05-16 14:55:02
   from 'C:\xampp\htdocs\tiendaOnline\template\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cdc7d59850958_07769162',
+  'unifunc' => 'content_5cdd5da6eea432_75978675',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '120c5eb2fd56c6f361b3566827fd8589add3c6f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\footer.tpl',
-      1 => 1557953871,
+      1 => 1558011301,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cdc7d59850958_07769162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cdd5da6eea432_75978675 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 <footer class="page-footer font-small pt-4">
 
@@ -95,6 +95,106 @@ function content_5cdc7d59850958_07769162 (Smarty_Internal_Template $_smarty_tpl)
 <!-- MDB core JavaScript -->
 <?php echo '<script'; ?>
  type="text/javascript" src="js/mdb.min.js"><?php echo '</script'; ?>
+>
+
+
+<!-- JS Validate -->
+
+    <?php echo '<script'; ?>
+ src="js/jquery.validate.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
+        $(document).ready(function () {
+            $("#formLogin").validate({
+                rules: {
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    pass: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 20
+                    }
+                },
+                messages: {
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    pass: {
+                        required: "Campo obligatorio",
+                        minlength: "Contraseña demasiado corto",
+                        maxlength: "Contraseña demasiado larga",
+                    }
+                },
+                errorElement: "em",
+            });
+
+            $("#formRegister").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20
+                    },
+                    apellidos: {
+                        required: true,
+                        maxlength: 100,
+                        minlength: 2
+                    },
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    fechaNac: {
+                        required: true,
+                        date: true
+                    },
+                    dni: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 9
+                    },
+                    pass: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 20
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Campo obligatorio",
+                        minlength: "Nombre demasiado corto",
+                        maxlength: "Nombre demasiado largo",
+                    },
+                    apellidos: {
+                        required: "Campo obligatorio",
+                        minlength: "Apellidos demasiado cortos",
+                    },
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    fechaNac: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce una fecha",
+                    },
+                    dni: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce un DNI válido",
+                    },
+                    pass: {
+                        required: "Campo obligatorio",
+                        minlength: "Contraseña demasiado corta",
+                        maxlength: "Contraseña demasiado larga",
+                    }
+                },
+                errorElement: "em",
+            });
+        });
+    <?php echo '</script'; ?>
 >
 
 </body><?php }

@@ -66,4 +66,100 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 
+
+<!-- JS Validate -->
+{literal}
+    <script src="js/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#formLogin").validate({
+                rules: {
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    pass: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 20
+                    }
+                },
+                messages: {
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    pass: {
+                        required: "Campo obligatorio",
+                        minlength: "Contraseña demasiado corto",
+                        maxlength: "Contraseña demasiado larga",
+                    }
+                },
+                errorElement: "em",
+            });
+
+            $("#formRegister").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20
+                    },
+                    apellidos: {
+                        required: true,
+                        maxlength: 100,
+                        minlength: 2
+                    },
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    fechaNac: {
+                        required: true,
+                        date: true
+                    },
+                    dni: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 9
+                    },
+                    pass: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 20
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Campo obligatorio",
+                        minlength: "Nombre demasiado corto",
+                        maxlength: "Nombre demasiado largo",
+                    },
+                    apellidos: {
+                        required: "Campo obligatorio",
+                        minlength: "Apellidos demasiado cortos",
+                    },
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    fechaNac: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce una fecha",
+                    },
+                    dni: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce un DNI válido",
+                    },
+                    pass: {
+                        required: "Campo obligatorio",
+                        minlength: "Contraseña demasiado corta",
+                        maxlength: "Contraseña demasiado larga",
+                    }
+                },
+                errorElement: "em",
+            });
+        });
+    </script>
+{/literal}
 </body>

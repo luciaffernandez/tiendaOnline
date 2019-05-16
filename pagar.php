@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -58,6 +58,7 @@ $smarty->assign('datosUsuario', $datosUsuario);
 $fecha = date("d-m-y");
 $smarty->assign('fecha', $fecha);
 
+$productos = $cesta->getProductos();
 //recorremos el array productos de cesta para ir construyendo las filas de 
 //la tabla de la plantilla y los hiddens necesarios para paypal
 $contador = 1;

@@ -27,10 +27,14 @@ $cesta = Cesta::generaCesta();
 $carrito = $cesta->mostrarIcono();
 
 $smarty->assign('carrito', $carrito);
-print_r($_SESSION);
 $smarty->display('home.tpl');
+
 function obtenerListado($conexion) {
-    $i=0;
+    if (isset($_SESSION['correo']) && isset($_SESSION['pass']))
+        $disabled = "";
+    else
+        $disabled = "disabled";
+    $i = 0;
     $listado = "";
     $datos = $conexion->seleccion("SELECT * FROM PRODUCTOS");
     foreach ($datos as $dato) {
@@ -60,14 +64,14 @@ function obtenerListado($conexion) {
                     . "<div class='card-footer'>"
                     . "<span class='float-left'>$precio €</span>"
                     . "<span class='float-right'>"
-                    . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion'>"
+                    . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>"
                     . "</div>"
                     . "</div>"
                     . "</div>"
                     . "</form>"
                     . "</div>";
             $i++;
-        }else{
+        } else {
             break;
         }
     }
