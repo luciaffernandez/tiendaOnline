@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-15 19:39:01
+/* Smarty version 3.1.33, created on 2019-05-18 23:33:15
   from 'C:\xampp\htdocs\tiendaOnline\template\head_header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cdc4eb5ef0457_92220988',
+  'unifunc' => 'content_5ce07a1b346632_99609315',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de7d57581ebb9f4ab2a379c2415ec6ba522be108' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\head_header.tpl',
-      1 => 1557941939,
+      1 => 1558215125,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cdc4eb5ef0457_92220988 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce07a1b346632_99609315 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Tienda Online - Lucía</title>
@@ -58,7 +58,7 @@ function content_5cdc4eb5ef0457_92220988 (Smarty_Internal_Template $_smarty_tpl)
                     <li class="nav-item active"><a class="nav-link" href="http://localhost/tiendaOnline/home.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sobre nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/tienda.php">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/contacto.php">Contacto</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
                     <?php echo $_smarty_tpl->tpl_vars['carrito']->value;?>

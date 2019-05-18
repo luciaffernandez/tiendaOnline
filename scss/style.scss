@@ -255,7 +255,7 @@ a.hamburger{
 /****************************************/
 /*****************FOOTER*****************/
 .page-footer{
-    background-color: #343a40;
+    background-color: #212121!important;
     filter: drop-shadow(0px -1px 8px gray);
     color: white;
 }
@@ -497,4 +497,12 @@ th.pago {
 }
 input[type="submit"]:disabled{
     display: none;
+}
+
+.contacto {
+    background-image: url("../img/imagen19.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: auto;
 }

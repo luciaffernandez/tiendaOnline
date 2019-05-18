@@ -35,7 +35,7 @@
                     <li class="nav-item active"><a class="nav-link" href="http://localhost/tiendaOnline/home.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sobre nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/tienda.php">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/contacto.php">Contacto</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
                     {$carrito}
