@@ -66,6 +66,52 @@ $smarty->assign('categoria', $categoria);
 $productosDestacados = obtenerListado($conexion);
 $smarty->assign('productosDestacados', $productosDestacados);
 
+if (isset($_SESSION['correo']) && isset($_SESSION['pass']))
+    $disabled = "";
+else
+    $disabled = "disabled";
+
+$smarty->assign('diabled', $disabled);
+//creamos o recogemos cesta
+$cesta = Cesta::generaCesta();
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+$carrito = $cesta->mostrarIcono();
+
+$smarty->assign('carrito', $carrito);
+
+//guardamos el estado de la cesta
+$cesta->guardaCesta();
+
+//los botones relacionados con la cesta ejecutan las siguiente acciones
+if ($_POST['cestaAccion']) {
+//recogemos los datos de los productos
+    $numRef = $_POST['numRef'];
+    $precio = $_POST['precio'];
+    $nomProd = $_POST['nomProd'];
+    $imagen1 = $_POST['imagen1'];
+
+    switch ($_POST['cestaAccion']) {
+        case 'Añadir al carrito':
+            $cesta->nuevoProd($precio, $numRef, $nomProd, $imagen1);
+            break;
+        case 'Vaciar':
+            $cesta->vacia();
+            break;
+        case 'Eliminar':
+            $cesta->eliminoProd($numRef);
+            break;
+        case 'Pagar':
+            header("Location:pagar.php");
+            break;
+    }
+}
+
+$cesta->guardaCesta();
+
+//recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
+$carrito = $cesta->mostrarIcono();
+$smarty->assign('carrito', $carrito);
+
 //mostramos la plantilla
 $smarty->display("detalleProducto.tpl");
 
