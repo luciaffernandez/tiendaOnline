@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-18 23:33:15
+/* Smarty version 3.1.33, created on 2019-05-20 10:00:00
   from 'C:\xampp\htdocs\tiendaOnline\template\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce07a1b3ae0b8_33706656',
+  'unifunc' => 'content_5ce25e80b44f20_73159244',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '120c5eb2fd56c6f361b3566827fd8589add3c6f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\footer.tpl',
-      1 => 1558214969,
+      1 => 1558339182,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce07a1b3ae0b8_33706656 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce25e80b44f20_73159244 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 <footer class="page-footer font-small pt-4">
 
@@ -131,7 +131,47 @@ function content_5ce07a1b3ae0b8_33706656 (Smarty_Internal_Template $_smarty_tpl)
                 },
                 errorElement: "em",
             });
-
+            $("#formContact").validate({
+                rules: {
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    name: {
+                        minlength: 2,
+                        maxlength: 20
+                    },
+                    mensaje: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 255
+                    },
+                    asunto: {
+                        minlength: 5,
+                        maxlength: 50
+                    }
+                },
+                messages: {
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    name: {
+                        minlength: "Nombre demasiado corto",
+                        maxlength: "Nombre demasiado largo",
+                    },
+                    mensaje: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce un mensaje más largo",
+                        maxlength: "Introduce un mensaje más corto",
+                    },
+                    asunto: {
+                        minlength: "Asunto demasiado corto",
+                        maxlength: "Asunto demasiado largo",
+                    }
+                },
+                errorElement: "em",
+            });
             $("#formRegister").validate({
                 rules: {
                     name: {

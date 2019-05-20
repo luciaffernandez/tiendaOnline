@@ -14,7 +14,7 @@ class BD {
      *  @param type $pass
      *  @param type $bd
      */
-    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "tienda") {
+    public function __construct($host = "localhost", $user = "tienda", $pass = "root", $bd = "tienda") {
         $this->user = $user;
         $this->pass = $pass;
         if ($bd === null) {
@@ -32,7 +32,7 @@ class BD {
         try {
             $conexion = new PDO($this->dns, $this->user, $this->pass);
         } catch (Exception $e) {
-            $this->info = "Error conectando: " . $e->getMessage() . "<br/><strong>Prueba con el host 172.17.0.2 el usuario root y la contraseña root</strong>";
+            $this->info = "Error conectando: " . $e->getMessage() . "<br/><strong>Es un problema con las credenciales de conexión a la base de datos.</strong>";
         }
         $conexion->query("SET NAMES 'utf8'");
         return $conexion;
@@ -105,6 +105,33 @@ class BD {
         } catch (Exception $ex) {
             $this->info = "Error " . $ex->getMessage() . "<br/><hr /> Sentencia erronea.";
         }
+    }
+
+    /** Ejecuta una sentencia que va a modificar la base de datos, es decir, un sentencia update, delete, insert...
+     * @param type $sentencia de tipo string que estará escrita en lenguaje sql
+     */
+    public function ejecutarPS(array $datos) {
+        $this->info = NULL;
+        if ($this->conexion == NULL) {
+            $this->__construct($conexion);
+        }
+        foreach ($datos as $dato => $valores) {
+            $sentencia = $valores[sizeof($datos)];
+        }
+        print_r($sentencia);
+//        foreach($datos as $dato => $valor){
+//            $consulta->bindParam(1, $cod);
+//        }
+//        $consulta->bindParam(1, $cod);
+//        $consulta->bindParam(2, $pass);
+//        $consulta->bindParam(3, $correo);
+//        $consulta->bindParam(4, $DNI);
+//        try {
+//            $stmt = $this->conexion->prepare($sentencia);
+//            $stmt->execute();
+//        } catch (Exception $ex) {
+//            $this->info = "Error " . $ex->getMessage() . "<br/><hr /> Sentencia erronea.";
+//        }
     }
 
     /** Funcion que comprueba que estos datos esten en la base de datos y sean correctos

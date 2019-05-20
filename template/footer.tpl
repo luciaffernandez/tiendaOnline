@@ -97,7 +97,47 @@
                 },
                 errorElement: "em",
             });
-
+            $("#formContact").validate({
+                rules: {
+                    correo: {
+                        required: true,
+                        email: true
+                    },
+                    name: {
+                        minlength: 2,
+                        maxlength: 20
+                    },
+                    mensaje: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 255
+                    },
+                    asunto: {
+                        minlength: 5,
+                        maxlength: 50
+                    }
+                },
+                messages: {
+                    correo: {
+                        required: "Campo obligatorio",
+                        email: "Introduce un correo válido",
+                    },
+                    name: {
+                        minlength: "Nombre demasiado corto",
+                        maxlength: "Nombre demasiado largo",
+                    },
+                    mensaje: {
+                        required: "Campo obligatorio",
+                        minlength: "Introduce un mensaje más largo",
+                        maxlength: "Introduce un mensaje más corto",
+                    },
+                    asunto: {
+                        minlength: "Asunto demasiado corto",
+                        maxlength: "Asunto demasiado largo",
+                    }
+                },
+                errorElement: "em",
+            });
             $("#formRegister").validate({
                 rules: {
                     name: {
