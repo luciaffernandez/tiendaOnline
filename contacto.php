@@ -36,12 +36,9 @@ if (isset($_POST['enviarMensaje'])) {
     $fecha = date('Y-m-d');
     $datos = array(':fecha_creacion' => $fecha, ':id_user' => $id);
     $sentencia = "INSERT INTO REGISTROS (fecha_creacion, id_user) VALUES (:fecha_creacion, :id_user)";
-    $datos = $conexion->ejecutarPS($datos, $sentencia);
-    var_dump($datos);
-    foreach ($datos as $dato) {
-        $id_registro = $dato['id_registro'];
-    }
-    $id_registro = $conexion->lastInsertId();
+    $conexion->ejecutarPS($datos, $sentencia);
+    print($conexion->conexion->lastInsertId());
+    $id_registro = $conexion->conexion->lastInsertId();
     $datos = array(':id_mensaje' => $id_registro, ':contenido' => $mensaje, ':correo' => $correo, ':asunto' => $asunto, ':nombre' => $nombre);
     $sentencia = "INSERT INTO MENSAJES (id_mensaje, fecha_creacion, id_user, contenido, correo, asunto, nombre) VALUES (:id_mensaje, :fecha_creacion, :id_user, :contenido, :correo, :asunto, :nombre)";
     $conexion->ejecutarPS($datos, $sentencia);

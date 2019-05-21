@@ -2,7 +2,7 @@
 
 class BD {
 
-    private $conexion;
+    public $conexion;
     private $info;
     private $user;
     private $pass;
@@ -14,7 +14,7 @@ class BD {
      *  @param type $pass
      *  @param type $bd
      */
-    public function __construct($host = "localhost", $user = "tienda", $pass = "root", $bd = "tienda") {
+    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "tienda") {
         $this->user = $user;
         $this->pass = $pass;
         if ($bd === null) {
@@ -118,12 +118,9 @@ class BD {
         try {
             $stmt = $this->conexion->prepare($sentencia);
             $stmt->execute($datos);
-            $valores = $stmt->fetch(PDO::FETCH_ASSOC);
-            var_dump($valores);
         } catch (Exception $ex) {
             $this->info = "Error " . $ex->getMessage() . "<br/><hr /> No se ha ejecutado bien la acción en la base de datos.";
         }
-        return $valores;
     }
 
     /** Funcion que comprueba que estos datos esten en la base de datos y sean correctos
