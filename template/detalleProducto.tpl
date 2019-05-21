@@ -29,7 +29,7 @@
                                     Peso: {$peso}</br>
                                 <div class="action">
                                     <input type='hidden' value='{$numRef}' name='numRef'>
-                                    <input type='hidden' value='{$nomProd}' name='nomProd'>
+                                    <input type='hidden' value='{$nombre}' name='nomProd'>
                                     <input type='hidden' value='{$precio}' name='precio'>
                                     <input type='hidden' value='{$imagen1}' name='imagen1'>
                                     <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' {$disabled}>
@@ -41,6 +41,7 @@
             </div>
         </div>
     </section>
+    <section class="espacioPequeno"></section>
     <section class="row seccionMargenes ">
         <h1 class="text-center col-12">Productos destacados</h1>
         <div class="row contenedorProductos">

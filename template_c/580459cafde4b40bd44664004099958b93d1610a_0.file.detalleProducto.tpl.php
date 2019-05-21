@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-20 20:52:15
+/* Smarty version 3.1.33, created on 2019-05-21 08:25:17
   from 'C:\xampp\htdocs\tiendaOnline\template\detalleProducto.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce2f75f802438_57706903',
+  'unifunc' => 'content_5ce399cd8d3667_53515477',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '580459cafde4b40bd44664004099958b93d1610a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\detalleProducto.tpl',
-      1 => 1558378333,
+      1 => 1558419915,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce2f75f802438_57706903 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce399cd8d3667_53515477 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -67,7 +67,7 @@ function content_5ce2f75f802438_57706903 (Smarty_Internal_Template $_smarty_tpl)
                                 <div class="action">
                                     <input type='hidden' value='<?php echo $_smarty_tpl->tpl_vars['numRef']->value;?>
 ' name='numRef'>
-                                    <input type='hidden' value='<?php echo $_smarty_tpl->tpl_vars['nomProd']->value;?>
+                                    <input type='hidden' value='<?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
 ' name='nomProd'>
                                     <input type='hidden' value='<?php echo $_smarty_tpl->tpl_vars['precio']->value;?>
 ' name='precio'>
@@ -83,6 +83,7 @@ function content_5ce2f75f802438_57706903 (Smarty_Internal_Template $_smarty_tpl)
             </div>
         </div>
     </section>
+    <section class="espacioPequeno"></section>
     <section class="row seccionMargenes ">
         <h1 class="text-center col-12">Productos destacados</h1>
         <div class="row contenedorProductos">

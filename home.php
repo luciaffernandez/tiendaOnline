@@ -59,7 +59,7 @@ function obtenerListado($conexion) {
                     . "</div>"
                     . "<div class='card-body card-body-cascade text-center'>"
                     . " <h5>$nomCat</h5>"
-                    . "<h4 class='card-title'><strong><a href=''>$nomProd</a></strong></h4>"
+                    . "<h4 class='card-title'><strong><a href='detalleProducto.php?numRef=$numRef'>$nomProd</a></strong></h4>"
                     . "<p class='card-text'>$descripcion</p>"
                     . "<div class='card-footer'>"
                     . "<span class='float-left'>$precio €</span>"

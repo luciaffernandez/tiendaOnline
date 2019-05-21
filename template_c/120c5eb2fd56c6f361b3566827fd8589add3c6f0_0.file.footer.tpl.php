@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-20 10:00:00
+/* Smarty version 3.1.33, created on 2019-05-21 08:38:24
   from 'C:\xampp\htdocs\tiendaOnline\template\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce25e80b44f20_73159244',
+  'unifunc' => 'content_5ce39ce083f020_22160972',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '120c5eb2fd56c6f361b3566827fd8589add3c6f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\footer.tpl',
-      1 => 1558339182,
+      1 => 1558420613,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce25e80b44f20_73159244 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce39ce083f020_22160972 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 <footer class="page-footer font-small pt-4">
 
@@ -234,6 +234,261 @@ function content_5ce25e80b44f20_73159244 (Smarty_Internal_Template $_smarty_tpl)
                 errorElement: "em",
             });
         });
+    <?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
+        /*********************
+         *	Helpers Code
+         ********************/
+        /**
+         *  @function   DOMReady
+         *
+         *  @param callback
+         *  @param element
+         *  @param listener
+         *  @returns {*}
+         *  @constructor
+         */
+        const DOMReady = ((
+                callback = () => {},
+                element = document,
+                listener = 'addEventListener'
+                ) => {
+            return (element[listener]) ? element[listener]('DOMContentLoaded', callback) : window.attachEvent('onload', callback);
+        });
+
+        /**
+         *  @function   ProjectAPI
+         *
+         *  @type {{hasClass, addClass, removeClass}}
+         */
+        const ProjectAPI = (() => {
+            let hasClass,
+                    addClass,
+                    removeClass;
+
+            hasClass = ((el, className) => {
+                if (el === null) {
+                    return;
+                }
+
+                if (el.classList) {
+                    return el.classList.contains(className);
+                } else {
+                    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+                }
+            });
+
+            addClass = ((el, className) => {
+                if (el === null) {
+                    return;
+                }
+
+                if (el.classList) {
+                    el.classList.add(className);
+                } else if (!hasClass(el, className)) {
+                    el.className += ' ' + className
+                }
+            });
+
+            removeClass = ((el, className) => {
+                if (el === null) {
+                    return;
+                }
+
+                if (el.classList) {
+                    el.classList.remove(className);
+                } else if (hasClass(el, className)) {
+                    let reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+
+                    el.className = el.className.replace(reg, ' ');
+                }
+            });
+
+            return {
+                hasClass: hasClass,
+                addClass: addClass,
+                removeClass: removeClass
+            };
+        })();
+
+
+        /*********************
+         *	Application Code
+         ********************/
+        /**
+         *  @function   readyFunction
+         *
+         *  @type {Function}
+         */
+        const readyFunction = (() => {
+
+            const KEY_UP = 38;
+            const KEY_DOWN = 40;
+
+            let scrollingClass = 'js-scrolling',
+                    scrollingActiveClass = scrollingClass + '--active',
+                    scrollingInactiveClass = scrollingClass + '--inactive',
+                    scrollingTime = 1350,
+                    scrollingIsActive = false,
+                    currentPage = 1,
+                    countOfPages = document.querySelectorAll('.' + scrollingClass + '__page').length,
+                    prefixPage = '.' + scrollingClass + '__page-',
+                    _switchPages,
+                    _scrollingUp,
+                    _scrollingDown,
+                    _mouseWheelEvent,
+                    _keyDownEvent,
+                    init;
+
+            /**
+             *  @function _switchPages
+             *
+             *  @private
+             */
+            _switchPages = () => {
+
+                let _getPageDomEl;
+
+                /**
+                 *  @function _getPageDomEl
+                 *
+                 *  @param page
+                 *  @returns {Element}
+                 *  @private
+                 */
+                _getPageDomEl = (page = currentPage) => {
+                    return document.querySelector(prefixPage + page);
+                };
+
+                scrollingIsActive = true;
+
+
+                ProjectAPI.removeClass(
+                        _getPageDomEl(),
+                        scrollingInactiveClass
+                        );
+                ProjectAPI.addClass(
+                        _getPageDomEl(),
+                        scrollingActiveClass
+                        );
+
+                ProjectAPI.addClass(
+                        _getPageDomEl(currentPage - 1),
+                        scrollingInactiveClass
+                        );
+
+                ProjectAPI.removeClass(
+                        _getPageDomEl(currentPage + 1),
+                        scrollingActiveClass
+                        );
+
+
+                setTimeout(
+                        () => {
+                    return scrollingIsActive = false;
+                },
+                        scrollingTime
+                        );
+            };
+            /**
+             *  @function _scrollingUp
+             *
+             *  @private
+             */
+            _scrollingUp = () => {
+                if (currentPage === 1) {
+                    return;
+                }
+
+                currentPage--;
+
+                _switchPages();
+            };
+            /**
+             *  @function _scrollingDown
+             *
+             *  @private
+             */
+            _scrollingDown = () => {
+                if (currentPage === countOfPages) {
+                    return;
+                }
+
+                currentPage++;
+
+                _switchPages();
+            };
+            /**
+             *  @function _mouseWheelEvent
+             *
+             *  @param e
+             *  @private
+             */
+            _mouseWheelEvent = (e) => {
+                if (scrollingIsActive) {
+                    return;
+                }
+
+                if (e.wheelDelta > 0 || e.detail < 0) {
+                    _scrollingUp();
+                } else if (e.wheelDelta < 0 || e.detail > 0) {
+                    _scrollingDown();
+                }
+            };
+            /**
+             *  @function _keyDownEvent
+             *
+             *  @param e
+             *  @private
+             */
+            _keyDownEvent = (e) => {
+                if (scrollingIsActive) {
+                    return;
+                }
+
+                let keyCode = e.keyCode || e.which;
+
+                if (keyCode === KEY_UP) {
+                    _scrollingUp();
+                } else if (keyCode === KEY_DOWN) {
+                    _scrollingDown();
+                }
+            };
+
+            /**
+             *  @function init
+             *
+             *  @note     auto-launch
+             */
+            init = (() => {
+                document.addEventListener(
+                        'mousewheel',
+                        _mouseWheelEvent,
+                        false
+                        );
+                document.addEventListener(
+                        'DOMMouseScroll',
+                        _mouseWheelEvent,
+                        false
+                        );
+
+                document.addEventListener(
+                        'keydown',
+                        _keyDownEvent,
+                        false
+                        );
+            })();
+
+        });
+
+
+        /**
+         *  Launcher
+         */
+        DOMReady(readyFunction);
+
     <?php echo '</script'; ?>
 >
 

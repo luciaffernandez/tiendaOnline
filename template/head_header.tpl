@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"><a class="nav-link" href="http://localhost/tiendaOnline/home.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sobre nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/nosotros.php">Sobre nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/tienda.php">Productos</a></li>
                     <li class="nav-item"><a class="nav-link" href="http://localhost/tiendaOnline/contacto.php">Contacto</a></li>
                 </ul>

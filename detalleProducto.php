@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -22,7 +22,9 @@ $smarty->compile_dir = "./template_c";
 if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
+    
 }
+
 
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
@@ -31,8 +33,10 @@ $carrito = $cesta->mostrarIcono();
 
 $smarty->assign('carrito', $carrito);
 
+$numRef = $_GET['numRef'];
+
 //seleccionamos todos los ordenadores
-$productos = $conexion->seleccion("SELECT * FROM PRODUCTOS");
+$productos = $conexion->seleccion("SELECT * FROM PRODUCTOS WHERE num_ref = '$numRef'");
 //recorremos el array que ha devuelto y vamos recogiendo los datos que queremos
 foreach ($productos as $datos) {
     $numRef = $datos['num_ref'];
@@ -66,12 +70,7 @@ $smarty->assign('categoria', $categoria);
 $productosDestacados = obtenerListado($conexion);
 $smarty->assign('productosDestacados', $productosDestacados);
 
-if (isset($_SESSION['correo']) && isset($_SESSION['pass']))
-    $disabled = "";
-else
-    $disabled = "disabled";
 
-$smarty->assign('diabled', $disabled);
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
@@ -145,7 +144,7 @@ function obtenerListado($conexion) {
                     . "</div>"
                     . "<div class='card-body card-body-cascade text-center'>"
                     . " <h5>$nomCat</h5>"
-                    . "<h4 class='card-title'><strong><a href=''>$nomProd</a></strong></h4>"
+                    . "<h4 class='card-title'><strong><a href='detalleProducto.php?numRef=$numRef'>$nomProd</a></strong></h4>"
                     . "<p class='card-text'>$descripcion</p>"
                     . "<div class='card-footer'>"
                     . "<span class='float-left'>$precio €</span>"
