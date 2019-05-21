@@ -14,7 +14,7 @@ class BD {
      *  @param type $pass
      *  @param type $bd
      */
-    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "tienda") {
+    public function __construct($host = "localhost", $user = "tienda", $pass = "root", $bd = "tienda") {
         $this->user = $user;
         $this->pass = $pass;
         if ($bd === null) {
@@ -30,12 +30,12 @@ class BD {
      */
     private function conectar() {
         try {
-            $conexion = new PDO($this->dns, $this->user, $this->pass);
+            $this->conexion = new PDO($this->dns, $this->user, $this->pass);
         } catch (Exception $e) {
             $this->info = "Error conectando: " . $e->getMessage() . "<br/><strong>Es un problema con las credenciales de conexión a la base de datos.</strong>";
         }
-        $conexion->query("SET NAMES 'utf8'");
-        return $conexion;
+        $this->conexion->query("SET NAMES 'utf8'");
+        return $this->conexion;
     }
 
     /** Devolvera un array o un string depende de la consulta que se haga
@@ -110,28 +110,20 @@ class BD {
     /** Ejecuta una sentencia que va a modificar la base de datos, es decir, un sentencia update, delete, insert...
      * @param type $sentencia de tipo string que estará escrita en lenguaje sql
      */
-    public function ejecutarPS(array $datos) {
+    public function ejecutarPS(array $datos, string $sentencia) {
         $this->info = NULL;
         if ($this->conexion == NULL) {
             $this->__construct($conexion);
         }
-        foreach ($datos as $dato => $valores) {
-            $sentencia = $valores[sizeof($datos)];
+        try {
+            $stmt = $this->conexion->prepare($sentencia);
+            $stmt->execute($datos);
+            $valores = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($valores);
+        } catch (Exception $ex) {
+            $this->info = "Error " . $ex->getMessage() . "<br/><hr /> No se ha ejecutado bien la acción en la base de datos.";
         }
-        print_r($sentencia);
-//        foreach($datos as $dato => $valor){
-//            $consulta->bindParam(1, $cod);
-//        }
-//        $consulta->bindParam(1, $cod);
-//        $consulta->bindParam(2, $pass);
-//        $consulta->bindParam(3, $correo);
-//        $consulta->bindParam(4, $DNI);
-//        try {
-//            $stmt = $this->conexion->prepare($sentencia);
-//            $stmt->execute();
-//        } catch (Exception $ex) {
-//            $this->info = "Error " . $ex->getMessage() . "<br/><hr /> Sentencia erronea.";
-//        }
+        return $valores;
     }
 
     /** Funcion que comprueba que estos datos esten en la base de datos y sean correctos

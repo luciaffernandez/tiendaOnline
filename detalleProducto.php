@@ -22,9 +22,7 @@ $smarty->compile_dir = "./template_c";
 if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
-    
 }
-
 
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();

@@ -47,21 +47,20 @@ if (isset($_POST['iniciarSesion'])) {
     $pass = $_POST['pass'];
     $DNI = $_POST['dni'];
     $admin = 0;
+    $datos = array(':pass' => $pass, ':correo' => $correo, ':dni' => $DNI, ':fechaNac' => $fechaNac, ':admin' => $admin, ':name' => $name, ':apellidos' => $apellidos);
     if ($conexion->comprueboUsuario($correo, $pass)) {
         $error = "Ya existe una cuenta asociada a ese correo";
         $smarty->assign('error', $error);
         $smarty->display('login.tpl');
     } else {
-        $sentencia = "INSERT INTO USUARIOS ( password, correo, dni, fecha_nac, admin, nombre, apellidos) VALUES ( '$pass', '$correo', '$DNI', '$fechaNac', '$admin', '$name', '$apellidos')";
-        try {
-            $conexion->ejecutar($sentencia);
-            $_SESSION['correo'] = $correo;
-            $_SESSION['pass'] = $pass;
-            $conexion->cerrar();
-            header("Location:tienda.php?usuarioCreado=$usuarioCreado&error=$error");
-        } catch (Exception $ex) {
-            $error = "Se ha producido el siguiente error: " . $e->getMessage();
-        }
+        $sentencia = "INSERT INTO USUARIOS ( password, correo, dni, fecha_nac, admin, nombre, apellidos) VALUES ( :pass , :correo , :dni , :fechaNac, :admin, :name, :apellidos)";
+        $conexion->ejecutarPS($datos, $sentencia);
+        $error = $conexion->getInfo();
+        $smarty->assign('error', $error);
+        $_SESSION['correo'] = $correo;
+        $_SESSION['pass'] = $pass;
+        $conexion->cerrar();
+        header("Location:tienda.php?usuarioCreado=$usuarioCreado&error=$error");
     }
 } else {
     //creamos o recogemos cesta

@@ -30,6 +30,14 @@ class Usuario {
         return $this->nombreCompleto;
     }
 
+    function getID($conexion, $correo) {
+        $datos = $conexion->seleccion("SELECT * FROM USUARIOS WHERE correo = '" . $correo . "'");
+        foreach ($datos as $dato) {
+            $this->id = $dato['id_user'];
+        }
+        return $this->id;
+    }
+
     function getDNI($conexion, $correo) {
         $datos = $conexion->seleccion("SELECT * FROM USUARIOS WHERE correo = '" . $correo . "'");
         foreach ($datos as $dato) {
