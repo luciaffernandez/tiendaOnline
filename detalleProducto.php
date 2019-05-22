@@ -23,7 +23,6 @@ if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
 }
-
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
