@@ -104,31 +104,43 @@ if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Guardar datos')) {
     $formularioEditorUsuario = "";
     $smarty->assign('formularioEditorUsuario', $formularioEditorUsuario);
 
-    $nombreNuevo = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $correoNuevo = $_POST['correo'];
-    $DNINuevo = $_POST['dni'];
-    $calleNuevo = $_POST['calle'];
-    $numeroNuevo = $_POST['numero'];
-    $pisoNuevo = $_POST['piso'];
-    $cod_postalNuevo = $_POST['cod_postal'];
-    $provinciaNuevo = $_POST['provincia'];
-    $ciudadNuevo = $_POST['ciudad'];
-
-    $mensaje = $usuario->actualizarDatos($conexion, $nombreNuevo, $apellidos, $correoNuevo, $DNINuevo, $correo);
-    //$mensaje .= $usuario->cambiarDireccion($conexion, $calleNuevo, $numeroNuevo, $pisoNuevo, $cod_postalNuevo, $provinciaNuevo, $ciudadNuevo);
-
+    $nombreNew = $_POST['nombre'];
+    $apellidosNew = $_POST['apellidos'];
+    $correoNew = $_POST['correo'];
+    $DNINew = $_POST['dni'];
+    $fechaNacNew = $_POST['fecha'];
+    $calleNew = $_POST['calle'];
+    $numeroNew = $_POST['numero'];
+    $pisoNew = $_POST['piso'];
+    $codPostalNew = $_POST['cod_postal'];
+    $provinciaNew = $_POST['provincia'];
+    $ciudadNew = $_POST['ciudad'];
+    $datosUser = [$nombreNew, $apellidosNew, $correoNew, $DNINew, $fechaNacNew];
+    $datosDir = [$calleNew, $numeroNew, $pisoNew, $codPostalNew, $provinciaNew, $ciudadNew];
+    $sentenciaUpdate = "UPDATE USUARIOS SET correo = :correo', nombre = :nombre, apellidos = :apellidos, dni = :dni WHERE correo = '" . $correo . "'";
+    
+    $conexion->ejecutarPS($datosUser, $sentenciaUpdate);
+   
     $smarty->assign('mensaje', $mensaje);
 } else if (isset($_POST['botonDatos'])) {
     $textoBoton = "Guardar datos";
+    $sentencia = "SELECT * FROM USUARIOS WHER correo ='".$correo."'";
+    $valores = $conexion->seleccion($sentencia);
+    foreach($valores as $valor){
+        $nombre = $valor['nombre'];
+        $apellidos = $valor['apellidos'];
+        $correo = $valor['correo'];
+        $dni = $valor['dni'];
+    }
     $formularioEditorUsuario = "<div class='col-lg-6 float-left'>"
             . "<label>Nombre: </label> <input class='inputData' type='text' name='nombre' value=''> </br>"
             . "<label>Apellidos: </label> <input class='inputData' type='text' name='apellidos' value=''></br>"
             . "<label>Correo: </label> <input class='inputData' type='text' name='correo' value='' > </br>"
             . "<label>DNI: </label> <input class='inputData' type='text' name='dni' value=''> </br>"
-            . "<label>Calle: </label> <input class='inputData' type='text' name='calle' value=''></br>"
+            . "<label>Fecha de nacimiento: </label> <input class='inputData' type='date' name='fechaNac' value=''/><br/></br>"
             . "</div>"
             . "<div class='col-lg-6 float-left'>"
+            . "<label>Calle: </label> <input class='inputData' type='text' name='calle' value=''> </br>"
             . "<label>Número: </label> <input class='inputData' type='text' name='num' value=''> </br>"
             . "<label>Piso: </label> <input class='inputData' type='text' name='piso' value=''></br>"
             . "<label>Código postal: </label> <input class='inputData' type='text' name='cod_postal' value=''></br>"
