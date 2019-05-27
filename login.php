@@ -73,7 +73,7 @@ if (isset($_POST['iniciarSesion'])) {
     $smarty->assign('error', $error);
     //si se recibe un error por metodo GET (enviado desde el sitio)
     if (isset($_GET['error'])) {
-        $error = "No has iniciado sesión";
+        $error = "Debes iniciar sesión con una cuenta.";
     }
     //si se pulsa el boton desconectar del sitio se muestra el mensaje y destruimos la sesion
     if (isset($_POST['desconectar'])) {

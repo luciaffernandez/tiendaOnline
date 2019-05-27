@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -115,39 +115,67 @@ if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Guardar datos')) {
     $codPostalNew = $_POST['cod_postal'];
     $provinciaNew = $_POST['provincia'];
     $ciudadNew = $_POST['ciudad'];
-    $datosUser = [$nombreNew, $apellidosNew, $correoNew, $DNINew, $fechaNacNew];
-    $datosDir = [$calleNew, $numeroNew, $pisoNew, $codPostalNew, $provinciaNew, $ciudadNew];
-    $sentenciaUpdate = "UPDATE USUARIOS SET correo = :correo', nombre = :nombre, apellidos = :apellidos, dni = :dni WHERE correo = '" . $correo . "'";
-    
+
+    $datosUser = [':nombre' => $nombreNew, ':apellidos' => $apellidosNew, ':correo' => $correoNew, ':dni' => $DNINew];
+    $idUser = $usuario->getDNI($conexion, $correo);
+
+    $correo = $_SESSION['correo'];
+    $sentenciaUpdate = "UPDATE USUARIOS SET correo = :correo, nombre = :nombre, apellidos = :apellidos, dni = :dni WHERE correo = '" . $correo . "'";
     $conexion->ejecutarPS($datosUser, $sentenciaUpdate);
-   
+
+
+    $_SESSION['correo'] = $correoNew;
+    $correo = $_SESSION['correo'];
+
+    $datosDir = [':provincia' => $provinciaNew, ':ciudad' => $ciudadNew, ':calle' => $calleNew, ':numero' => $numeroNew, ':piso' => $pisoNew, ':cod_postal' => $codPostalNew];
+    $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "')";
+    $conexion->ejecutarPS($datosDir, $sentenciaUpdate);
+
     $smarty->assign('mensaje', $mensaje);
 } else if (isset($_POST['botonDatos'])) {
     $textoBoton = "Guardar datos";
-    $sentencia = "SELECT * FROM USUARIOS WHER correo ='".$correo."'";
+    $smarty->assign('textoBoton', $textoBoton);
+
+    $correo = $_SESSION['correo'];
+
+    $sentencia = "SELECT * FROM USUARIOS WHERE correo = '" . $correo . "'";
     $valores = $conexion->seleccion($sentencia);
-    foreach($valores as $valor){
+    foreach ($valores as $valor) {
+        $id = $valor['id_user'];
         $nombre = $valor['nombre'];
         $apellidos = $valor['apellidos'];
         $correo = $valor['correo'];
         $dni = $valor['dni'];
+        $fechaNac = $valor['fecha_nac'];
     }
-    $formularioEditorUsuario = "<div class='col-lg-6 float-left'>"
-            . "<label>Nombre: </label> <input class='inputData' type='text' name='nombre' value=''> </br>"
-            . "<label>Apellidos: </label> <input class='inputData' type='text' name='apellidos' value=''></br>"
-            . "<label>Correo: </label> <input class='inputData' type='text' name='correo' value='' > </br>"
-            . "<label>DNI: </label> <input class='inputData' type='text' name='dni' value=''> </br>"
-            . "<label>Fecha de nacimiento: </label> <input class='inputData' type='date' name='fechaNac' value=''/><br/></br>"
-            . "</div>"
-            . "<div class='col-lg-6 float-left'>"
-            . "<label>Calle: </label> <input class='inputData' type='text' name='calle' value=''> </br>"
-            . "<label>Número: </label> <input class='inputData' type='text' name='num' value=''> </br>"
-            . "<label>Piso: </label> <input class='inputData' type='text' name='piso' value=''></br>"
-            . "<label>Código postal: </label> <input class='inputData' type='text' name='cod_postal' value=''></br>"
-            . "<label>Provincia: </label> <input class='inputData' type='text' name='provincia' value=''></br>"
-            . "<label>Ciudad: </label> <input class='inputData' type='text' name='ciudad' value=''></br>"
-            . "</div>";
-    $smarty->assign('textoBoton', $textoBoton);
+
+    $sentencia = "SELECT * FROM VIVE_EN AS V JOIN DIRECCIONES AS D ON V.id_dir = D.id_dir WHERE id_user = '" . $id . "'";
+    $valores = $conexion->seleccion($sentencia);
+    foreach ($valores as $valor) {
+        $provincia = $valor['provincia'];
+        $ciudad = $valor['ciudad'];
+        $calle = $valor['calle'];
+        $numero = $valor['numero'];
+        $piso = $valor['piso'];
+        $cod_postal = $valor['cod_postal'];
+    }
+
+    $formularioEditorUsuario = "<div class = 'col-lg-6 float-left'>"
+            . " <label>Nombre: </label> <input class = 'inputData' type = 'text' name = 'nombre' value = '$nombre'> </br>"
+            . " <label>Apellidos: </label> <input class = 'inputData' type = 'text' name = 'apellidos' value = '$apellidos'></br>"
+            . " <label>Correo: </label> <input class = 'inputData' type = 'text' name = 'correo' value = '$correo' > </br>"
+            . " <label>DNI: </label> <input class = 'inputData' type = 'text' name = 'dni' value = '$dni'> </br>"
+            . " <label>Fecha de nacimiento: </label> <input class = 'inputData' type = 'date' name = 'fechaNac' value = '$fechaNac'/><br/></br>"
+            . " </div>"
+            . " < div class = 'col-lg-6 float-left'>"
+            . " < label>Calle: </label> <input class = 'inputData' type = 'text' name = 'calle' value = '$calle'> </br>"
+            . " < label>Número: </label> <input class = 'inputData' type = 'text' name = 'num' value = '$numero'> </br>"
+            . " < label>Piso: </label> <input class = 'inputData' type = 'text' name = 'piso' value = '$piso'></br>"
+            . " < label>Código postal: </label> <input class = 'inputData' type = 'text' name = 'cod_postal' value = '$cod_postal'></br>"
+            . " < label>Provincia: </label> <input class = 'inputData' type = 'text' name = 'provincia' value = '$provincia'></br>"
+            . " < label>Ciudad: </label> <input class = 'inputData' type = 'text' name = 'ciudad' value = '$ciudad'></br>"
+            . " < /div>";
+
     $smarty->assign('formularioEditorUsuario', $formularioEditorUsuario);
 } else if (!isset($_POST['botonDatos'])) {
     $textoBoton = "Editar datos";

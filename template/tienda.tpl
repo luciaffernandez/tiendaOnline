@@ -5,12 +5,8 @@
         <div class="row contenedorProductos">
             {$listado}
         </div>
+        <div class="espacioPequeno"></div>
     </section>
-    {$debug}
-    <form action="login.php" method="POST" class="text-center my-5">
-        <input class="btn btn-red" type="submit" name="desconectar" value="Desconectar">
-        <input class="btn btn-red" type="submit" name="eliminarCuenta" value="Eliminar cuenta">
-    </form>
     {include file = "footer.tpl"}
 
 </body>

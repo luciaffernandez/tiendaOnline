@@ -8,6 +8,7 @@ class Usuario {
     private $apellidos;
     private $DNI;
     private $fechaNac;
+    private $admin;
     private $nombreCompleto;
     private $direccion = [];
     private $tarjeta = [];
@@ -28,6 +29,14 @@ class Usuario {
             $this->nombreCompleto = $this->nombre . ' ' . $this->apellidos;
         }
         return $this->nombreCompleto;
+    }
+
+    function comprueboAdmin($conexion, $correo) {
+        $datos = $conexion->seleccion("SELECT * FROM USUARIOS WHERE correo = '" . $correo . "'");
+        foreach ($datos as $dato) {
+            $this->admin = $dato['admin'];
+        }
+        return $this->admin;
     }
 
     function getID($conexion, $correo) {
@@ -79,5 +88,11 @@ class Usuario {
         return $this->direccion;
     }
 
+    function actualizarDatos($conexion, $nombre, $apellidos, $correoNuevo, $correoViejo, $DNI) {
+        $sentenciaUpdate = "UPDATE USUARIOS SET correo = '" . $correoNuevo . "', nombre = '" . $nombre . "', apellidos = '" . $apellidos . "', dni = '" . $DNI . "' WHERE correo = '" . $correoViejo . "'";
+        $conexion->ejecutar($sentenciaUpdate);
+        $mensaje = $conexion->getInfo();
+        return $mensaje;
+    }
 
 }
