@@ -75,21 +75,20 @@ if (isset($_POST['iniciarSesion'])) {
     if (isset($_GET['error'])) {
         $error = "Debes iniciar sesión con una cuenta.";
     }
+
     //si se pulsa el boton desconectar del sitio se muestra el mensaje y destruimos la sesion
     if (isset($_POST['desconectar'])) {
         session_destroy();
         $error = "Te has desconectado";
-    }
-    //si se pulsa el boton desconectar del sitio se muestra el mensaje y destruimos la sesion
-    if (isset($_POST['eliminarCuenta'])) {
-        $correo = $_SESSION['correo'];
-        $sentencia = "SELECT id_user FROM USUARIOS WHERE correo='$correo'";
-        $dato = $conexion->seleccion($sentencia);
-        var_dump($dato[0]);
-        $sentencia = "DELETE * FROM USUARIOS WHERE id_user='$dato[0]'";
-        $conexion->execute($sentencia);
-//        session_destroy();
-//        $error = "Has eliminado tu cuenta de usuario";
+    } else if (isset($_POST['eliminarCuenta'])) {
+        $usuario = Usuario::generaUsuario();
+        $idUser = (integer) $usuario->getID($conexion, $correo);
+        $sentenciaUpdate = "UPDATE USUARIOS SET correo = NULL, nombre = NULL, apellidos = NULL, dni = NULL, fecha_nac = NULL WHERE correo = '" . $correo . "'";
+        $conexion->ejecutar($sentenciaUpdate);
+        $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = NULL, ciudad = NULL, calle = NULL, numero = NULL, piso = NULL, cod_postal = NULL WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
+        $conexion->ejecutar($sentenciaUpdate);
+        session_destroy();
+        $error = "Has eliminado tu cuenta de usuario";
     }
     $smarty->assign('error', $error);
     //Mostramos plantilla

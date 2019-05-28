@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-14 12:28:18
+/* Smarty version 3.1.33, created on 2019-05-28 09:52:34
   from 'C:\xampp\htdocs\tiendaOnline\template\pagar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cda984226f3a2_63721575',
+  'unifunc' => 'content_5cece8c2529548_35313317',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8c924068ae8263ae237a173ad0926cb7b93c0a3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\pagar.tpl',
-      1 => 1557829695,
+      1 => 1559029950,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cda984226f3a2_63721575 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cece8c2529548_35313317 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -97,8 +97,6 @@ function content_5cda984226f3a2_63721575 (Smarty_Internal_Template $_smarty_tpl)
         <form method="post" action="pagar.php" class="col-12">
             <div class="col-12">
                 <h3>Datos del usuario</h3>
-                <div class="error"><?php echo $_smarty_tpl->tpl_vars['mensaje']->value;?>
-</div>
                 <?php echo $_smarty_tpl->tpl_vars['datosUsuario']->value;?>
 
             </div>

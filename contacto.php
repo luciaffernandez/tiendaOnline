@@ -41,6 +41,7 @@ if (isset($_POST['enviarMensaje'])) {
     $id_registro = $conexion->conexion->lastInsertId();
     $datos = array(':id_mensaje' => $id_registro, ':contenido' => $mensaje, ':correo' => $correo, ':asunto' => $asunto, ':nombre' => $nombre);
     $sentencia = "INSERT INTO MENSAJES (id_mensaje, contenido, correo, asunto, nombre) VALUES (:id_mensaje, :contenido, :correo, :asunto, :nombre)";
+
     $conexion->ejecutarPS($datos, $sentencia);
     $error = $conexion->getInfo();
     $smarty->assign('error', $error);

@@ -14,11 +14,7 @@ class Usuario {
     private $tarjeta = [];
 
     function generaUsuario() {
-        if (isset($_SESSION['usuario'])) {
-            return $_SESSION['usuario'];
-        } else {
-            return new Usuario();
-        }
+        return new Usuario();
     }
 
     function getNombreCompleto($conexion, $correo) {
@@ -86,13 +82,6 @@ class Usuario {
             $this->direccion[] = false;
         }
         return $this->direccion;
-    }
-
-    function actualizarDatos($conexion, $nombre, $apellidos, $correoNuevo, $correoViejo, $DNI) {
-        $sentenciaUpdate = "UPDATE USUARIOS SET correo = '" . $correoNuevo . "', nombre = '" . $nombre . "', apellidos = '" . $apellidos . "', dni = '" . $DNI . "' WHERE correo = '" . $correoViejo . "'";
-        $conexion->ejecutar($sentenciaUpdate);
-        $mensaje = $conexion->getInfo();
-        return $mensaje;
     }
 
 }

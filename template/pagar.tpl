@@ -12,7 +12,7 @@
             <input name="shopping_url" type="hidden" value="http://tienda/ejemploPaypal/index.php" />
             <input name="currency_code" type="hidden" value="EUR" />
             <input name="return" type="hidden" value="http://localhost/tiendaOnline/tienda.php" />
-            <input name="notify_url" type="hidden" value="http://localhost/tiendaOnline/tienda.php" />
+            <input name="notify_url" type="hidden" value="http://localhost/tiendaOnline/guardoPedido.php" />
             <input name="rm" type="hidden" value="2" />
 
             <table id="tablaPagar" class="pago">
@@ -64,7 +64,6 @@
         <form method="post" action="pagar.php" class="col-12">
             <div class="col-12">
                 <h3>Datos del usuario</h3>
-                <div class="error">{$mensaje}</div>
                 {$datosUsuario}
             </div>
             </br>

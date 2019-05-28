@@ -16,9 +16,9 @@
                     {$formularioEditorUsuario}
                     <input type="submit" name="botonDatos" class="btn btn-red botonesPago" value="{$textoBoton}">
                 </form>
-                <form action="perfil.php" method="POST" class="text-center my-5">
-                    <input class="btn btn-red" type="submit" name="desconectar" value="Desconectar">
-                    <input class="btn btn-red" type="submit" name="eliminarCuenta" value="Eliminar cuenta">
+                <form action="login.php" method="POST" class="text-center my-5">
+                    <input class="btn btn-red botonesPago" type="submit" name="desconectar" value="Desconectar">
+                    <input class="btn btn-red botonesPago" type="submit" name="eliminarCuenta" value="Eliminar cuenta">
                 </form>
             </fieldset>
             <section class="separacion"></section>
