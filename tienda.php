@@ -77,6 +77,36 @@ $smarty->assign('carrito', $carrito);
 $listado = obtenerListado($conexion);
 $smarty->assign('listado', $listado);
 
+
+if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFIED' && !isset($_SESSION['pedidoHecho'])) {
+    $_SESSION['pedidoHecho'] = "PEDIDO HECHO";
+    $usuario = Usuario::generaUsuario();
+    $fecha_creacion = date("Y-m-d");
+    $id_user = $usuario->getID($conexion, $correo);
+
+    $datos = array(':fecha_creacion' => $fecha_creacion, ':id_user' => $id_user);
+    $sentencia = "INSERT INTO REGISTROS (fecha_creacion, id_user) VALUES (:fecha_creacion, :id_user)";
+    $conexion->ejecutarPS($datos, $sentencia);
+
+    $total = $_POST['mc_gross'];
+    $fecha_entrega = date("Y-m-d", strtotime($fecha_creacion . "+ 5 days"));
+    $estado = "En camino";
+    $id_registro = $conexion->conexion->lastInsertId();
+
+    $datos = array(':id_pedido' => $id_registro, ':total' => $total, ':fecha_entrega' => $fecha_entrega, ':estado' => $estado);
+    $sentencia = "INSERT INTO PEDIDOS (id_pedido, total, fecha_entrega, estado) VALUES (:id_pedido, :total, :fecha_entrega, :estado)";
+    $conexion->ejecutarPS($datos, $sentencia);
+
+    for ($i = 1; $i <= sizeof($cesta->getProductos()); $i++) {
+        $cantidad = $_POST['quantity' . $i];
+        $precio = $_POST['mc_gross_' . $i];
+        $num_ref = $_POST['item_number' . $i];
+        $datos = array(':cantidad' => $cantidad, ':precio' => $precio, ':num_ref' => $num_ref, ':id_pedido' => $id_registro);
+        $sentencia = "INSERT INTO DETALLES_PEDIDOS (cantidad, precio, num_ref, id_pedido) VALUES (:cantidad, :precio, :num_ref, :id_pedido)";
+        $conexion->ejecutarPS($datos, $sentencia);
+    }
+}
+
 //se muestra la plantilla del sitio 
 $smarty->display("tienda.tpl");
 

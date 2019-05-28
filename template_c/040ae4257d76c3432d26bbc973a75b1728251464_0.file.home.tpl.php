@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-14 13:33:58
+/* Smarty version 3.1.33, created on 2019-05-28 17:04:13
   from 'C:\xampp\htdocs\tiendaOnline\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cdaa7a69e3b95_94760033',
+  'unifunc' => 'content_5ced4ded283ed9_16640137',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '040ae4257d76c3432d26bbc973a75b1728251464' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\home.tpl',
-      1 => 1557833591,
+      1 => 1559055848,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ced4ded283ed9_16640137 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -44,7 +44,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             and scrambled it to make a type specimen book. It has survived not 
                             only five centuries, but also the leap into electronic typesetting, 
                             remaining essentially unchanged.</p>
-                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="location.href = 'nosotros.php'">
                             <div class="circle">
                                 <span class="icon arrow"></span>
                             </div>
@@ -61,7 +61,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             and scrambled it to make a type specimen book. It has survived not 
                             only five centuries, but also the leap into electronic typesetting, 
                             remaining essentially unchanged.</p>
-                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="location.href = 'nosotros.php'">
                             <div class="circle">
                                 <span class="icon arrow"></span>
                             </div>
@@ -78,7 +78,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             and scrambled it to make a type specimen book. It has survived not 
                             only five centuries, but also the leap into electronic typesetting, 
                             remaining essentially unchanged.</p>
-                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn-complejo col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="location.href = 'nosotros.php'">
                             <div class="circle">
                                 <span class="icon arrow"></span>
                             </div>
@@ -102,7 +102,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
     <section class="seccionMargenes fondoBlanco">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
             <div class="row text-center">
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <a class="btn-floating">
                         <img src="./img/icon-comida.png" class="iconosHome" />
                     </a>
@@ -112,17 +112,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             industry.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
-                    <a class="btn-floating">
-                        <img src="./img/icon-bici.png" class="iconosHome" />
-                    </a>
-                    <div class="info">
-                        <h3>CARACTERÍSTICA 2</h3>
-                        <p class="textoNormal">Lorem Ipsum is simply dummy text of the printing and typesetting 
-                            industry.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <a class="btn-floating">
                         <img src="./img/icon-corazon.png" class="iconosHome" />
                     </a>
@@ -132,7 +122,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             industry.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <a class="btn-floating">
                         <img src="./img/icon-brazo.png" class="iconosHome" />
                     </a>
@@ -162,7 +152,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
                             industry.</p>
                     </div>
                 </div>
-                <div class="col-md-12 col-xl-4">
+                <div class="col-md-6 col-xl-4">
                     <a class="btn-floating">
                         <img src="./img/icon-reciclable.png" class="iconosHome" />
                     </a>
@@ -176,7 +166,7 @@ function content_5cdaa7a69e3b95_94760033 (Smarty_Internal_Template $_smarty_tpl)
             <section class="espacio"></section>
             <div class="justify-content-between">
                 <h4 class="float-left col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">Quieres conocernos un poco mejor o tienes alguna duda de los servicios que ofrecemos. Haz click en el botón y visita ya nuestra sección.</h4>
-                <button class="btn-complejo col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="location.href = 'sobreNosotros.php'">
+                <button class="btn-complejo col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="location.href = 'nosotros.php'">
                     <div class="circle">
                         <span class="icon arrow"></span>
                     </div>
