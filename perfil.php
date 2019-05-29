@@ -229,6 +229,7 @@ function historialPedidos($idUser) {
 }
 
 function historialPedidosDetalles($id_pedido) {
+    global $conexion;
     $sentencia = "SELECT * FROM DETALLES_PEDIDOS WHERE id_pedido = '" . $id_pedido . "';";
     $datosDetalles = $conexion->seleccion($sentencia);
     foreach ($datosDetalles as $datoDetalles) {
