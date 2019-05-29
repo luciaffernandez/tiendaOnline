@@ -246,8 +246,12 @@ function historialPedidos($idUser) {
                     . "</tr>";
         }
         $historial .= "<tr class='pago'>"
-                . "<td class='pago'><form>" . $cantidad . "</form></td>"
-                . "<td class='pago'><img src='./img/$imagen' class='imagenCesta'/></td>"
+                . "<td class='pago' colspan=3><form method='post' action='perfil.php'>"
+                . "<input type='hidden' name='id_pedido' value='".$id_pedido."'/>"
+                . "<input class='form-check-input' type='radio' name='exampleRadios' value='En camino' $checked>"
+                . "<label class='form-check-label'>En camino</label>"
+                . "</form></td>"
+                . "<td class='pago' colspan=3><img src='./img/$imagen' class='imagenCesta'/></td>"
                 . "</tr>"
                 . "</tbody></table><section class='espacioPequeno'></section>";
     }

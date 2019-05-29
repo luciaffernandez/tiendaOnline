@@ -14,7 +14,7 @@ class BD {
      *  @param type $pass
      *  @param type $bd
      */
-    public function __construct($host = "localhost", $user = "tienda", $pass = "root", $bd = "tienda") {
+    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "tienda") {
         $this->user = $user;
         $this->pass = $pass;
         if ($bd === null) {
