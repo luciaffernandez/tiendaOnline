@@ -11,7 +11,6 @@ class Usuario {
     private $admin;
     private $nombreCompleto;
     private $direccion = [];
-    private $tarjeta = [];
 
     function generaUsuario() {
         return new Usuario();

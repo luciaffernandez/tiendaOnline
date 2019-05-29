@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -21,6 +21,11 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 //las guardamos en variables
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
+    if (!$conexion->comprueboUsuario($correo, $pass)) {
+        header("Location:login.php&error");
+    }
+} else {
+    header("Location:login.php&error");
 }
 
 //recogemos la variable de sesion cesta
@@ -31,6 +36,8 @@ $smarty->assign('carrito', $carrito);
 
 $usuario = Usuario::generaUsuario();
 mostrarDatosUser($correo);
+$idUser = (integer) $usuario->getID($conexion, $correo);
+historialPedidos($idUser);
 
 //cuando se llegue a este archivo y haya un usuario guardado en sesión y no sea el administrador
 if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
@@ -52,9 +59,17 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         $conexion->ejecutarPS($datosUser, $sentenciaUpdate);
 
         $datosDir = [':provincia' => $_POST['provincia'], ':ciudad' => $_POST['ciudad'], ':calle' => $_POST['calle'], ':numero' => $_POST['num'], ':piso' => $_POST['piso'], ':cod_postal' => $_POST['cod_postal']];
-        $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
-        $conexion->ejecutarPS($datosDir, $sentenciaUpdate);
+        if ($conexion->comprueboDireccion($idUser)) {
+            $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
+            $conexion->ejecutarPS($datosDir, $sentenciaUpdate);
+        } else {
+            $sentenciaInsert = "INSERT INTO DIRECCIONES (provincia, ciudad, calle, numero, piso, cod_postal) VALUES (:provincia, :ciudad, :calle, :numero, :piso, :cod_postal)";
+            $conexion->ejecutarPS($datosDir, $sentenciaInsert);
+            $id_dir = $conexion->conexion->lastInsertId();
 
+            $sentencia = "INSERT INTO VIVE_EN (id_user, id_dir) VALUES ($idUser, $id_dir)";
+            $conexion->ejecutar($sentencia);
+        }
         $_SESSION['correo'] = $_POST['correo'];
         $correo = $_SESSION['correo'];
         mostrarDatosUser($correo);
@@ -70,9 +85,11 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         $smarty->assign('textoBoton', $textoBoton);
     }
 } else if ($usuario->comprueboAdmin($conexion, $correo) === "1") {
-    //cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
+//cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
     header("Location:gestorAdmin.php");
 }
+
+
 $smarty->display('perfil.tpl');
 
 /** Función que muestra los datos del usuario logeado con un formato determinado
@@ -85,7 +102,7 @@ function mostrarDatosUser($correo) {
     global $usuario, $conexion, $smarty;
     $nombre = $usuario->getNombreCompleto($conexion, $correo);
     $DNI = $usuario->getDNI($conexion, $correo);
-    //mostramos en la plantilla la variable usuario o nombre
+//mostramos en la plantilla la variable usuario o nombre
 
     $direccionCompleta = $usuario->getDireccion($conexion, $correo);
 
@@ -154,4 +171,85 @@ function formularioEdiciónUser($correo) {
             . " </div>";
 
     $smarty->assign('formularioEditorUsuario', $formularioEditorUsuario);
+}
+
+function historialPedidos($idUser) {
+    global $conexion, $smarty;
+    $historial = "";
+    $sentencia = "SELECT * FROM PEDIDOS WHERE id_pedido = (SELECT id_registro FROM REGISTROS WHERE id_user = '" . $idUser . "');";
+    $datosPedido = $conexion->seleccion($sentencia);
+    foreach ($datosPedido as $datoPedido) {
+        $id_pedido = $datoPedido['id_pedido'];
+        $total = $datoPedido['total'];
+        $fecha_entrega = $datoPedido['fecha_entrega'];
+        $estado = $datoPedido['estado'];
+
+        $sentencia = "SELECT * FROM REGISTROS WHERE id_registro = '" . $id_pedido . "';";
+        $datosRegistro = $conexion->seleccion($sentencia);
+
+        foreach ($datosRegistro as $datoRegistro) {
+            $fecha_creacion = $datoRegistro['fecha_creacion'];
+        }
+
+        $historial .= "<div id='fecha'>" . $fecha_creacion . "</div>"
+                . "<table id='tablaPagar' class='pago'>"
+                . "<thead>"
+                . "<tr class='pago'>"
+                . "<th class='pago'>Identificador de pedido</th>"
+                . "<th class='pago'>Fecha de entrega</th>"
+                . "</tr>"
+                . "</thead>"
+                . "<tbody>"
+                . "<tr class='pago'>"
+                . "<td class='pago'>" . $id_pedido . "</td>"
+                . "<td class='pago'>" . $fecha_entrega . "</td>"
+                . "</tr>"
+                . "</tbody>"
+                . "</table>"
+                . "<table id='tablaPagar' class='pago'>"
+                . "<thead>"
+                . "<tr class='pago'>"
+                . "<th class='pago'>Productos</th>"
+                . "</tr>"
+                . "<tr class='pago'>"
+                . "<th class='pago'>Cantidad</th>"
+                . "<th class='pago'>Imagen</th>"
+                . "<th class='pago'>Nombre</th>"
+                . "<th class='pago'>Número de referencia</th>"
+                . "<th class='pago'>Precio unitario</th>"
+                . "<th class='pago'>Precio total</th>"
+                . "</tr>"
+                . "</thead>"
+                . "<tbody>";
+
+        $historial .= historialPedidosDetalles($id_pedido);
+        $historial .= "</tbody></table>";
+    }
+    $smarty->assign('historial', $historial);
+}
+
+function historialPedidosDetalles($id_pedido) {
+    $sentencia = "SELECT * FROM DETALLES_PEDIDOS WHERE id_pedido = '" . $id_pedido . "';";
+    $datosDetalles = $conexion->seleccion($sentencia);
+    foreach ($datosDetalles as $datoDetalles) {
+        $cantidad = $datoDetalles['cantidad'];
+        $precio = $datoDetalles['precio'];
+        $num_ref = $datoDetalles['num_ref'];
+        $sentencia = "SELECT * PRODUCTOS WHERE num_ref'" . $num_ref . "';";
+        $datosProducto = $conexion->seleccion($sentencia);
+        foreach ($datosProducto as $datoProducto) {
+            $img = $datoProducto['imagen1'];
+            $precioUni = $datoProducto['precio'];
+            $nom = $datoProducto['nom_producto'];
+        }
+        $historial = "<tr class='pago'>"
+                . "<td class='pago'>" . $cantidad . "</td>"
+                . "<td class='pago'>" . $img . "</td>"
+                . "<td class='pago'>" . $nom . "</td>"
+                . "<td class='pago'>" . $num_ref . "</td>"
+                . "<td class='pago'>" . $precioUni . "</td>"
+                . "<td class='pago'>" . $precio . "</td>"
+                . "</tr>";
+    }
+    return $historial;
 }

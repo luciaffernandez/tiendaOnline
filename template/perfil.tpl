@@ -16,6 +16,7 @@
                     {$formularioEditorUsuario}
                     <input type="submit" name="botonDatos" class="btn btn-red botonesPago" value="{$textoBoton}">
                 </form>
+                <div>{$historial}</div>
                 <form action="login.php" method="POST" class="text-center my-5">
                     <input class="btn btn-red botonesPago" type="submit" name="desconectar" value="Desconectar">
                     <input class="btn btn-red botonesPago" type="submit" name="eliminarCuenta" value="Eliminar cuenta">

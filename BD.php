@@ -138,4 +138,19 @@ class BD {
         return $prueba;
     }
 
+    /** Funcion que comprueba que estos datos esten en la base de datos y sean correctos
+     * @param string $nombre
+     * @param string $pass
+     * @return bool. Si esta ese usuario sera true si no false
+     */
+    public function comprueboDireccion(string $idUser): bool {
+        if ($this->conexion == null) {
+            $this->conexion = $this->conectar();
+        }
+        $sentencia = "SELECT * FROM VIVE_EN WHERE id_user='" . $idUser . "';";
+        $campos = $this->seleccion($sentencia);
+        $prueba = (is_null($campos) || empty($campos)) ? false : true;
+        return $prueba;
+    }
+
 }

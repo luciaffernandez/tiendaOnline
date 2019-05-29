@@ -82,11 +82,14 @@ if (isset($_POST['iniciarSesion'])) {
         $error = "Te has desconectado";
     } else if (isset($_POST['eliminarCuenta'])) {
         $usuario = Usuario::generaUsuario();
+        $correo = $_SESSION['correo'];
         $idUser = (integer) $usuario->getID($conexion, $correo);
-        $sentenciaUpdate = "UPDATE USUARIOS SET correo = NULL, nombre = NULL, apellidos = NULL, dni = NULL, fecha_nac = NULL WHERE correo = '" . $correo . "'";
+        $sentenciaUpdate = "UPDATE USUARIOS SET pass = NULL, correo = NULL, nombre = NULL, apellidos = NULL, dni = NULL, fecha_nac = NULL WHERE correo = '" . $correo . "'";
         $conexion->ejecutar($sentenciaUpdate);
-        $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = NULL, ciudad = NULL, calle = NULL, numero = NULL, piso = NULL, cod_postal = NULL WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
-        $conexion->ejecutar($sentenciaUpdate);
+        $sentenciaDelete = "DELETE FROM DIRECCIONES WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
+        $conexion->ejecutar($sentenciaDelete);
+        $sentenciaDelete = "DELETE FROM VIVE_EN WHERE id_dir = '" . $idUser . "';";
+        $conexion->ejecutar($sentenciaDelete);
         session_destroy();
         $error = "Has eliminado tu cuenta de usuario";
     }

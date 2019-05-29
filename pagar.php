@@ -21,6 +21,11 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 //las guardamos en variables
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
+    if (!$conexion->comprueboUsuario($correo, $pass)) {
+        header("Location:login.php&error");
+    }
+} else {
+    header("Location:login.php&error");
 }
 
 //recogemos la variable de sesion cesta
@@ -51,11 +56,18 @@ if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Guardar datos')) {
     $sentenciaUpdate = "UPDATE USUARIOS SET correo = :correo, nombre = :nombre, apellidos = :apellidos, dni = :dni, fecha_nac = :fechaNac WHERE correo = '" . $correo . "'";
     $conexion->ejecutarPS($datosUser, $sentenciaUpdate);
 
-
     $datosDir = [':provincia' => $_POST['provincia'], ':ciudad' => $_POST['ciudad'], ':calle' => $_POST['calle'], ':numero' => $_POST['num'], ':piso' => $_POST['piso'], ':cod_postal' => $_POST['cod_postal']];
-    $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
-    $conexion->ejecutarPS($datosDir, $sentenciaUpdate);
+    if ($conexion->comprueboDireccion($idUser)) {
+        $sentenciaUpdate = "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
+        $conexion->ejecutarPS($datosDir, $sentenciaUpdate);
+    } else {
+        $sentenciaInsert = "INSERT INTO DIRECCIONES (provincia, ciudad, calle, numero, piso, cod_postal) VALUES (:provincia, :ciudad, :calle, :numero, :piso, :cod_postal)";
+        $conexion->ejecutarPS($datosDir, $sentenciaInsert);
+        $id_dir = $conexion->conexion->lastInsertId();
 
+        $sentencia = "INSERT INTO VIVE_EN (id_user, id_dir) VALUES ($idUser, $id_dir)";
+        $conexion->ejecutar($sentencia);
+    }
     $_SESSION['correo'] = $_POST['correo'];
     $correo = $_SESSION['correo'];
     mostrarDatosUser($correo);
