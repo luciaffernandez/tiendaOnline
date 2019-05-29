@@ -239,13 +239,13 @@ function historialPedidosDetalles($id_pedido) {
         $sentencia = "SELECT * PRODUCTOS WHERE num_ref'" . $num_ref . "';";
         $datosProducto = $conexion->seleccion($sentencia);
         foreach ($datosProducto as $datoProducto) {
-            $img = $datoProducto['imagen1'];
+            $imagen = $datoProducto['imagen1'];
             $precioUni = $datoProducto['precio'];
             $nom = $datoProducto['nom_producto'];
         }
         $historial = "<tr class='pago'>"
                 . "<td class='pago'>" . $cantidad . "</td>"
-                . "<td class='pago'>" . $img . "</td>"
+                . "<td class='pago'>" . $imagen . "</td>"
                 . "<td class='pago'>" . $nom . "</td>"
                 . "<td class='pago'>" . $num_ref . "</td>"
                 . "<td class='pago'>" . $precioUni . "</td>"
