@@ -409,6 +409,9 @@ th.pago {
   background-color: #a80f0f;
   color: white; }
 
+th.productos {
+  background-color: black !important; }
+
 .imagenFondoCarrito {
   background-image: url("../img/imagen2.jpg");
   background-position: center;

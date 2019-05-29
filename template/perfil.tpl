@@ -16,6 +16,9 @@
                     {$formularioEditorUsuario}
                     <input type="submit" name="botonDatos" class="btn btn-red botonesPago" value="{$textoBoton}">
                 </form>
+                <section class="separacion"></section>
+                <hr>
+                <h3>Historial de pedidos</h3>
                 <div>{$historial}</div>
                 <form action="login.php" method="POST" class="text-center my-5">
                     <input class="btn btn-red botonesPago" type="submit" name="desconectar" value="Desconectar">

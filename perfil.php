@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -176,7 +176,7 @@ function formularioEdiciónUser($correo) {
 function historialPedidos($idUser) {
     global $conexion, $smarty;
     $historial = "";
-    $sentencia = "SELECT * FROM PEDIDOS WHERE id_pedido = (SELECT id_registro FROM REGISTROS WHERE id_user = '" . $idUser . "');";
+    $sentencia = "SELECT * FROM PEDIDOS AS P JOIN REGISTROS AS R ON P.id_pedido = R.id_registro WHERE R.id_user = '" . $idUser . "';";
     $datosPedido = $conexion->seleccion($sentencia);
     foreach ($datosPedido as $datoPedido) {
         $id_pedido = $datoPedido['id_pedido'];
@@ -191,8 +191,8 @@ function historialPedidos($idUser) {
             $fecha_creacion = $datoRegistro['fecha_creacion'];
         }
 
-        $historial .= "<div id='fecha'>" . $fecha_creacion . "</div>"
-                . "<table id='tablaPagar' class='pago'>"
+        $historial .= "<div id='fecha' class='text-center my-3'>" . $fecha_creacion . "</div>"
+                . "<table id='tablaPagar' class='pago col-10 mx-auto'>"
                 . "<thead>"
                 . "<tr class='pago'>"
                 . "<th class='pago'>Identificador de pedido</th>"
@@ -200,57 +200,56 @@ function historialPedidos($idUser) {
                 . "</tr>"
                 . "</thead>"
                 . "<tbody>"
-                . "<tr class='pago'>"
+                . "<tr class='pago my-5'>"
                 . "<td class='pago'>" . $id_pedido . "</td>"
                 . "<td class='pago'>" . $fecha_entrega . "</td>"
                 . "</tr>"
                 . "</tbody>"
                 . "</table>"
-                . "<table id='tablaPagar' class='pago'>"
+                . "<table id='tablaPagar' class='pago col-10 mx-auto'>"
                 . "<thead>"
-                . "<tr class='pago'>"
-                . "<th class='pago'>Productos</th>"
+                . "<tr class='pago' >"
+                . "<th class='pago productos text-center ' colspan = 6>Productos</th>"
                 . "</tr>"
                 . "<tr class='pago'>"
-                . "<th class='pago'>Cantidad</th>"
+                . "<th class='pago'>Ud</th>"
                 . "<th class='pago'>Imagen</th>"
                 . "<th class='pago'>Nombre</th>"
-                . "<th class='pago'>Número de referencia</th>"
-                . "<th class='pago'>Precio unitario</th>"
-                . "<th class='pago'>Precio total</th>"
+                . "<th class='pago'>Nº Ref</th>"
+                . "<th class='pago'>PVP</th>"
+                . "<th class='pago'>Total</th>"
                 . "</tr>"
                 . "</thead>"
                 . "<tbody>";
 
-        $historial .= historialPedidosDetalles($id_pedido);
-        $historial .= "</tbody></table>";
+        $sentencia = "SELECT * FROM DETALLES_PEDIDOS WHERE id_pedido = '" . $id_pedido . "';";
+        $datosDetalles = $conexion->seleccion($sentencia);
+        foreach ($datosDetalles as $datoDetalles) {
+            $cantidad = $datoDetalles['cantidad'];
+            $precio = $datoDetalles['precio'];
+            $num_ref = $datoDetalles['num_ref'];
+
+            $sentencia = "SELECT * FROM PRODUCTOS WHERE num_ref = '" . $num_ref . "';";
+            $datosProducto = $conexion->seleccion($sentencia);
+            foreach ($datosProducto as $datoProducto) {
+                $imagen = $datoProducto['imagen1'];
+                $precioUni = $datoProducto['precio'];
+                $nom = $datoProducto['nom_producto'];
+            }
+            $historial .= "<tr class='pago'>"
+                    . "<td class='pago'>" . $cantidad . "</td>"
+                    . "<td class='pago'><img src='./img/$imagen' class='imagenCesta'/></td>"
+                    . "<td class='pago'>" . $nom . "</td>"
+                    . "<td class='pago'>" . $num_ref . "</td>"
+                    . "<td class='pago'>" . $precioUni . "</td>"
+                    . "<td class='pago'>" . $precio . "</td>"
+                    . "</tr>";
+        }
+        $historial .= "<tr class='pago'>"
+                . "<td class='pago'><form>" . $cantidad . "</form></td>"
+                . "<td class='pago'><img src='./img/$imagen' class='imagenCesta'/></td>"
+                . "</tr>"
+                . "</tbody></table><section class='espacioPequeno'></section>";
     }
     $smarty->assign('historial', $historial);
-}
-
-function historialPedidosDetalles($id_pedido) {
-    global $conexion;
-    $sentencia = "SELECT * FROM DETALLES_PEDIDOS WHERE id_pedido = '" . $id_pedido . "';";
-    $datosDetalles = $conexion->seleccion($sentencia);
-    foreach ($datosDetalles as $datoDetalles) {
-        $cantidad = $datoDetalles['cantidad'];
-        $precio = $datoDetalles['precio'];
-        $num_ref = $datoDetalles['num_ref'];
-        $sentencia = "SELECT * PRODUCTOS WHERE num_ref'" . $num_ref . "';";
-        $datosProducto = $conexion->seleccion($sentencia);
-        foreach ($datosProducto as $datoProducto) {
-            $imagen = $datoProducto['imagen1'];
-            $precioUni = $datoProducto['precio'];
-            $nom = $datoProducto['nom_producto'];
-        }
-        $historial = "<tr class='pago'>"
-                . "<td class='pago'>" . $cantidad . "</td>"
-                . "<td class='pago'>" . $imagen . "</td>"
-                . "<td class='pago'>" . $nom . "</td>"
-                . "<td class='pago'>" . $num_ref . "</td>"
-                . "<td class='pago'>" . $precioUni . "</td>"
-                . "<td class='pago'>" . $precio . "</td>"
-                . "</tr>";
-    }
-    return $historial;
 }
