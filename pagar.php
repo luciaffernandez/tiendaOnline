@@ -37,7 +37,8 @@ $smarty->assign('carrito', $carrito);
 mostrarTablasResumen();
 
 $usuario = Usuario::generaUsuario();
-
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 //comprobamos si no hemos pulsado el boton de los datos o si sí que lo hemos pulsado y queremos saber en que estado estaba
 if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Guardar datos')) {
     $correo = $_SESSION['correo'];

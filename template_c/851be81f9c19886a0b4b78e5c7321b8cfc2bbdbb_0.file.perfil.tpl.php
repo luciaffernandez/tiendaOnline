@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-30 09:33:39
+/* Smarty version 3.1.33, created on 2019-05-30 10:19:28
   from 'C:\xampp\htdocs\tiendaOnline\template\perfil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cef8753189db2_78575190',
+  'unifunc' => 'content_5cef921049e2f6_90635370',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '851be81f9c19886a0b4b78e5c7321b8cfc2bbdbb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\perfil.tpl',
-      1 => 1559201616,
+      1 => 1559204366,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cef8753189db2_78575190 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cef921049e2f6_90635370 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -49,6 +49,7 @@ function content_5cef8753189db2_78575190 (Smarty_Internal_Template $_smarty_tpl)
                 <h3>Historial de pedidos</h3>
                 <div><?php echo $_smarty_tpl->tpl_vars['historial']->value;?>
 </div>
+                <hr>
                 <form action="login.php" method="POST" class="text-center my-5">
                     <input class="btn btn-red botonesPago" type="submit" name="desconectar" value="Desconectar">
                     <input class="btn btn-red botonesPago" type="submit" name="eliminarCuenta" value="Eliminar cuenta">

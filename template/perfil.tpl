@@ -19,6 +19,7 @@
                 <hr>
                 <h3>Historial de pedidos</h3>
                 <div>{$historial}</div>
+                <hr>
                 <form action="login.php" method="POST" class="text-center my-5">
                     <input class="btn btn-red botonesPago" type="submit" name="desconectar" value="Desconectar">
                     <input class="btn btn-red botonesPago" type="submit" name="eliminarCuenta" value="Eliminar cuenta">

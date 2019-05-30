@@ -24,6 +24,11 @@ $cesta = Cesta::generaCesta();
 $carrito = $cesta->mostrarIcono();
 $smarty->assign('carrito', $carrito);
 
+
+$correo = $_SESSION['correo'];
+$usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 //cuando se pulse el boton enviar en el login
 if (isset($_POST['enviarMensaje'])) {
     //recogemos los datos

@@ -27,6 +27,12 @@ $cesta = Cesta::generaCesta();
 $carrito = $cesta->mostrarIcono();
 
 $smarty->assign('carrito', $carrito);
+
+$correo = $_SESSION['correo'];
+$usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
+
 $smarty->display('home.tpl');
 
 function obtenerListado($conexion) {

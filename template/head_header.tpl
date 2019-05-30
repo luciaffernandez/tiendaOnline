@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-xl navbar-dark justify-content-between bg-dark menuPrincipal">
             <!--Las rutas hacia las imagenes y demás las pondremos con directorios dinámicos,
                 para que no de problema el tener otro tipo de estructura de carpetas-->
-            <a href="#"><img src="img/logo.png" class="logo"/></a>
+            <a href="http://localhost/tiendaOnline/home.php"><img src="img/logo.png" class="logo"/></a>
             <div class="navbar-header">
                 <button button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -45,4 +45,5 @@
                 </ul>
             </div>
         </nav>
+        {$gestorAdmin}
     </header>

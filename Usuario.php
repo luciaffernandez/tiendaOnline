@@ -83,4 +83,15 @@ class Usuario {
         return $this->direccion;
     }
 
+    function mostrarBarraAdmin($conexion, $correo) {
+        if ($this->comprueboAdmin($conexion, $correo)) {
+            $gestorAdmin = "<div class='text-center bg-light py-3'>"
+                    . "<a href='http://localhost/tiendaOnline/gestorAdmin.php' ><h5 class='my-0 text-dark'>Gestor de administrador</h5></a>"
+                    . "</div>";
+        } else {
+            $gestorAdmin;
+        }
+        return $gestorAdmin;
+    }
+
 }

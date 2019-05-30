@@ -72,7 +72,9 @@ $cesta->guardaCesta();
 $carrito = $cesta->mostrarIcono();
 $smarty->assign('carrito', $carrito);
 
-
+$usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 //recojo el resultado de la funcion que creara la lista de Productos y lo muestra
 $listado = obtenerListado($conexion);
 $smarty->assign('listado', $listado);

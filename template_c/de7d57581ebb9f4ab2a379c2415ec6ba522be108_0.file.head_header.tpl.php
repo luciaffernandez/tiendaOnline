@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 08:38:24
+/* Smarty version 3.1.33, created on 2019-05-30 13:17:08
   from 'C:\xampp\htdocs\tiendaOnline\template\head_header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce39ce082b798_47765312',
+  'unifunc' => 'content_5cefbbb4bee5e3_41707996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de7d57581ebb9f4ab2a379c2415ec6ba522be108' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\head_header.tpl',
-      1 => 1558420701,
+      1 => 1559214076,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce39ce082b798_47765312 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cefbbb4bee5e3_41707996 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Tienda Online - Lucía</title>
@@ -44,7 +44,7 @@ function content_5ce39ce082b798_47765312 (Smarty_Internal_Template $_smarty_tpl)
         <nav class="navbar navbar-expand-xl navbar-dark justify-content-between bg-dark menuPrincipal">
             <!--Las rutas hacia las imagenes y demás las pondremos con directorios dinámicos,
                 para que no de problema el tener otro tipo de estructura de carpetas-->
-            <a href="#"><img src="img/logo.png" class="logo"/></a>
+            <a href="http://localhost/tiendaOnline/home.php"><img src="img/logo.png" class="logo"/></a>
             <div class="navbar-header">
                 <button button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -69,5 +69,7 @@ function content_5ce39ce082b798_47765312 (Smarty_Internal_Template $_smarty_tpl)
                 </ul>
             </div>
         </nav>
+        <?php echo $_smarty_tpl->tpl_vars['gestorAdmin']->value;?>
+
     </header><?php }
 }

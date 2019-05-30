@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -27,7 +27,8 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 } else {
     header("Location:login.php&error");
 }
-var_dump($_POST);
+
+
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
@@ -35,6 +36,8 @@ $carrito = $cesta->mostrarIcono();
 $smarty->assign('carrito', $carrito);
 
 $usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 mostrarDatosUser($correo);
 $idUser = (integer) $usuario->getID($conexion, $correo);
 historialPedidos($idUser);
@@ -85,18 +88,17 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         $textoBoton = "Editar datos";
         $smarty->assign('textoBoton', $textoBoton);
         $formularioEditorUsuario = "";
-    } else if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
+    }
+    if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
         $id_pedido = $_POST['id_pedido'];
         $datosEstado = [':estado' => $_POST['estadoRadio']];
         $sentencia = "UPDATE PEDIDOS SET estado = :estado WHERE id_pedido ='" . $id_pedido . "';";
-        "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
         $conexion->ejecutarPS($datosEstado, $sentencia);
     }
 } else if ($usuario->comprueboAdmin($conexion, $correo) === "1") {
 //cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
     header("Location:gestorAdmin.php");
 }
-
 
 $smarty->display('perfil.tpl');
 
@@ -199,25 +201,25 @@ function historialPedidos($idUser) {
             $fecha_creacion = $datoRegistro['fecha_creacion'];
         }
 
-        $historial .= "<div id='fecha' class='text-center my-3'>" . $fecha_creacion . "</div>"
-                . "<table id='tablaPagar' class='pago col-10 mx-auto'>"
+        $historial .= "<div id='fecha' class='text-center my-3'><h4>" . $fecha_creacion . "</h4></div>"
+                . "<table id='tablaPagar' class='pago col-8 mx-auto'>"
                 . "<thead>"
-                . "<tr class='pago'>"
-                . "<th class='pago'>Identificador de pedido</th>"
-                . "<th class='pago'>Fecha de entrega</th>"
+                . "<tr class='bg-none border-top border-bottom'>"
+                . "<th class='py-3 px-3'><h5>Identificador de pedido</h5></th>"
+                . "<th class='py-3 px-3'><h5>Fecha de entrega</h5></th>"
                 . "</tr>"
                 . "</thead>"
                 . "<tbody>"
                 . "<tr class='pago my-5'>"
-                . "<td class='pago'>" . $id_pedido . "</td>"
-                . "<td class='pago'>" . $fecha_entrega . "</td>"
+                . "<td class='py-3 px-3'>" . $id_pedido . "</td>"
+                . "<td class='py-3 px-3'>" . $fecha_entrega . "</td>"
                 . "</tr>"
                 . "</tbody>"
                 . "</table>"
-                . "<table id='tablaPagar' class='pago col-10 mx-auto'>"
+                . "<table id='tablaPagar' class='pago col-8 mx-auto'>"
                 . "<thead>"
                 . "<tr class='pago' >"
-                . "<th class='pago productos text-center ' colspan = 6>Productos</th>"
+                . "<th class='pago productos text-center ' colspan = 6><h6>Productos</h6></th>"
                 . "</tr>"
                 . "<tr class='pago'>"
                 . "<th class='pago'>Ud</th>"
@@ -260,7 +262,7 @@ function historialPedidos($idUser) {
             $checked1 = "checked";
             $checked2 = "";
         }
-        $historial .= "<tr class='bg-white'>"
+        $historial .= "<tr class='bg-none border-bottom border-top'>"
                 . "<td class='pago' colspan=4>"
                 . "<form method='post' action='perfil.php'>"
                 . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
@@ -272,11 +274,11 @@ function historialPedidos($idUser) {
                 . "</form></td>"
                 . "<td class='pago text-right p-5' colspan=2><strong>Total: " . $total . "</strong></td>"
                 . "</tr>"
-                . "<tr class='bg-white'>"
+                . "<tr class='bg-none'>"
                 . "<td class='pago text-center' colspan=6>"
                 . "<form method='post' action='perfil.php'>"
                 . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
-                . "<input type='submit' class='btn btn-dark botonesPago my-0 mx-3' name='incidencia' value='Abrir incidencia'>"
+                . "<input type='submit' class='btn btn-dark botonesPago my-2 mx-3' name='incidencia' value='Abrir incidencia'>"
                 . "</form>"
                 . "</td>"
                 . "</tr>"

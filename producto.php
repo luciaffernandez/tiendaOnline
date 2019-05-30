@@ -27,7 +27,9 @@ if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     //sino, esque no nos hemos legueado y nos devuelve al login con un error
     header("Location:login.php?error");
 }
-
+$usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 //seleccionamos todos los ordenadores
 $ordenadores = $conexion->seleccion("SELECT * FROM ordenador");
 //recorremos el array que ha devuelto y vamos recogiendo los datos que queremos

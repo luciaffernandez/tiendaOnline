@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -22,16 +22,20 @@ $smarty->compile_dir = "./template_c";
 if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
+
+    $usuario = Usuario::generaUsuario();
+    $gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+    print_r($gestorAdmin);
+    $smarty->assign('gestorAdmin', $gestorAdmin);
 }
+
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
 $carrito = $cesta->mostrarIcono();
-
 $smarty->assign('carrito', $carrito);
 
 $numRef = $_GET['numRef'];
-
 //seleccionamos todos los ordenadores
 $productos = $conexion->seleccion("SELECT * FROM PRODUCTOS WHERE num_ref = '$numRef'");
 //recorremos el array que ha devuelto y vamos recogiendo los datos que queremos
@@ -77,6 +81,7 @@ $smarty->assign('carrito', $carrito);
 
 //guardamos el estado de la cesta
 $cesta->guardaCesta();
+
 
 //los botones relacionados con la cesta ejecutan las siguiente acciones
 if ($_POST['cestaAccion']) {
