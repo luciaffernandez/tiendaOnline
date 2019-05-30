@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -19,15 +19,14 @@ $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
 
 //si tenemos guardados las variables de sesion usuario y contraseña
-if (isset($_SESSION['user']) && isset($_SESSION['pass'])) {
+if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
     $correo = $_SESSION['correo'];
     $pass = $_SESSION['pass'];
-
-    $usuario = Usuario::generaUsuario();
-    $gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
-    print_r($gestorAdmin);
-    $smarty->assign('gestorAdmin', $gestorAdmin);
 }
+
+$usuario = Usuario::generaUsuario();
+$gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
+$smarty->assign('gestorAdmin', $gestorAdmin);
 
 //creamos o recogemos cesta
 $cesta = Cesta::generaCesta();
