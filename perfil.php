@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -27,7 +27,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 } else {
     header("Location:login.php&error");
 }
-
+var_dump($_POST);
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
@@ -75,7 +75,8 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         mostrarDatosUser($correo);
     } else if (isset($_POST['botonDatos']) && ($_POST['botonDatos'] === 'Editar datos')) {
         $correo = $_SESSION['correo'];
-        formularioEdiciónUser($correo);
+        formularioEdicionUser($correo);
+
         mostrarDatosUser($correo);
 
         $textoBoton = "Guardar datos";
@@ -83,6 +84,13 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
     } else if (!isset($_POST['botonDatos'])) {
         $textoBoton = "Editar datos";
         $smarty->assign('textoBoton', $textoBoton);
+        $formularioEditorUsuario = "";
+    } else if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
+        $id_pedido = $_POST['id_pedido'];
+        $datosEstado = [':estado' => $_POST['estadoRadio']];
+        $sentencia = "UPDATE PEDIDOS SET estado = :estado WHERE id_pedido ='" . $id_pedido . "';";
+        "UPDATE DIRECCIONES SET provincia = :provincia, ciudad = :ciudad, calle = :calle, numero = :numero, piso = :piso, cod_postal = :cod_postal WHERE id_dir = (SELECT id_dir FROM VIVE_EN WHERE id_user ='" . $idUser . "');";
+        $conexion->ejecutarPS($datosEstado, $sentencia);
     }
 } else if ($usuario->comprueboAdmin($conexion, $correo) === "1") {
 //cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
@@ -130,7 +138,7 @@ function mostrarDatosUser($correo) {
  * @global BD $conexion
  * @param type $correo
  */
-function formularioEdiciónUser($correo) {
+function formularioEdicionUser($correo) {
     global $smarty, $conexion;
     $sentencia = "SELECT * FROM USUARIOS WHERE correo = '" . $correo . "'";
     $valores = $conexion->seleccion($sentencia);
@@ -245,13 +253,32 @@ function historialPedidos($idUser) {
                     . "<td class='pago'>" . $precio . "</td>"
                     . "</tr>";
         }
-        $historial .= "<tr class='pago'>"
-                . "<td class='pago' colspan=3><form method='post' action='perfil.php'>"
-                . "<input type='hidden' name='id_pedido' value='".$id_pedido."'/>"
-                . "<input class='form-check-input' type='radio' name='exampleRadios' value='En camino' $checked>"
-                . "<label class='form-check-label'>En camino</label>"
+        if ($estado === "Entregado") {
+            $checked2 = "checked";
+            $checked1 = "";
+        } else {
+            $checked1 = "checked";
+            $checked2 = "";
+        }
+        $historial .= "<tr class='bg-white'>"
+                . "<td class='pago' colspan=4>"
+                . "<form method='post' action='perfil.php'>"
+                . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
+                . "<div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='estadoRadio' value='En camino' $checked1>"
+                . "<label class='form-check-label'>En camino</label></div>"
+                . "<div class='form-check form-check-inline my-3'><input class='form-check-input' type='radio' name='estadoRadio' value='Entregado' $checked2>"
+                . "<label class='form-check-label'>Entregado</label></div>"
+                . "<input type='submit' class='btn btn-red botonesPago my-0 mx-3' name='botonEstado' value='Guardar'>"
                 . "</form></td>"
-                . "<td class='pago' colspan=3><img src='./img/$imagen' class='imagenCesta'/></td>"
+                . "<td class='pago text-right p-5' colspan=2><strong>Total: " . $total . "</strong></td>"
+                . "</tr>"
+                . "<tr class='bg-white'>"
+                . "<td class='pago text-center' colspan=6>"
+                . "<form method='post' action='perfil.php'>"
+                . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
+                . "<input type='submit' class='btn btn-dark botonesPago my-0 mx-3' name='incidencia' value='Abrir incidencia'>"
+                . "</form>"
+                . "</td>"
                 . "</tr>"
                 . "</tbody></table><section class='espacioPequeno'></section>";
     }

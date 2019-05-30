@@ -459,7 +459,7 @@ th.pago {
     color: white;
 }
 th.productos {
-    background-color: black !important;
+    background-color: #000 !important;
 }
 .imagenFondoCarrito{
     background-image: url('../img/imagen2.jpg');
@@ -480,12 +480,12 @@ th.productos {
     background-color: #a80f0f !important;
     border: solid white 2px;
 }
-.btn-red:hover{
+.btn:hover{
     border: solid black 2px;
 }
-.btn-red:not([disabled]), .btn-red:not(.disabled):active{
-    border: solid white 2px;
-    color:white !important;
+.btn:focus{
+    border: none ;
+    color: white !important;
 }
 .formularioUser{
     margin-top: 30px;

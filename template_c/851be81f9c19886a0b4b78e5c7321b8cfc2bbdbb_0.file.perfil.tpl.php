@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 13:18:16
+/* Smarty version 3.1.33, created on 2019-05-30 09:33:39
   from 'C:\xampp\htdocs\tiendaOnline\template\perfil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee6a789eade1_69877296',
+  'unifunc' => 'content_5cef8753189db2_78575190',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '851be81f9c19886a0b4b78e5c7321b8cfc2bbdbb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\perfil.tpl',
-      1 => 1559128695,
+      1 => 1559201616,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cee6a789eade1_69877296 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cef8753189db2_78575190 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -32,8 +32,6 @@ function content_5cee6a789eade1_69877296 (Smarty_Internal_Template $_smarty_tpl)
         <div class="perfil seccionMargenes">
             <section class="separacion"></section>
             <fieldset class="cajaLogin">
-                <div><span class='error'><?php echo $_smarty_tpl->tpl_vars['error']->value;?>
-</span></div>
                 <form method="post" action="perfil.php" class="col-12">
                     <div class="col-12">
                         <h3>Datos del usuario</h3>

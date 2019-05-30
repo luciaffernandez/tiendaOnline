@@ -6,7 +6,6 @@
         <div class="perfil seccionMargenes">
             <section class="separacion"></section>
             <fieldset class="cajaLogin">
-                <div><span class='error'>{$error}</span></div>
                 <form method="post" action="perfil.php" class="col-12">
                     <div class="col-12">
                         <h3>Datos del usuario</h3>
