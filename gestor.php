@@ -49,25 +49,25 @@ function generoTabla($conexion, $nomTabla): string {
     $consulta = "Select * from $nomTabla";
     $titulos = $conexion->nomCol($nomTabla);
     $filas = $conexion->seleccion($consulta);
-    $tabla = "<table id='tabla' class='display' border='1'>"
-            . "<tr>";
+    $tabla = "<table id='tablaPagar' class='pago col-12 mx-auto'>"
+            . "<tr class='pago'>";
     foreach ($titulos as $titulo) {
-        $tabla .= "<th>$titulo</th>";
+        $tabla .= "<th class='pago letraPeque'>$titulo</th>";
     }
-    $tabla .= "<th colspan='2'>Acciones</th>"
+    $tabla .= "<th class='pago letraPeque' colspan='2'>Acciones</th>"
             . "</tr>";
     foreach ($filas as $fila) {
-        $tabla .= "<tr>"
-                . "<form action='gestorTablas.php'  method='post'>"
+        $tabla .= "<tr class='pago letraMedia'>"
+                . "<form action='gestor.php'  method='post'>"
                 . "<input type='hidden' value='$nomTabla' name='tabla'>";
         foreach ($fila as $titulo => $dato) {
-            $tabla .= "<td>$dato</td>\n"
+            $tabla .= "<td class='pago letraMedia'>$dato</td>\n"
                     . "<input type='hidden' name='campos[$titulo]' value='$dato'>\n";
         }
-        $tabla .= "<td>\n"
+        $tabla .= "<td class='pago letraMedia'>\n"
                 . "<input type = 'submit' value = 'Editar' name = 'accion'>"
                 . "</td>"
-                . "<td>"
+                . "<td class='pago letraMedia'>"
                 . "<input type = 'submit' value = 'Borrar' name = 'accion'>"
                 . "</td>"
                 . "</form>"
