@@ -7,7 +7,7 @@
             <section class="separacion"></section>
             <fieldset class="cajaLogin">
                 <div >
-                    <h3 class="text-center text-uppercase">Gestor de {$gestor}</h3>
+                    <h3 class="text-center text-uppercase my-4">Gestor de {$gestor}</h3>
                     {$tabla}
                 </div>
             </fieldset>

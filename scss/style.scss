@@ -509,7 +509,7 @@ input[type="submit"]:disabled{
     height: auto;
 }
 .productImg{
-    ;background-position: center center;
+    background-position: center center;
     background-size: cover; 
     height:600px;
 }
@@ -726,9 +726,13 @@ $variable-scrollingTime:  1350ms;
     background-size: cover;
 }
 
-.letraPeque{
-    font-size:0.7em !important;
+.mayus{ 
+    text-transform: uppercase;
+    font-weight: 600;
 }
-.letraMedia{
-    font-size:0.9em !important;
+.titulosGestor{
+    max-width: 200px !important;
+}
+.camposGestor{
+    min-width: 680px !important;
 }

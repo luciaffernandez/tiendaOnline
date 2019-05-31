@@ -591,10 +591,14 @@ input[type="submit"]:disabled {
   background-attachment: fixed;
   background-size: cover; }
 
-.letraPeque {
-  font-size: 0.7em !important; }
+.mayus {
+  text-transform: uppercase;
+  font-weight: 600; }
 
-.letraMedia {
-  font-size: 0.9em !important; }
+.titulosGestor {
+  max-width: 200px !important; }
+
+.camposGestor {
+  min-width: 680px !important; }
 
 /*# sourceMappingURL=style.css.map */
