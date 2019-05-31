@@ -393,7 +393,6 @@ input[type=submit]:hover {
   margin: 0 6%; }
 
 table.pago {
-  width: 100%;
   align-content: center; }
 
 th.pago, td.pago {
@@ -599,6 +598,6 @@ input[type="submit"]:disabled {
   max-width: 200px !important; }
 
 .camposGestor {
-  min-width: 680px !important; }
+  min-width: 350px !important; }
 
 /*# sourceMappingURL=style.css.map */

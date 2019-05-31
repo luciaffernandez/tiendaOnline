@@ -79,17 +79,37 @@ function generoTabla($conexion, $nomTabla): string {
         $tabla .= "</table><br>";
         if ($nomTabla === 'Pedidos') {
             $sentencia = "SELECT * FROM REGISTROS WHERE id_registro = '" . $idPedido . "';";
+            $titulos = $conexion->nomCol('REGISTROS');
             $filas = $conexion->seleccion($sentencia);
+            $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'><thead>"
+                    . "<tr class='pago'>";
+            foreach ($titulos as $titulo) {
+                $tabla .= "<th class='pago'>$titulo</th>";
+            }
+            $tabla .= "</tr></thead><tbody>";
             foreach ($filas as $fila) {
-                $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'>";
                 $tabla .= "<tr class='pago'>";
                 foreach ($fila as $titulo => $dato) {
-                    $tabla .= "<th class='pago mayus titulosGestor'>$titulo</th>"
-                            . "<td class='pago camposGestor'>$dato</td>\n"
-                            . "</tr>";
+                    $tabla .= "<td class='pago'>$dato</td>\n";
                 }
-                $tabla .= "</table>";
             }
+            $tabla .= "<tbody></table><br>";
+            $sentencia = "SELECT * FROM DETALLES_PEDIDOS WHERE id_pedido = '" . $idPedido . "';";
+            $titulos = $conexion->nomCol('DETALLES_PEDIDOS');
+            $filas = $conexion->seleccion($sentencia);
+            $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'><thead>"
+                    . "<tr class='pago'>";
+            foreach ($titulos as $titulo) {
+                $tabla .= "<th class='pago'>$titulo</th>";
+            }
+            $tabla .= "</tr></thead><tbody>";
+            foreach ($filas as $fila) {
+                $tabla .= "<tr class='pago'>";
+                foreach ($fila as $titulo => $dato) {
+                    $tabla .= "<td class='pago'>$dato</td>\n";
+                }
+            }
+            $tabla .= "<tbody></table><br>";
         }
         $tabla .= "<hr class='col-10 mx-auto'><br>";
     }
