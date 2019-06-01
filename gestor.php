@@ -33,7 +33,9 @@ $smarty->assign('carrito', $carrito);
 $usuario = Usuario::generaUsuario();
 $gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
 $smarty->assign('gestorAdmin', $gestorAdmin);
+
 //se muestra la plantilla del sitio 
+
 if (isset($_GET['gestor'])) {
     $gestor = $_GET['gestor'];
     $smarty->assign('gestor', $gestor);
@@ -41,6 +43,20 @@ if (isset($_GET['gestor'])) {
     $smarty->assign('tabla', $tabla);
 }
 
+if (isset($_POST['accion'])) {
+    switch ($_POST['accion']) {
+        case "Editar":
+            header("Location:formProducto.php");
+            exit();
+        case "Añadir producto":
+            $add = "add";
+
+            $campos = serialize($campos);
+            $_SESSION['campos'] = $campos;
+            header("Location:formProducto.php?add=$add");
+            exit();
+    }
+}
 
 $smarty->display("gestor.tpl");
 
@@ -51,7 +67,7 @@ function generoTabla($conexion, $nomTabla): string {
     $tabla = "";
     $idPedido = "";
     if ($nomTabla === 'Productos') {
-        $tabla .= "<div class='text-center'><input type = 'submit' value = 'Añadir producto' name = 'accion' class='btn btn-red botonesPago my-4'></div>";
+        $tabla .= "<div class='text-center'><form action='gestor.php'  method='post'><input type = 'submit' value = 'Añadir producto' name = 'accion' class='btn btn-red botonesPago my-4'>";
     }
     foreach ($filas as $fila) {
         $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'>";
@@ -113,5 +129,6 @@ function generoTabla($conexion, $nomTabla): string {
         }
         $tabla .= "<hr class='col-10 mx-auto'><br>";
     }
+    $tabla .= "</form></div>";
     return $tabla;
 }
