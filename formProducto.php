@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -44,17 +44,18 @@ else
 
 $campos = $_SESSION['campos'];
 $campos = unserialize($campos);
-var_dump($campos);
+
 if (isset($_POST['enviar'])) {
-    $nomTabla = $_POST['tabla'];
     switch ($_POST['enviar']) {
         case 'Guardar':
+            $nomTabla = 'Productos';
             $valorNuevo = $_POST['valorNuevo'];
             $valorAnt = $_POST['valorAnt'];
             $campos = $_POST['campos'];
             $sentencia = generaSentenciaUpdate($nomTabla, $campos, $valorAnt, $valorNuevo);
             $conexion->ejecutar($sentencia);
-            $error = $conexion->getInfo();
+            $gestor = $nomTabla;
+            header("Location:gestor.php?gestor=$nomTabla");
             break;
         case 'Insertar':
             $valorNuevo = $_POST['valorNuevo'];
@@ -62,9 +63,12 @@ if (isset($_POST['enviar'])) {
             $sentencia = generaInsert($nomTabla, $campos, $valorNuevo);
             $conexion->ejecutar($sentencia);
             $error = $conexion->getInfo();
+            $gestor = $nomTabla;
+            header("Location:gestor.php?gestor=$nomTabla");
             break;
         case 'Cancelar':
-            header("Location:gestor.php");
+            $gestor = $nomTabla;
+            header("Location:gestor.php?gestor=$nomTabla");
             break;
     }
 }
@@ -103,14 +107,14 @@ function generaInsert($nombreTabla, $campos, $valorNuevo) {
 function obtenerFormulario($campos, $boton) {
     $formulario = "";
     foreach ($campos as $titulo => $campo) {
-        $formulario .= "<label>$titulo</label>";
+        $formulario .= "<div class = 'campo col-xl-6 px-4'><label>$titulo</label><br/>";
         if ($boton == "add") {
-            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = ''/><br />";
+            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '' class='inputData'/><br />";
         } else {
-            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '$campo'/><br />";
+            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '$campo' class='inputData'/><br />";
         }
-        $formulario .= "<input type = 'hidden' name = 'campos[$titulo]' value = '$campo'/><br />" .
-                "<input type = 'hidden' name = 'valorAnt[]' value= '$campo' />";
+        $formulario .= "<input type = 'hidden' name = 'campos[$titulo]' value = '$campo' class='inputData'/><br />" .
+                "<input type = 'hidden' name = 'valorAnt[]' value= '$campo' /></div>";
     }
     return $formulario;
 }

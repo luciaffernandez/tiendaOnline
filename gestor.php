@@ -44,13 +44,15 @@ if (isset($_GET['gestor'])) {
 }
 
 if (isset($_POST['accion'])) {
+    $campos = $_POST['campos'];
     switch ($_POST['accion']) {
         case "Editar":
+            $campos = serialize($campos);
+            $_SESSION['campos'] = $campos;
             header("Location:formProducto.php");
             exit();
         case "Añadir producto":
             $add = "add";
-
             $campos = serialize($campos);
             $_SESSION['campos'] = $campos;
             header("Location:formProducto.php?add=$add");
