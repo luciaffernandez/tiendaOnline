@@ -15,7 +15,7 @@
             <input name="notify_url" type="hidden" value="http://localhost/tiendaOnline/tienda.php" />
             <input name="rm" type="hidden" value="2" />
 
-            <table id="tablaPagar" class="pago">
+            <table id="tablaPagar" class="w-100">
                 <thead>
                     <tr class="pago">
                         <th class="pago">Cantidad</th>
