@@ -106,6 +106,13 @@ if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFI
         $datos = array(':cantidad' => $cantidad, ':precio' => $precio, ':num_ref' => $num_ref, ':id_pedido' => $id_registro);
         $sentencia = "INSERT INTO DETALLES_PEDIDOS (cantidad, precio, num_ref, id_pedido) VALUES (:cantidad, :precio, :num_ref, :id_pedido)";
         $conexion->ejecutarPS($datos, $sentencia);
+        $sentencia = "SELECT unidades_disponibles FROM productos WHERE num_ref = " . $num_ref;
+        $result = $conexion->seleccion($sentencia);
+        $unidades = $result[0]['unidades_disponibles'];
+        $unidades = $unidades - 1;
+        $sentencia = "UPDATE productos SET unidades_disponibles = " . $unidades . " WHERE num_ref = " . $num_ref;
+        $conexion->ejecutar($sentencia);
+        var_dump($sentencia);
     }
 }
 

@@ -8,6 +8,9 @@ spl_autoload_register(function($clase) {
 });
 
 session_start();
+if (isset($_SESSION['pedidoHecho'])) {
+    unset($_SESSION['pedidoHecho']);
+}
 //Creamos un objeto para gestionar plantillas
 $smarty = new Smarty();
 //Configuramos los directorios
