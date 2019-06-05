@@ -138,6 +138,7 @@ function obtenerListado($conexion) {
         $descripcion = $dato['descripcion'];
         $imagen1 = $dato['imagen1'];
         $nomCat = $dato['nom_categoria'];
+        $uds = $dato['unidades_disponibles'];
 
         $listado .= "<div class='col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-4 my-4'>"
                 . "<form action='tienda.php' method='post'>"
@@ -156,10 +157,11 @@ function obtenerListado($conexion) {
                 . "<p class='card-text'>$descripcion</p>"
                 . "<div class='card-footer'>"
                 . "<span class='float-left'>$precio €</span>"
-                . "<span class='float-right'>"
-                . " <input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>"
-                . "</div>"
-                . "</div>"
+                . "<span class='float-right'>";
+        if ($uds > 10) {
+            $listado .= "<input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>";
+        }
+        $listado .= "</div></div>"
                 . "</div>"
                 . "</form>"
                 . "</div>";
