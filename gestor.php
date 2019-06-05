@@ -59,11 +59,18 @@ if (isset($_POST['accion'])) {
             exit();
     }
 }
+if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
+    $id_pedido = $_POST['id_pedido'];
+    $datosEstado = [':estado' => $_POST['estadoRadio']];
+    $sentencia = "UPDATE PEDIDOS SET estado = :estado WHERE id_pedido ='" . $id_pedido . "';";
+    $conexion->ejecutarPS($datosEstado, $sentencia);
+}
 
 $smarty->display("gestor.tpl");
 
 function generoTabla($conexion, $nomTabla): string {
-
+    $checked1 = "";
+    $checked2 = "";
     $consulta = "Select * from $nomTabla";
     $filas = $conexion->seleccion($consulta);
     $tabla = "";
@@ -82,8 +89,20 @@ function generoTabla($conexion, $nomTabla): string {
                     . "<td class='pago camposGestor'>$dato</td>\n"
                     . "<input type='hidden' name='campos[$titulo]' value='$dato'>\n"
                     . "</tr>";
-            if ($nomTabla === 'Pedidos' && $titulo === 'id_pedido') {
-                $idPedido = $dato;
+            if ($nomTabla === 'Pedidos') {
+                if ($titulo === 'id_pedido') {
+                    $idPedido = $dato;
+                }
+                if ($titulo === 'estado') {
+                    $estado = $dato;
+                    if ($estado === "Entregado") {
+                        $checked2 = "checked";
+                        $checked1 = "";
+                    } else {
+                        $checked1 = "checked";
+                        $checked2 = "";
+                    }
+                }
             }
         }
         if ($nomTabla === 'Productos') {
@@ -127,7 +146,15 @@ function generoTabla($conexion, $nomTabla): string {
                     $tabla .= "<td class='pago'>$dato</td>\n";
                 }
             }
-            $tabla .= "<tbody></table><br>";
+            $tabla .= "<tbody></table><br><div class='mx-auto text-center'"
+                    . "<form method='post' action='gestor.php'>"
+                    . "<input type='hidden' name='id_pedido' value='" . $idPedido . "'/>"
+                    . "<div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='estadoRadio' value='En camino' $checked1>"
+                    . "<label class='form-check-label'>En camino</label></div>"
+                    . "<div class='form-check form-check-inline my-3'><input class='form-check-input' type='radio' name='estadoRadio' value='Entregado' $checked2>"
+                    . "<label class='form-check-label'>Entregado</label></div>"
+                    . "<input type='submit' class='btn btn-red botonesPago my-0 mx-3' name='botonEstado' value='Guardar'>"
+                    . "</form></div>";
         }
         $tabla .= "<hr class='col-10 mx-auto'><br>";
     }

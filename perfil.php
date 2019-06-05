@@ -89,12 +89,7 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         $smarty->assign('textoBoton', $textoBoton);
         $formularioEditorUsuario = "";
     }
-    if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
-        $id_pedido = $_POST['id_pedido'];
-        $datosEstado = [':estado' => $_POST['estadoRadio']];
-        $sentencia = "UPDATE PEDIDOS SET estado = :estado WHERE id_pedido ='" . $id_pedido . "';";
-        $conexion->ejecutarPS($datosEstado, $sentencia);
-    }
+    
 } else if ($usuario->comprueboAdmin($conexion, $correo) === "1") {
 //cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
     header("Location:gestorAdmin.php");
@@ -255,50 +250,12 @@ function historialPedidos($idUser) {
                     . "<td class='pago'>" . $precio . "</td>"
                     . "</tr>";
         }
-        if ($estado === "Entregado") {
-            $checked2 = "checked";
-            $checked1 = "";
-        } else {
-            $checked1 = "checked";
-            $checked2 = "";
-        }
-//        $historial .= "<tr class='bg-none border-bottom border-top'>"
-//                . "<td class='pago' colspan=4>"
-//                . "<form method='post' action='perfil.php'>"
-//                . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
-//                . "<div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='estadoRadio' value='En camino' $checked1>"
-//                . "<label class='form-check-label'>En camino</label></div>"
-//                . "<div class='form-check form-check-inline my-3'><input class='form-check-input' type='radio' name='estadoRadio' value='Entregado' $checked2>"
-//                . "<label class='form-check-label'>Entregado</label></div>"
-//                . "<input type='submit' class='btn btn-red botonesPago my-0 mx-3' name='botonEstado' value='Guardar'>"
-//                . "</form></td>"
-//                . "<td class='pago text-right p-5' colspan=2><strong>Total: " . $total . "</strong></td>"
-//                . "</tr>"
-//                . "<tr class='bg-none'>"
-//                . "<td class='pago text-center' colspan=6>"
-//                . "<form method='post' action='perfil.php'>"
-//                . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
-//                . "<input type='submit' class='btn btn-dark botonesPago my-2 mx-3' name='incidencia' value='Abrir incidencia'>"
-//                . "</form>"
-//                . "</td>"
-//                . "</tr>"
-//                . "</tbody></table><section class='espacioPequeno'></section>";
+        
+
         $historial .= "<tr class='bg-none border-bottom border-top'>"
                 . "<td class='pago' colspan=4>"
-                . "<form method='post' action='perfil.php'>"
-                . "<input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>"
-                . "<div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='estadoRadio' value='En camino' $checked1>"
-                . "<label class='form-check-label'>En camino</label></div>"
-                . "<div class='form-check form-check-inline my-3'><input class='form-check-input' type='radio' name='estadoRadio' value='Entregado' $checked2>"
-                . "<label class='form-check-label'>Entregado</label></div>"
-                . "<input type='submit' class='btn btn-red botonesPago my-0 mx-3' name='botonEstado' value='Guardar'>"
-                . "</form></td>"
-                . "<td class='pago text-right p-5' colspan=2><strong>Total: " . $total . "</strong></td>"
-                . "</tr>"
-                . "<tr class='bg-none'>"
-                . "<td class='pago text-center' colspan=6>"
-                . " <input type='submit' class='btn btn-red botonesPago' data-toggle='modal' data-target='#exampleModalCenter$id_pedido' value='Abrir incidencia'>"
-                . "</td>"
+                ."<input type='submit' class='btn btn-red botonesPago my-2' data-toggle='modal' data-target='#exampleModalCenter$id_pedido' value='Abrir incidencia'></td>"
+                . "<td class='pago text-right' colspan=2><strong>Total: " . $total . "</strong></td>"
                 . "</tr>"
                 . "</tbody></table><section class='espacioPequeno'></section>"
                 . htmlModal($id_pedido);

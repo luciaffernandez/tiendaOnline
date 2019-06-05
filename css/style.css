@@ -193,7 +193,8 @@ a.hamburger {
   height: 25px;
   display: block;
   margin: 0 auto;
-  position: relative; }
+  position: relative;
+  top: inherit !important; }
 
 .line {
   width: 32px;
