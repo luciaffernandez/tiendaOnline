@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 //Añadimos las clases
 require_once "Smarty.class.php";
 spl_autoload_register(function($clase) {
@@ -41,6 +41,12 @@ if (isset($_GET['gestor'])) {
     $smarty->assign('gestor', $gestor);
     $tabla = generoTabla($conexion, $gestor);
     $smarty->assign('tabla', $tabla);
+} else if (isset($_POST['gestor'])) {
+    $gestor = $_POST['gestor'];
+    $smarty->assign('gestor', $gestor);
+    $tabla = generoTabla($conexion, $gestor);
+    $smarty->assign('tabla', $tabla);
+    header("Location:gestor.php?gestor=$gestor");
 }
 
 if (isset($_POST['accion'])) {
@@ -69,6 +75,7 @@ if (isset($_POST['botonEstado']) && ($_POST['botonEstado'] === 'Guardar')) {
 $smarty->display("gestor.tpl");
 
 function generoTabla($conexion, $nomTabla): string {
+    global $usuario;
     $checked1 = "";
     $checked2 = "";
     $consulta = "Select * from $nomTabla";
@@ -76,7 +83,8 @@ function generoTabla($conexion, $nomTabla): string {
     $tabla = "";
     $idPedido = "";
     if ($nomTabla === 'Productos') {
-        $tabla .= "<div class='text-center'><form action='gestor.php'  method='post'><input type = 'submit' value = 'Añadir producto' name = 'accion' class='btn btn-red botonesPago my-4'>";
+        $tabla .= "<div class='text-center'>"
+                . "<form action='gestor.php'  method='post'><input type = 'submit' value = 'Añadir producto' name = 'accion' class='btn btn-red botonesPago my-4'>";
     }
     foreach ($filas as $fila) {
         $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'>";
@@ -85,9 +93,13 @@ function generoTabla($conexion, $nomTabla): string {
                 . "<input type='hidden' value='$nomTabla' name='tabla'>";
 
         foreach ($fila as $titulo => $dato) {
-            $tabla .= "<th class='pago mayus titulosGestor'>$titulo</th>"
-                    . "<td class='pago camposGestor'>$dato</td>\n"
-                    . "<input type='hidden' name='campos[$titulo]' value='$dato'>\n"
+            $tabla .= "<th class='pago mayus titulosGestor'>$titulo</th>";
+            if ($titulo === 'correo') {
+                $tabla .= "<td class='pago camposGestor'><a href='mailto:$dato'>$dato</a></td>\n";
+            } else {
+                $tabla .= "<td class='pago camposGestor'>$dato</td>\n";
+            }
+            $tabla .= "<input type='hidden' name='campos[$titulo]' value='$dato'>\n"
                     . "</tr>";
             if ($nomTabla === 'Pedidos') {
                 if ($titulo === 'id_pedido') {
@@ -128,6 +140,9 @@ function generoTabla($conexion, $nomTabla): string {
                 $tabla .= "<tr class='pago'>";
                 foreach ($fila as $titulo => $dato) {
                     $tabla .= "<td class='pago'>$dato</td>\n";
+                    if ($titulo === 'id_user') {
+                        $idUser = $dato;
+                    }
                 }
             }
             $tabla .= "<tbody></table><br>";
@@ -146,15 +161,52 @@ function generoTabla($conexion, $nomTabla): string {
                     $tabla .= "<td class='pago'>$dato</td>\n";
                 }
             }
-            $tabla .= "<tbody></table><br><div class='mx-auto text-center'"
+            $tabla .= "</tbody></table><br>";
+            $sentencia = "SELECT * FROM USUARIOS WHERE id_user = '" . $idUser . "';";
+            $titulos = $conexion->nomCol('USUARIOS');
+            $filas = $conexion->seleccion($sentencia);
+            $tabla .= "<table id='tablaPagar' class='pago col-8 mx-auto'><thead>"
+                    . "<tr class='pago'>";
+            foreach ($titulos as $titulo) {
+                $tabla .= "<th class='pago'>$titulo</th>";
+            }
+            $tabla .= "</tr></thead><tbody>";
+            foreach ($filas as $fila) {
+                $tabla .= "<tr class='pago'>";
+                foreach ($fila as $titulo => $dato) {
+                    if ($titulo === 'correo') {
+                        $correoUser = $dato;
+                        $tabla .= "<td class='pago'><a href='mailto:$dato'>$dato</a></td>\n";
+                    } else if ($titulo === 'password') {
+                        $tabla .= "<td class='pago '>****</td>\n";
+                    } else {
+                        $tabla .= "<td class='pago '>$dato</td>\n";
+                    }
+                }
+            }
+            $tabla .= "</tbody></table><br>";
+            $direccionCompleta = $usuario->getDireccion($conexion, $correoUser);
+            foreach ($direccionCompleta as $dato) {
+                $calle = $dato[2];
+                $provincia = $dato[0];
+                $ciudad = $dato[1];
+                $numero = $dato[3];
+                $piso = $dato[4];
+                $cod_postal = $dato[5];
+                $direccionUsuario = "$calle $numero, $piso, $ciudad, $provincia, $cod_postal";
+            }
+            $tabla .= "<p class='text-center'>Dirección de envío: " . $direccionUsuario . "</p>";
+            $tabla .= "<div class='mx-auto text-center'>"
                     . "<form method='post' action='gestor.php'>"
                     . "<input type='hidden' name='id_pedido' value='" . $idPedido . "'/>"
+                    . "<input type='hidden' name='gestor' value='" . $nomTabla . "'/>"
                     . "<div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='estadoRadio' value='En camino' $checked1>"
                     . "<label class='form-check-label'>En camino</label></div>"
                     . "<div class='form-check form-check-inline my-3'><input class='form-check-input' type='radio' name='estadoRadio' value='Entregado' $checked2>"
                     . "<label class='form-check-label'>Entregado</label></div>"
                     . "<input type='submit' class='btn btn-red botonesPago my-0 mx-3' name='botonEstado' value='Guardar'>"
-                    . "</form></div>";
+                    . "</form>"
+                    . "</div>";
         }
         $tabla .= "<hr class='col-10 mx-auto'><br>";
     }

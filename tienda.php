@@ -159,9 +159,11 @@ function obtenerListado($conexion) {
                 . "<span class='float-left'>$precio €</span>"
                 . "<span class='float-right'>";
         if ($uds > 10) {
-            $listado .= "<input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>";
+            $boton = "<input class='btn btn-red btn-anadir' type='submit' value='Añadir al carrito' name='cestaAccion' $disabled>";
+        } else {
+            $boton = "<p> Sin stock</p>";
         }
-        $listado .= "</div></div>"
+        $listado .= $boton . "</div></div>"
                 . "</div>"
                 . "</form>"
                 . "</div>";

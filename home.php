@@ -32,14 +32,21 @@ $correo = $_SESSION['correo'];
 $usuario = Usuario::generaUsuario();
 $gestorAdmin = $usuario->mostrarBarraAdmin($conexion, $correo);
 $smarty->assign('gestorAdmin', $gestorAdmin);
-
+if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
+    $url = "tienda.php";
+    $smarty->assign('url', $url);
+} else {
+    $url = "login.php?error";
+    $smarty->assign('url', $url);
+}
 $smarty->display('home.tpl');
 
 function obtenerListado($conexion) {
-    if (isset($_SESSION['correo']) && isset($_SESSION['pass']))
+    if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
         $disabled = "";
-    else
+    } else {
         $disabled = "disabled";
+    }
     $i = 0;
     $listado = "";
     $datos = $conexion->seleccion("SELECT * FROM PRODUCTOS");

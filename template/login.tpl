@@ -10,8 +10,7 @@
                 <div class="iniciarSesion col-lg-6 col-md-12 col-sm-12">
                     <form class="formLogin" role="form" action='login.php' method='post' id="formLogin" enctype="multipart/form-data">
                         <h2>Iniciar sesión</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+                        <p>¿Ya conoces las ventajas que tiene tener una cuenta de usuario en la web de BEFIT? Con ella podrás comprar nuestros productos y tener un historial alimenticio. Anímate y hazte una cuenta con el formulario de registro de la derecha. Si ya tienes una cuenta, ¿a qué esperas?, accede ahora introduciendo tus credenciales en el formulario de tu izquierda.</p>
                         <div class='campo'>
                             <label>Correo:</label><br/>
                             <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com'/><br/>

@@ -29,6 +29,7 @@ if (isset($_SESSION['correo']) && isset($_SESSION['pass'])) {
 }
 
 
+
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
@@ -41,6 +42,24 @@ $smarty->assign('gestorAdmin', $gestorAdmin);
 mostrarDatosUser($correo);
 $idUser = (integer) $usuario->getID($conexion, $correo);
 historialPedidos($idUser);
+
+if (isset($_POST['enviarInci'])) {
+    $correoInci = $_SESSION['correo'];
+    $nombreInci = $_POST['nombre'];
+    $asuntoInci = $_POST['asunto'];
+    $descripcionInci = $_POST['descripcion'];
+    $idPedidoInci = $_POST['id_pedido'];
+    $fecha = date("Y-m-d");
+
+    $datos = array(':fecha_creacion' => $fecha, ':id_user' => $idUser);
+    $sentencia = "INSERT INTO REGISTROS (fecha_creacion, id_user) VALUES (:fecha_creacion, :id_user)";
+    $conexion->ejecutarPS($datos, $sentencia);
+    $id_registro = $conexion->conexion->lastInsertId();
+
+    $datos = array(':id_incidencia' => $id_registro, ':descripcion' => $descripcionInci, ':correo' => $correoInci, ':asunto' => $asuntoInci, ':nombre' => $nombreInci, ':id_pedido' => $idPedidoInci);
+    $sentencia = "INSERT INTO INCIDENCIAS (id_incidencia, descripcion, correo, asunto, nombre, id_pedido) VALUES (:id_incidencia, :descripcion, :correo, :asunto, :nombre, :id_pedido)";
+    $conexion->ejecutarPS($datos, $sentencia);
+}
 
 //cuando se llegue a este archivo y haya un usuario guardado en sesión y no sea el administrador
 if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
@@ -89,7 +108,6 @@ if ($usuario->comprueboAdmin($conexion, $correo) === "0") {
         $smarty->assign('textoBoton', $textoBoton);
         $formularioEditorUsuario = "";
     }
-    
 } else if ($usuario->comprueboAdmin($conexion, $correo) === "1") {
 //cuando se llegue a este fichero y haya un usuarios guardado en sesión y sea el administrador
     header("Location:gestorAdmin.php");
@@ -250,11 +268,12 @@ function historialPedidos($idUser) {
                     . "<td class='pago'>" . $precio . "</td>"
                     . "</tr>";
         }
-        
+
 
         $historial .= "<tr class='bg-none border-bottom border-top'>"
-                . "<td class='pago' colspan=4>"
-                ."<input type='submit' class='btn btn-red botonesPago my-2' data-toggle='modal' data-target='#exampleModalCenter$id_pedido' value='Abrir incidencia'></td>"
+                . "<td class='pago' colspan=2><strong> " . $estado . "</strong></td>"
+                . "<td class='pago text-center' colspan=2>"
+                . "<input type='submit' class='btn btn-red botonesPago my-2' data-toggle='modal' data-target='#exampleModalCenter$id_pedido' value='Abrir incidencia'></td>"
                 . "<td class='pago text-right' colspan=2><strong>Total: " . $total . "</strong></td>"
                 . "</tr>"
                 . "</tbody></table><section class='espacioPequeno'></section>"
@@ -268,38 +287,41 @@ function htmlModal($id_pedido) {
         <div class='modal-dialog modal-dialog-centered' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
-                    <h5 class='modal-title' id='exampleModalLongTitle'>inserta tu título cari</h5>
-                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <h5 class='modal-title ' id='exampleModalLongTitle'>DESCRÍBENOS EL PROBLEMA</h5>
+                    <button type='button' class='close ' data-dismiss='modal' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
+                    
                 </div>
                 <div class='modal-body'>
-                    <form name='registro' id='registro-form' method='POST' action='' enctype='multipart/form-data'>
+                <p>Te responderemos lo antes posible</p>
+                    <form name='registro' id='registro-form' method='POST' action='perfil.php' enctype='multipart/form-data'>
                         <div class='inputData'>
-                            <label for='form5'>Horario</label>
-                            <input type='text' id='horario' class='form-control' name='horario' value=''>
+                            <label>Nombre</label>
+                            <input type='text' id='nombre' class='form-control' name='nombre' value=''>
 
                         </div>
                         <div class='inputData'>
-                            <label for='form5'>Horario</label>
-                            <input type='text' id='horario' class='form-control' name='horario' value=''>
+                            <label for='form5'>Correo</label>
+                            <input type='text' id='correo' class='form-control' name='correo' value='" . $_SESSION['correo'] . "'>
                         </div>
                          <div class='inputData'>
-                            <label for='form5'>Horario</label>
-                            <input type='text' id='horario' class='form-control' name='horario' value=''>
+                            <label>Asunto</label>
+                            <input type='text' id='asunto' class='form-control' name='asunto' value=''>
 
                         </div>
                         <div class='inputData'>
-                            <label for='form5'>Horario</label>
-                            <input type='text' id='horario' class='form-control' name='horario' value=''>
+                            <label>Descripción</label>
+                            <textarea id='descripcion' class='form-control' rows=9 name='descripcion'></textarea>
                         </div>
-                        <input type='text' name='id_pedido' value='" . $id_pedido . "'/>
+                        <input type='hidden' name='id_pedido' value='" . $id_pedido . "'/>
+                        <div class='modal-footer text-center'>
+                        <input type='submit' class='btn btn-red botonesPago' data-dismiss='modal' value='Cancelar'>
+                        <input type='submit' class='btn btn-red botonesPago' name='enviarInci' value='Enviar'>
+                         </div>
                     </form>
                 </div>
-                <div class='modal-footer'>
-                    <input type='submit' class='btn btn-secondary' data-dismiss='modal' value='Close'>
-                    <input type='submit' class='btn btn-primary' value='Save changes'>
-                </div>
+                
             </div>
         </div>
     </div>";

@@ -369,7 +369,7 @@ h5 {
   object-fit: cover; }
 
 .fondoBlanco {
-  background-color: white; }
+  background-color: white !important; }
 
 input[type=submit]:hover {
   border-color: #212121 !important;

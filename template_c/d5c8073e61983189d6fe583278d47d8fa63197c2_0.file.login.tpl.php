@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-16 14:52:56
+/* Smarty version 3.1.33, created on 2019-06-06 23:29:53
   from 'C:\xampp\htdocs\tiendaOnline\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cdd5d2857c818_98536767',
+  'unifunc' => 'content_5cf985d10ab024_31914008',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd5c8073e61983189d6fe583278d47d8fa63197c2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\login.tpl',
-      1 => 1558011173,
+      1 => 1559856591,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5cdd5d2857c818_98536767 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf985d10ab024_31914008 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <?php $_smarty_tpl->_subTemplateRender("file:head_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -37,8 +37,7 @@ function content_5cdd5d2857c818_98536767 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="iniciarSesion col-lg-6 col-md-12 col-sm-12">
                     <form class="formLogin" role="form" action='login.php' method='post' id="formLogin" enctype="multipart/form-data">
                         <h2>Iniciar sesión</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+                        <p>¿Ya conoces las ventajas que tiene tener una cuenta de usuario en la web de BEFIT? Con ella podrás comprar nuestros productos y tener un historial alimenticio. Anímate y hazte una cuenta con el formulario de registro de la derecha. Si ya tienes una cuenta, ¿a qué esperas?, accede ahora introduciendo tus credenciales en el formulario de tu izquierda.</p>
                         <div class='campo'>
                             <label>Correo:</label><br/>
                             <input class="inputData" type='text' name='correo' value='luciafffernandez@gmail.com'/><br/>

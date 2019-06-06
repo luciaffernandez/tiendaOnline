@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-29 16:06:38
+/* Smarty version 3.1.33, created on 2019-06-06 20:18:46
   from 'C:\xampp\htdocs\tiendaOnline\template\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cee91eedd33b3_21907133',
+  'unifunc' => 'content_5cf959061319d6_77230813',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '120c5eb2fd56c6f361b3566827fd8589add3c6f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tiendaOnline\\template\\footer.tpl',
-      1 => 1559138772,
+      1 => 1559845122,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cee91eedd33b3_21907133 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf959061319d6_77230813 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 <footer class="page-footer font-small pt-4">
 
@@ -28,13 +28,11 @@ function content_5cee91eedd33b3_21907133 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container text-center ">
         <div class="row d-flex align-items-center ">
             <div class="text-left col-sm-10 col-md-4 col-lg-4 col-xl-4 col-xs-10 mx-auto mt-3">
-                <h6 class="text-uppercase mb-4 font-weight-bold">Web de instalación</h6>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting 
-                    industry. Lorem Ipsum has been the industry's standard dummy text 
-                    ever since the 1500s, when an unknown printer took a galley of type 
-                    and scrambled it to make a type specimen book. It has survived not 
-                    only five centuries, but also the leap into electronic typesetting, 
-                    remaining essentially unchanged.</p>
+                <h6 class="text-uppercase mb-4 font-weight-bold">ENAMÓRATE DE BEFIT</h6>
+                <p>¿Quién está detrás de todo esto? Te preguntarás... Me llamo Jorge Fernández.
+                    Formé esta empresa con 28 años, después de haberme pasado años y años buscando la manera de compaginar
+                    una vida ajetreada con la salud. Este proyecto nace de este deseo, de eso y de querer pararles los pies
+                    a esas dietas de moda tan poco saludables. </p>
             </div>
             <!-- Grid column -->
             <div class="text-left col-sm-10 col-md-5 col-lg-5 col-xl-5 col-xs-10 mx-auto mt-3 ">
@@ -42,7 +40,7 @@ function content_5cee91eedd33b3_21907133 (Smarty_Internal_Template $_smarty_tpl)
                 <p>
                     <i class="fas fa-home mr-3"></i>Calle Instalación, 22 bajo, Instalación, Instalación</p>
                 <p>
-                    <i class="fas fa-envelope mr-3"></i>instalacion@gmail.com</p>
+                    <i class="fas fa-envelope mr-3"></i>info@befit.com</p>
                 <p>
                     <i class="fas fa-phone mr-3"></i>976 99 55 22</p>
                 <p>
@@ -55,14 +53,14 @@ function content_5cee91eedd33b3_21907133 (Smarty_Internal_Template $_smarty_tpl)
 
         <!--Google map-->
         <div class="col-md-12 col-lg-12 col-xl-12 mx-auto mt-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.304294664736!2d-0.9002779!3d41.6707712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd596b2bd1c140e3%3A0xbf4fe782a770d2aa!2sQTZ+Marketing+-+Agencia+de+marketing+y+dise%C3%B1o+web!5e0!3m2!1ses!2ses!4v1556095201474!5m2!1ses!2ses" 
-                    frameborder="0" style="border:0" allowfullscreen class="mapaFooter"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.1075308829786!2d121.9192161404189!3d11.96705638267484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a52ae7cdaf5b77%3A0x6544e4bc01b87e12!2sLugar+Bonito+Hotel+-+Boracay!5e0!3m2!1ses!2ses!4v1559845074744!5m2!1ses!2ses" frameborder="0" style="border:0" allowfullscreen class="mapaFooter"></iframe>
+
         </div>
 
         <hr>
         <div class="col-md-12 col-lg-12 d-flex">
             <p class="copyright col-lg-6 col-md-6">
-                © 2019 Copyright:<strong> instalacion.com</strong>
+                © 2019 Copyright:<strong> befit.com</strong>
             </p>
             <div class="col-lg-6 col-md-6">
                 <nav class="redesSociales">
