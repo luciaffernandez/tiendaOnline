@@ -56,7 +56,7 @@ class Usuario {
             $this->id = $dato['id_user'];
         }
         $dirIds = $conexion->seleccion("SELECT * FROM VIVE_EN WHERE id_user = '" . $this->id . "'");
-        if ($dirIds != null || $dirIds != '') {
+        if ($dirIds != null || !empty($dirId)) {
             foreach ($dirIds as $dato) {
                 $id_dir = $dato['id_dir'];
                 $this->direccion[$id_dir];

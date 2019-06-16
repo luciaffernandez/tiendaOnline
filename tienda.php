@@ -112,8 +112,8 @@ if ($_POST['payment_status'] == 'Completed' && $_POST['payer_status'] == 'VERIFI
         $unidades = $unidades - 1;
         $sentencia = "UPDATE productos SET unidades_disponibles = " . $unidades . " WHERE num_ref = " . $num_ref;
         $conexion->ejecutar($sentencia);
-        var_dump($sentencia);
     }
+    $cesta->vacia();
 }
 
 //se muestra la plantilla del sitio 

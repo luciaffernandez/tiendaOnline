@@ -154,11 +154,13 @@ function mostrarDatosUser($correo) {
     $nombre = $usuario->getNombreCompleto($conexion, $correo);
     $DNI = $usuario->getDNI($conexion, $correo);
     //mostramos en la plantilla la variable usuario o nombre
-
+    $deshabilitado = "";
+    $smarty->assign('deshabilitado', $deshabilitado);
     $direccionCompleta = $usuario->getDireccion($conexion, $correo);
-
-    if ($direccionCompleta === false) {
-        $direccionUsuario = "<p>No hay ninguna dirección guardada para este usuario<p> <input type='submit' value='Editar datos' action='pagar.php'/>";
+    if ($direccionCompleta[0] === false) {
+        $datosUsuario= "<label>Nombre y apellidos: </label> $nombre</br> <label>Correo electrónico: </label> $correo </br><label>DNI: </label> $DNI</br><label>Dirección: </label>No hay ninguna dirección guardada para este usuario";
+        $deshabilitado = "disabled";
+        $smarty->assign('deshabilitado', $deshabilitado);
     } else {
         foreach ($direccionCompleta as $dato) {
             $calle = $dato[2];
@@ -168,9 +170,10 @@ function mostrarDatosUser($correo) {
             $piso = $dato[4];
             $cod_postal = $dato[5];
             $direccionUsuario = "$calle $numero, $piso, $ciudad, $provincia, $cod_postal";
+            $datosUsuario = "<label>Nombre y apellidos: </label> $nombre</br> <label>Correo electrónico: </label> $correo </br><label>DNI: </label> $DNI</br><label>Dirección: </label> $direccionUsuario";
         }
     }
-    $datosUsuario = "<label>Nombre y apellidos: </label> $nombre</br> <label>Correo electrónico: </label> $correo </br><label>DNI: </label> $DNI</br><label>Dirección: </label> $direccionUsuario";
+    
     $smarty->assign('datosUsuario', $datosUsuario);
 }
 

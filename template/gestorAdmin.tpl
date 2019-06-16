@@ -24,7 +24,5 @@
             <section class="separacion"></section>
         </div>
     </section>
-
-
     {include file = "footer.tpl"}
 </html>

@@ -210,6 +210,6 @@ function generoTabla($conexion, $nomTabla): string {
         }
         $tabla .= "<hr class='col-10 mx-auto'><br>";
     }
-    $tabla .= "</form></div>";
+    $tabla .= "</form>";
     return $tabla;
 }

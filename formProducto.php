@@ -54,6 +54,7 @@ if (isset($_POST['enviar'])) {
             $campos = $_POST['campos'];
             $sentencia = generaSentenciaUpdate($nomTabla, $campos, $valorAnt, $valorNuevo);
             $conexion->ejecutar($sentencia);
+            
             $gestor = $nomTabla;
             header("Location:gestor.php?gestor=$nomTabla");
             break;
@@ -61,6 +62,7 @@ if (isset($_POST['enviar'])) {
             $valorNuevo = $_POST['valorNuevo'];
             $campos = $_POST['campos'];
             $sentencia = generaInsert($nomTabla, $campos, $valorNuevo);
+           
             $conexion->ejecutar($sentencia);
             $error = $conexion->getInfo();
             $gestor = $nomTabla;
@@ -80,9 +82,13 @@ $smarty->display("formProducto.tpl");
 function generaSentenciaUpdate($nomTabla, $campos, $valorAnt, $valorNuevo) {
     $indice = 0;
     foreach ($campos as $titulo => $campo) {
+        if($titulo == "num_ref"){
+             
+        }else{
         $set .= "$titulo = '" . $valorNuevo[$indice] . "', ";
         $where .= "$titulo = '" . $valorAnt[$indice] . "' and ";
         $indice++;
+        }
     }
     $set = substr($set, 0, strlen($set) - 2);
     $where = substr($where, 0, strlen($where) - 4);
@@ -94,9 +100,13 @@ function generaInsert($nombreTabla, $campos, $valorNuevo) {
     $cols = "";
     $indice = 0;
     foreach ($campos as $titulo => $campo) {
-        $cols .= "$titulo,";
-        $values .= "'" . $valorNuevo[$indice] . "',";
-        $indice++;
+        if($titulo == "num_ref"){
+             
+        }else{
+            $cols .= "$titulo,";
+            $values .= "'" . $valorNuevo[$indice] . "',";
+            $indice++;
+        }
     }
     $cols = substr($cols, 0, strlen($cols) - 1);
     $values = substr($values, 0, strlen($values) - 1);
@@ -107,14 +117,29 @@ function generaInsert($nombreTabla, $campos, $valorNuevo) {
 function obtenerFormulario($campos, $boton) {
     $formulario = "";
     foreach ($campos as $titulo => $campo) {
-        $formulario .= "<div class = 'campo col-xl-6 px-4'><label>$titulo</label><br/>";
-        if ($boton == "add") {
-            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '' class='inputData'/><br />";
+        if ($boton == "add") {   
+            if($titulo != "num_ref"){
+                $formulario .= "<div class = 'campo col-xl-6 px-4'><label>$titulo</label><br/>";
+                $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '' class='inputData'/><br />";
+                $formulario .= "<input type = 'hidden' name = 'campos[$titulo]' value = '$campo' class='inputData'/><br />" .
+                "<input type = 'hidden' name = 'valorAnt[]' value= '$campo' />";
+            }else{
+                $formulario .= "<div class = 'campo col-xl-6 px-4 py-4'><label>El numero de referencia se pondra automáticamente</label><br/>";
+            }
         } else {
-            $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '$campo' class='inputData'/><br />";
+            if($titulo == "num_ref"){
+                $formulario .= "<div class='row'><div class = 'campo col-xl-6 px-4'><label>$titulo:</label>";
+                $formulario .= "<div class='my-2'>$campo</span></div>";
+                
+            }else{
+                $formulario .= "<div class = 'campo col-xl-6 px-4'><label>$titulo</label><br/>";
+                $formulario .= "<input type = 'text' name = 'valorNuevo[]' value = '$campo' class='inputData'/><br />";
+                $formulario .= "<input type = 'hidden' name = 'campos[$titulo]' value = '$campo' class='inputData'/><br />" .
+                "<input type = 'hidden' name = 'valorAnt[]' value= '$campo' />";
+            }
+            
         }
-        $formulario .= "<input type = 'hidden' name = 'campos[$titulo]' value = '$campo' class='inputData'/><br />" .
-                "<input type = 'hidden' name = 'valorAnt[]' value= '$campo' /></div>";
+        $formulario .= "</div>";
     }
     return $formulario;
 }

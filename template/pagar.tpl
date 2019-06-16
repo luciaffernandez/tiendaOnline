@@ -53,7 +53,8 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center botonFinalizaCompra">
-                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto botonesPago" value="Finalizar pedido"> 
+                            <input type="submit" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro" class="btn btn-red mx-auto botonesPago" value="Finalizar pedido" {$deshabilitado}> 
+                            <p class="my-4" > Para proceder a finalizar el pago necesitamos que tengas una dirección guardada</p>
                         </td>
                     </tr>
                 </table>

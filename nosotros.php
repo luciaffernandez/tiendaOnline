@@ -15,11 +15,13 @@ $smarty = new Smarty();
 $smarty->template_dir = "./template";
 $smarty->compile_dir = "./template_c";
 
+if(isset($_SESSION['cesta'])){
 //recogemos la variable de sesion cesta
 $cesta = $_SESSION['cesta'];
 //recojo el contenido de la cesta con los productos que vayamos añadiendo y lo mostramos en la plantilla
 $carrito = $cesta->mostrarIcono();
 $smarty->assign('carrito', $carrito);
+}
 
 $conexion = new BD();
 $correo = $_SESSION['correo'];
